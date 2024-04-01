@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Lyckosida!{% endblock %}</title>
+    <link rel="icon" href="{{ asset('img/glider.svg') }}">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+    <style>
+     body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="luckyc">
+        <div class="luckyimage">
+            <img src="{{ asset('img/' ~ image) }}" alt="Random Bild">
+        </div>
+
+        <div class="luckynumb">
+            <h1>{{ lucky_number }}</h1>
+        </div>
+    </div>
+</body>
+</html>

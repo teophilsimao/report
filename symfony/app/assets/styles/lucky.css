@@ -1,0 +1,37 @@
+.luckyc{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.luckyimage{
+    grid-column: 1 / span 4;
+}
+
+.luckyimage img {
+    width: 500px;
+  --m:
+    conic-gradient(from   45deg at left,  #0000,#000 1deg 89deg,#0000 90deg) left /40% 80px repeat-y,
+    conic-gradient(from -135deg at right, #0000,#000 1deg 89deg,#0000 90deg) right/100% 80px repeat-y;
+  -webkit-mask: var(--m);
+          mask: var(--m);
+}
+
+.luckynumb {
+    width: 60%;
+    height: 60%;
+    grid-column: 6 / span 6;
+    border: thick double black;
+    border-radius: 50%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    place-self: center;
+}
+
+.luckynumb h1 {
+    grid-column: 1 / span 12;
+    place-self: center;
+}

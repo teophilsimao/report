@@ -3,6 +3,7 @@ main {
     padding: 2em;
     margin: 0 auto;
     width: 70rem;
+    gap: 10px;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
 }
