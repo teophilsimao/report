@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('img/glider.svg') }}">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <nav id="myNav" class="overlay">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+            <div class="overlay-content">
+                <a href="{{ path('home') }}">Home</a>
+                <a href="{{ path('about') }}">About</a>
+                <a href="{{ path('report') }}">Report</a>
+            </div>
+
+        </nav>
+
+        <div class="navBtnContainer">
+            <span class="navBtn" onclick="openNav()">&#9776;</span>
+        </div>
+
+        <header class="site-header" style="background-image: url({{ asset('img/cows.jpg') }})">
+            <span class="site-title">MIN MVC SIDA</span>
+        </header>
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer>
+            <div class="fdiv">
+                <p>&copy; Copyright <span id="currentYear"></span>, Teophil Simao</p>
+            </div>
+        </footer>
+    </body>
+
+    <script>
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+            document.querySelector(".navBtn").style.color = "white";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+            document.querySelector(".navBtn").style.color = "black";
+        }
+
+        function setCurrentYear() {
+            var currentYear = new Date().getFullYear();
+            document.getElementById("currentYear").textContent = currentYear;
+        }
+
+        window.onload = setCurrentYear;
+    </script>
+</html>

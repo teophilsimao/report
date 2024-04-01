@@ -1,0 +1,16 @@
+main {
+    flex-grow: 1;
+    padding: 2em;
+    margin: 0 auto;
+    width: 70rem;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+main h1 {
+    grid-column: 1 / span 12;
+    margin: 45px 0;
+    justify-self: center;
+    text-align: center;
+}

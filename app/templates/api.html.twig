@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Routes</title>
+</head>
+<body>
+    <h1>API Routes</h1>
+    <ul>
+        {% for route in jsonRoutes %}
+            <li>
+                <strong>Route:</strong> {{ route.route }}<br>
+                <strong>Description:</strong> {{ route.description }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
