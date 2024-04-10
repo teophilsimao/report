@@ -14,11 +14,14 @@
 <div class="about">
     <h3>Info</h3>
     <p>
-        Kortspel för MVC kursen!
+        Kortspel för MVC kursen! Jag skpade 4 olika klasser som är relaterade till varandra. Card, CardGraphic, CardHand
+        och DeckOfCards. CardGraphic ärver från Card och ger varje cort en grafisk representation. CardHand har en förening 
+        med både Card och CardGraphic som tillåter att man instantierar båda klasserna i CardHand så att man kna få fram en 
+        hand av kort, och DeckOfCards har en förening med CardGraphic som tillåter att man kan hämta kort och skappa kortlek.
     </p>
 </div>
 
 <div class="aboutimg">
-    <img src="{{ asset('img/card.jpg') }}" alt="PHP">
+    <img src="{{ asset('img/UML.png') }}" alt="PHP">
 </div>
 {% endblock %}
