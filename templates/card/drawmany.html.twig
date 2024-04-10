@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortlek{% endblock %}
+
+{% block main %}
+    <h1>Kort</h1>
+    <div class="card">
+
+        {% for card in drawnCards %}
+            <span>{{ card }}</span>
+        {% endfor %}
+        <p>Kort: <strong>{{deckStr|length}}</strong></p>
+        <a href={{ path('session_delete') }}>Rensa sessionen</a>
+        <a href={{ path('deck_start') }}>Resterande kort</a>
+        <a href={{ path('deck_shuffle') }}>Blanda/Återställ</a>
+        <a href={{ path('deck_draw') }}>Dra ett kort</a>
+        <form method="post" action="">
+            <input type="submit" name="cards" value="{{ number }}" onClick="this.form.action='{{ path('deck_post') }}';">
+        </form>
+
+    </div>
+
+{% endblock %}

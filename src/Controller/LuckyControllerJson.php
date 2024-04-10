@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyControllerJson extends AbstractController
-{   
+{
     #[Route("/api", name: "api")]
     public function api(): Response
     {
@@ -37,6 +37,34 @@ class LuckyControllerJson extends AbstractController
                 'route' => $this->generateUrl('quote'),
                 'description' => 'random daily quoute',
             ],
+            [
+                'route' => $this->generateUrl('card_home'),
+                'description' => 'Home For The Cards',
+            ],
+            [
+                'route' => $this->generateUrl('deck_start'),
+                'description' => 'Show the card Deck',
+            ],
+            [
+                'route' => $this->generateUrl('deck_shuffle'),
+                'description' => 'shuffles and restores the deck',
+            ],
+            [
+                'route' => $this->generateUrl('deck_draw'),
+                'description' => 'Draws a random Card',
+            ],
+            [
+                'route' => $this->generateUrl('deck_post'),
+                'description' => 'To post a number',
+            ],
+            [
+                'route' => $this->generateUrl('deck_drawhand', ['number' => 3]),
+                'description' => 'Draws multipls cards',
+            ],
+            [
+                'route' => $this->generateUrl('session_delete'),
+                'description' => 'Restores the session',
+            ],
         ];
 
         return $this->render('api.html.twig', [
@@ -59,9 +87,9 @@ class LuckyControllerJson extends AbstractController
 
         $date = date('Y-m-d');
         $time = date('H:i:s', time());
-        
 
-        $data =[
+
+        $data = [
             'quote' => $quote,
             'date' => $date,
             'time' => $time

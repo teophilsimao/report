@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortspel{% endblock %}
+
+{% block main %}
+<h1>Kortspel</h1>
+<div class="aboutlist">
+    <h3>Kortlek</h3>
+    <ul>
+        <li><a href={{ path('deck_start') }}>Gå till Kortlek</a></li>
+    </ul>
+</div>
+
+<div class="about">
+    <h3>Info</h3>
+    <p>
+        Kortspel för MVC kursen!
+    </p>
+</div>
+
+<div class="aboutimg">
+    <img src="{{ asset('img/card.jpg') }}" alt="PHP">
+</div>
+{% endblock %}

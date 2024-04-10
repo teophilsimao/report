@@ -1,0 +1,11 @@
+input {
+    font-size: 1em;
+}
+
+.die {
+    font-size: 2em;
+}
+
+.gametext {
+    grid-column: 2 / span 10;
+}
