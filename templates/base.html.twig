@@ -14,18 +14,20 @@
         {% endblock %}
     </head>
     <body>
-        <header class="site-header" style="background-image: url({{ asset('img/background.jpg') }})">
+        <header class="site-header" style="background-image: url({{ asset('img/grid6.jpg') }})">
             <span class="site-title"></span>
         </header>
-        <nav>
+        <nav class="site-nav">
             <ul>
                 <li><a href="{{ path('home') }}">Home</a></li>
                 <li><a href="{{ path('about') }}">About</a></li>
                 <li><a href="{{ path('lucky_number') }}">Lucky number</a></li>
             </ul>
         </nav>
+        <main class="site-main">
         {% block main %}{% endblock %}
-        <footer>
+        </main>
+        <footer class="site-footer">
         </footer>
     </body>
 </html>

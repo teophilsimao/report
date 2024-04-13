@@ -1,0 +1,24 @@
+.site-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    border-bottom: 1px solid $darklight;
+}
+
+.site-nav ul {
+    list-style-type: none;
+    margin: 20px 0;
+    padding-right: 20px;
+}
+
+.site-nav li{
+    display: inline;
+    padding: 9px;
+}
+
+.site-nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: $darkdark;
+    font-weight: 700;
+}
