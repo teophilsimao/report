@@ -8,7 +8,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyControllerTwig extends AbstractController
 {
-    #[Route("/", name: "home")]
+    #[Route("/lucky/number/twig", name: "lucky_number")]
+    public function number(): Response
+    {
+        $number = random_int(0, 100);
+
+        $data = [
+            'number' => $number
+        ];
+
+        return $this->render('lucky_number.html.twig', $data);
+    }
+
+    #[Route("/home", name: "home")]
     public function home(): Response
     {
         return $this->render('home.html.twig');
@@ -18,32 +30,5 @@ class LuckyControllerTwig extends AbstractController
     public function about(): Response
     {
         return $this->render('about.html.twig');
-    }
-
-    #[Route("/report", name: "report")]
-    public function report(): Response
-    {
-        return $this->render('report.html.twig');
-    }
-
-    #[Route("/lucky", name: "lucky")]
-    public function lucky(): Response
-    {
-        $luckyNum = random_int(1, 100);
-
-        $images = [
-            '1.jpeg',
-            '2.jpg',
-            '6.jpg',
-            '7.jpg',
-            '8.jpg',
-        ];
-
-        $randimg = $images[array_rand($images)];
-
-        return $this->render('lucky.html.twig', [
-            'lucky_number' => $luckyNum,
-            'image' => $randimg,
-        ]);
     }
 }
