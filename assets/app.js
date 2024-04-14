@@ -7,6 +7,8 @@
  */
 import './styles/app.scss';
 import hello from './js/hello.js';
+import setCurrentYear from './js/year.js';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
-console.log(hello())
+console.log(hello());
+setCurrentYear();

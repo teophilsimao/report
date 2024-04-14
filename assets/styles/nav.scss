@@ -23,6 +23,10 @@
     font-weight: 700;
 }
 
+.site-nav a:hover{
+    color: $bluegray;
+}
+
 .site-nav.sticky {
     position: sticky;
     top: 0;

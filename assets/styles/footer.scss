@@ -1,3 +1,11 @@
 .site-footer{
     margin-top: auto;
+    background-color: $darkdark;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fdiv p {
+    padding: 1em 5em;
+    color: $bluegray;
 }

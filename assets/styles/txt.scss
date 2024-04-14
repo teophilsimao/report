@@ -17,4 +17,9 @@
 
 .list a {
     text-decoration: none;
+    color: $bluegray;
+}
+
+.list a:hover {
+    color: $yellow;
 }
