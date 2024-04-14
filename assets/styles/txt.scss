@@ -1,0 +1,20 @@
+// .txt {
+//     padding: 0 1em;
+// }
+
+.list {
+    border-right: 1px solid $lightgray;
+}
+
+.list ul{
+    list-style-type: none;
+    margin-top: 0.8em;
+}
+
+.list li {
+    margin-bottom: 0.5em;
+}
+
+.list a {
+    text-decoration: none;
+}
