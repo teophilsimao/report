@@ -12,7 +12,7 @@ class LuckyControllerJson extends AbstractController
     #[Route("/api", name: "api")]
     public function api(): Response
     {
-        $routes =[
+        $routes = [
             [
                 'route' => $this->generateUrl('home'),
                 'description' => 'Home',

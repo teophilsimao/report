@@ -8,7 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyControllerTwig extends AbstractController
 {
-
     #[Route("/", name: "home")]
     public function home(): Response
     {
@@ -32,7 +31,7 @@ class LuckyControllerTwig extends AbstractController
     {
         $number = random_int(0, 100);
 
-        $images = 
+        $images =
         [
             'cow.jpg',
             'cows.jpg',
