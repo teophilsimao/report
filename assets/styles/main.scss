@@ -1,0 +1,10 @@
+.site-main {
+    flex-grow: 1;
+    padding: 5em;
+}
+
+.site-main h1 {
+    display: inline;
+    margin-bottom: 10px;
+    border-bottom: 2px solid $darklight;
+}
