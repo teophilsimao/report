@@ -4,9 +4,12 @@
 
 {% block main %}
     <h1>About</h1>
-    <p>An image which can be clicked on.</p>
-    <a href="{{ asset('img/glider.svg') }}">
-        <img src="{{ asset('img/glider.svg') }}" alt="">
-    </a>
+    
+    <div class="grid">
+        <p>An image which can be clicked on.</p>
+        <a href="{{ asset('img/glider.svg') }}">
+            <img src="{{ asset('img/glider.svg') }}" alt="">
+        </a>
+    </div>
     {# <img src="{{ asset('build/images/background.jpg') }}" alt=""> #}
 {% endblock %}
