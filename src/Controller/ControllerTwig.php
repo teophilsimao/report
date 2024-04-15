@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LuckyControllerTwig extends AbstractController
+class ControllerTwig extends AbstractController
 {
     #[Route("/", name: "home")]
     public function home(): Response
