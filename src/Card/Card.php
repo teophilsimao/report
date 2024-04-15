@@ -11,7 +11,7 @@ class Card
 
     public function __construct()
     {
-        $this->suits = ['Heart', 'Diamond', 'Club', 'Spade'];
+        $this->suits = ['Spade', 'Heart', 'Diamond', 'Club'];
         $this->ranks = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
         $this->suit = null;
         $this->rank = null;

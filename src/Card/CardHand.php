@@ -25,7 +25,7 @@ class CardHand
         return count($this->hand);
     }
 
-    public function getCards(): array
+    public function getCard(): array
     {
         $cards = [];
         foreach ($this->hand as $card) {
