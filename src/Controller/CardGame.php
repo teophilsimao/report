@@ -37,8 +37,7 @@ class CardGame extends AbstractController
     public function cardDeck(
         Request $request,
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = $session->get('deck');
         $deck = $deck->getString();
 
@@ -56,8 +55,7 @@ class CardGame extends AbstractController
     #[Route("/card/deck/shuffle", name: "deck_shuffle", methods: ['GET'])]
     public function ShuffledDeck(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = new DeckOfCard();
         $deck->add(new CardGraphic());
         $deck->createDeck();
@@ -81,8 +79,7 @@ class CardGame extends AbstractController
     public function cardDraw(
         SessionInterface $session,
         CardGraphic $card
-    ): Response
-    {
+    ): Response {
         $deck = $session->get('deck');
 
         if (empty($deck->getDeck())) {
@@ -97,7 +94,7 @@ class CardGame extends AbstractController
         do {
             $card->drawCard();
             $drawnCardStr = $card->getAsString();
-    
+
             $cardInDeck = false;
             foreach ($deck->getDeck() as $key => $deckCard) {
                 if ($deckCard->getAsString() === $drawnCardStr) {
@@ -109,11 +106,11 @@ class CardGame extends AbstractController
                     break;
                 }
             }
-    
+
             if ($cardInDeck) {
                 break;
             }
-    
+
         } while (true);
 
         $data = [
@@ -126,13 +123,12 @@ class CardGame extends AbstractController
     }
 
 
-    
+
     //Card Form
     #[Route("/card/cardform", name: "cardform", methods: ['GET'])]
     public function cardForm(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = $session->get('deck');
 
         $data = [
@@ -149,8 +145,7 @@ class CardGame extends AbstractController
     public function cardFormPost(
         Request $request,
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $number = $request->request->get('cards');
         $session->set("number", $number);
 
@@ -161,11 +156,10 @@ class CardGame extends AbstractController
     #[Route("/card/deck/draw/{number<\d+>}", name: "deck_drawHand", methods: ['GET'])]
     public function cardDrawHand(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = $session->get('deck');
         $number = $session->get('number');
-        $hand = new CardHand;
+        $hand = new CardHand();
         $handStr = [];
 
         if (empty($deck->getDeck())) {
@@ -180,7 +174,7 @@ class CardGame extends AbstractController
                 $hand->add(new CardGraphic());
                 $hand->drawCard();
                 $cardStr = $hand->getString()[0];
-    
+
                 $cardInDeck = false;
                 foreach ($deck->getDeck() as $key => $deckCard) {
                     if ($deckCard->getAsString() === $cardStr) {
@@ -188,7 +182,7 @@ class CardGame extends AbstractController
                         break;
                     }
                 }
-    
+
                 if ($cardInDeck && !in_array($cardStr, $handStr)) {
                     $handStr[] = $cardStr;
                     foreach ($deck->getDeck() as $key => $deckCard) {
@@ -203,7 +197,7 @@ class CardGame extends AbstractController
                 }
             } while (true);
         }
-    
+
 
         $data = [
             "hand" => $handStr,
@@ -216,7 +210,7 @@ class CardGame extends AbstractController
     //Delete, clears and starts session
     #[Route("/session/delete", name:"session_delete")]
     public function sessionDelete(SessionInterface $session): Response
-    {   
+    {
         $session->clear();
 
         $this->addFlash(

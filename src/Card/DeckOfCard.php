@@ -5,12 +5,12 @@ namespace App\Card;
 use App\Card\Card;
 use App\Card\CardHand;
 
-class DeckOfCard 
+class DeckOfCard
 {
     protected $deck = [];
     protected $cards = [];
 
-    public function add(Card $card):void
+    public function add(Card $card): void
     {
         $this->cards[] = $card;
     }

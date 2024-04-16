@@ -20,8 +20,8 @@ class CardGameJson extends AbstractController
     #[Route("/api/deck", name: "apiDeck", methods: ['GET'])]
     public function apiDeck(): Response
     {
-        $deck = new DeckOfCard;
-        $deck->add(new CardGraphic);
+        $deck = new DeckOfCard();
+        $deck->add(new CardGraphic());
         $deck->createDeck();
         $deckStr = $deck->getString();
 
@@ -39,8 +39,8 @@ class CardGameJson extends AbstractController
     #[Route("/api/deck/shuffle", name: "apiDeckShuffle", methods: ['POST'])]
     public function apiDeckShuffle(SessionInterface $session): Response
     {
-        $deck = new DeckOfCard;
-        $deck->add(new CardGraphic);
+        $deck = new DeckOfCard();
+        $deck->add(new CardGraphic());
         $deck->createDeck();
         $deck->shuffle();
         $deckStr = $deck->getString();
@@ -77,7 +77,7 @@ class CardGameJson extends AbstractController
         do {
             $card->drawCard();
             $drawnCardStr = $card->getAsString();
-    
+
             $cardInDeck = false;
             foreach ($deck->getDeck() as $key => $deckCard) {
                 if ($deckCard->getAsString() === $drawnCardStr) {
@@ -89,11 +89,11 @@ class CardGameJson extends AbstractController
                     break;
                 }
             }
-    
+
             if ($cardInDeck) {
                 break;
             }
-    
+
         } while (true);
 
         $deckLength = $deck->getAmount();
@@ -115,7 +115,7 @@ class CardGameJson extends AbstractController
     {
         $deck = $session->get('deck');
         $number = $request->attributes->get('number');
-        $hand = new CardHand;
+        $hand = new CardHand();
         $handStr = [];
 
         if (empty($deck->getDeck())) {
@@ -130,7 +130,7 @@ class CardGameJson extends AbstractController
                 $hand->add(new CardGraphic());
                 $hand->drawCard();
                 $cardStr = $hand->getString()[0];
-    
+
                 $cardInDeck = false;
                 foreach ($deck->getDeck() as $key => $deckCard) {
                     if ($deckCard->getAsString() === $cardStr) {
@@ -138,7 +138,7 @@ class CardGameJson extends AbstractController
                         break;
                     }
                 }
-    
+
                 if ($cardInDeck && !in_array($cardStr, $handStr)) {
                     $handStr[] = $cardStr;
                     foreach ($deck->getDeck() as $key => $deckCard) {
@@ -153,7 +153,7 @@ class CardGameJson extends AbstractController
                 }
             } while (true);
         }
-    
+
         $deckLength = $deck->getAmount();
 
         $data = [
@@ -161,7 +161,7 @@ class CardGameJson extends AbstractController
             "amount" => $deckLength
         ];
 
-        
+
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
