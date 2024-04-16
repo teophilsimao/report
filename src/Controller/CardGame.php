@@ -20,14 +20,12 @@ class CardGame extends AbstractController
     #[Route("/card", name:"card_home")]
     public function home(SessionInterface $session): Response
     {
-        if (!$session->isStarted()) {
-            $session->start();
+        if (!$session->has('deck')) {
+            $deck = new DeckOfCard();
+            $deck->add(new CardGraphic());
+            $deck->createDeck();
+            $session->set('deck', $deck);
         }
-
-        $deck = new DeckOfCard();
-        $deck->add(new CardGraphic());
-        $deck->createDeck();
-        $session->set('deck', $deck);
 
         return $this->render('card/home.html.twig');
     }
@@ -213,5 +211,29 @@ class CardGame extends AbstractController
         ];
 
         return $this->render('card/drawhand.html.twig', $data);
+    }
+
+    //Delete, clears and starts session
+    #[Route("/session/delete", name:"session_delete")]
+    public function sessionDelete(SessionInterface $session): Response
+    {   
+        $session->clear();
+
+        $this->addFlash(
+            'notice',
+            'nu är sessionen raderad'
+        );
+
+        return $this->redirectToRoute('home');
+    }
+
+    #[Route("/session", name:"session")]
+    public function dumpSession(SessionInterface $session): Response
+    {
+        $sessionData = $session->all();
+
+        return $this->render('session.html.twig', [
+            'sessionData' => $sessionData
+        ]);
     }
 }
