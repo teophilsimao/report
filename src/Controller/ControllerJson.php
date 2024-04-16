@@ -37,6 +37,58 @@ class ControllerJson extends AbstractController
                 'route' => $this->generateUrl('quote'),
                 'description' => 'random daily quoute',
             ],
+            [
+                'route' => $this->generateUrl('card_home'),
+                'description' => 'Home page with info and picture about the card',
+            ],
+            [
+                'route' => $this->generateUrl('deck'),
+                'description' => 'Unshuffled deck of card',
+            ],
+            [
+                'route' => $this->generateUrl('deck_shuffle'),
+                'description' => 'shuffled deck',
+            ],
+            [
+                'route' => $this->generateUrl('deck_draw'),
+                'description' => 'A drawn card',
+            ],
+            [
+                'route' => $this->generateUrl('cardform'),
+                'description' => 'Buttons and form to ges a specific amount of card',
+            ],
+            [
+                'route' => $this->generateUrl('cardform_post'),
+                'description' => 'To post the given form information',
+            ],
+            [
+                'route' => $this->generateUrl('deck_drawHand', ['number' => 3]),
+                'description' => 'Draws a hand of card based on the amount given from the form',
+            ],
+            [
+                'route' => $this->generateUrl('session_delete'),
+                'description' => 'Deletes the session',
+            ],
+            [
+                'route' => $this->generateUrl('session'),
+                'description' => 'Shows the session',
+            ],
+            [
+                'route' => $this->generateUrl('apiDeck'),
+                'description' => 'Shows the deck in API',
+            ],
+            [
+                'route' => $this->generateUrl('apiDeckShuffle'),
+                'description' => 'Shows the deck shuffled in API',
+            ],
+            [
+                'route' => $this->generateUrl('apiDeckDraw'),
+                'description' => 'Draws a card in API',
+            ],
+            [
+                'route' => $this->generateUrl('apiDeckDrawNumber', ['number' => 3]),
+                'description' => 'Draws mutiples card in API',
+            ],
         ];
 
         $response = new JsonResponse($routes);
