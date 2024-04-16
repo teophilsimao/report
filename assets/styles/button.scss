@@ -1,10 +1,9 @@
 .button {
     appearance: none;
-    background-color: #FAFBFC;
-    border: 1px solid rgba(27, 31, 35, 0.15);
+    background-color: $darkwhite;
+    border: 1px solid $lightdark;
     border-radius: 6px;
-    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-    color: #24292E;
+    color: $darkdark;
     cursor: pointer;
     display: inline;
     font-size: 14px;
@@ -14,14 +13,17 @@
     position: relative;
     vertical-align: middle;
     white-space: nowrap;
-    word-wrap: break-word;
     text-decoration: none;
     text-align: center;
     margin-top: 10px;
 }
 
+.green {
+    background-color: $softgreen;
+}
+
 .button a:hover {
-    border-color: #a2a6ac #979aa1 #82858a;
+    border-color: $brightyellow;
   }
   
 
