@@ -3,6 +3,7 @@
 namespace App\Card;
 
 use App\Card\Card;
+use App\Card\CardHand;
 
 class DeckOfCard 
 {
@@ -26,6 +27,11 @@ class DeckOfCard
                 }
             }
         }
+    }
+
+    public function getAmount(): int
+    {
+        return count($this->deck);
     }
 
     public function getDeck(): array

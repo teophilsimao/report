@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortlek{% endblock %}
+
+{% block main %}
+    <h1>Kortlek</h1>
+
+    <div class="grid">
+        {% for card in deckStr %}
+            <span>{{card}}</span>
+        {% endfor %}
+    </div>
+
+    {{ include('card/cardform.html.twig') }}
+{% endblock %}

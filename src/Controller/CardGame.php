@@ -16,9 +16,101 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CardGame extends AbstractController
 {
-    // test part
-    #[Route("/card/test/card", name: "one_card")]
-    public function oneCard(): Response
+    //Home, starts session
+    #[Route("/card", name:"card_home")]
+    public function home(SessionInterface $session): Response
+    {
+        if (!$session->isStarted()) {
+            $session->start();
+        }
+
+        $deck = new DeckOfCard();
+        $deck->add(new CardGraphic());
+        $deck->createDeck();
+        $session->set('deck', $deck);
+
+        return $this->render('card/home.html.twig');
+    }
+
+    //Deck
+    #[Route("/card/deck", name: "deck", methods: ['GET'])]
+    public function cardDeck(
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        $deck = $session->get('deck');
+        $deckStr = $deck->getString();
+        $deckAmount = $deck->getAmount();
+
+        $data = [
+            "deckStr" => $deckStr,
+            "deckAmount" => $deckAmount
+        ];
+
+        return $this->render('card/deck.html.twig', $data);
+
+    }
+
+    //Shuffle Deck
+    #[Route("/card/deck/shuffle", name: "deck_shuffle", methods: ['GET'])]
+    public function ShuffledDeck(
+        SessionInterface $session
+    ): Response
+    {
+        $deck = new DeckOfCard();
+        $deck->add(new CardGraphic());
+        $deck->createDeck();
+        $session->set('deck', $deck);
+
+        $deck = $session->get('deck');
+        $deck->shuffle();
+        $deckAmount = $deck->getAmount();
+
+        $data = [
+            "deck" => $deck->getString(),
+            "deckAmount" => $deckAmount
+        ];
+
+        return $this->render('card/deckshuffle.html.twig', $data);
+
+    }
+
+    //Card Form
+    #[Route("/card/cardform", name: "cardform", methods: ['GET'])]
+    public function cardForm(
+        SessionInterface $session
+    ): Response
+    {
+        $deck = $session->get('deck');
+        $deckAmount = $deck->getAmount();
+
+        $data = [
+            "deckAmount" => $deckAmount
+        ];
+
+        return $this->render('card/cardform.html.twig', $data);
+
+    }
+
+    //Delete, clears and starts session
+    #[Route("/session/delete", name:"session_delete")]
+    public function sessionDelete(SessionInterface $session): Response
+    {   
+        $session->clear();
+
+        if (!$session->isStarted()) {
+            $session->start();
+        }
+
+        return $this->redirectToRoute('card_home');
+    }
+
+
+
+    // TESTS
+    #[Route("/card/test/card", name: "one_card_test")]
+    public function oneCardTest(): Response
     {
         $card = new Card();
         $card->drawCard();
@@ -30,8 +122,8 @@ class CardGame extends AbstractController
         return $this->render('card/test/card.html.twig', $data);
     }
 
-    #[Route("/card/test/hand/{number<\d+>}", name: "card_hand")]
-    public function cardHand(int $number): Response
+    #[Route("/card/test/hand/{number<\d+>}", name: "card_hand_test")]
+    public function cardHandTest(int $number): Response
     {
 
         $hand = new CardHand();
@@ -52,8 +144,8 @@ class CardGame extends AbstractController
         return $this->render('card/test/cards.html.twig', $data);
     }
 
-    #[Route("/card/test/deck", name: "deck")]
-    public function deck(): Response
+    #[Route("/card/test/deck", name: "deck_test")]
+    public function deckTest(): Response
     {
         $deck = new DeckOfCard();
         $deck->add(new CardGraphic());
@@ -66,8 +158,8 @@ class CardGame extends AbstractController
         return $this->render('card/test/deck.html.twig', $data);
     }
 
-    #[Route("/card/test/shuffle", name: "shuffle")]
-    public function deckshuffle(): Response
+    #[Route("/card/test/shuffle", name: "shuffle_test")]
+    public function deckshuffleTest(): Response
     {
         $deck = new DeckOfCard();
         $deck->add(new CardGraphic());
