@@ -78,10 +78,10 @@ class CardGameJson extends AbstractController
             $card->drawCard();
             $drawnCardStr = $card->getAsString();
     
-            $cardExistsInDeck = false;
+            $cardInDeck = false;
             foreach ($deck->getDeck() as $key => $deckCard) {
                 if ($deckCard->getAsString() === $drawnCardStr) {
-                    $cardExistsInDeck = true;
+                    $cardInDeck = true;
                     $drawnCard = $deckCard;
                     $deckArray = $session->get('deck')->getDeck();
                     unset($deckArray[$key]);
@@ -90,7 +90,7 @@ class CardGameJson extends AbstractController
                 }
             }
     
-            if ($cardExistsInDeck) {
+            if ($cardInDeck) {
                 break;
             }
     
@@ -131,15 +131,15 @@ class CardGameJson extends AbstractController
                 $hand->drawCard();
                 $cardStr = $hand->getString()[0];
     
-                $cardExistsInDeck = false;
+                $cardInDeck = false;
                 foreach ($deck->getDeck() as $key => $deckCard) {
                     if ($deckCard->getAsString() === $cardStr) {
-                        $cardExistsInDeck = true;
+                        $cardInDeck = true;
                         break;
                     }
                 }
     
-                if ($cardExistsInDeck && !in_array($cardStr, $handStr)) {
+                if ($cardInDeck && !in_array($cardStr, $handStr)) {
                     $handStr[] = $cardStr;
                     foreach ($deck->getDeck() as $key => $deckCard) {
                         if ($deckCard->getAsString() === $cardStr) {
