@@ -1,6 +1,11 @@
 {% block main %}
     <div class="grid">
-        <p>Kort: <strong>{{ deckAmount }}</strong></p>
+        <p>Kort: <strong>{{ deck|length }}</strong></p>
         <a class="button span8" href={{ path('deck_shuffle') }}>Blanda</a>
+        <a class="button span8" href={{ path('deck_draw') }}>Dra ett Kort</a>
+        <form class="span1" method="post" action="{{ path('cardform_post') }}">
+            <input type="number" name="cards" min="0" max="{{ deck|length }}" value="0">
+            <input type="submit" name="do_it" value="Dra kort">
+        </form>
     </div>
 {% endblock %}

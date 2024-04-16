@@ -29,6 +29,11 @@ class DeckOfCard
         }
     }
 
+    public function setDeck(array $deck): void
+    {
+        $this->deck = $deck;
+    }
+
     public function getAmount(): int
     {
         return count($this->deck);

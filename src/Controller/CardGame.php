@@ -32,6 +32,8 @@ class CardGame extends AbstractController
         return $this->render('card/home.html.twig');
     }
 
+
+
     //Deck
     #[Route("/card/deck", name: "deck", methods: ['GET'])]
     public function cardDeck(
@@ -40,17 +42,17 @@ class CardGame extends AbstractController
     ): Response
     {
         $deck = $session->get('deck');
-        $deckStr = $deck->getString();
-        $deckAmount = $deck->getAmount();
+        $deck = $deck->getString();
 
         $data = [
-            "deckStr" => $deckStr,
-            "deckAmount" => $deckAmount
+            "deck" => $deck
         ];
 
         return $this->render('card/deck.html.twig', $data);
 
     }
+
+
 
     //Shuffle Deck
     #[Route("/card/deck/shuffle", name: "deck_shuffle", methods: ['GET'])]
@@ -65,17 +67,68 @@ class CardGame extends AbstractController
 
         $deck = $session->get('deck');
         $deck->shuffle();
-        $deckAmount = $deck->getAmount();
 
         $data = [
-            "deck" => $deck->getString(),
-            "deckAmount" => $deckAmount
+            "deck" => $deck->getString()
         ];
 
         return $this->render('card/deckshuffle.html.twig', $data);
 
     }
 
+
+
+    //Deck Draw one card
+    #[Route("/card/deck/draw", name: "deck_draw", methods: ['GET'])]
+    public function cardDraw(
+        SessionInterface $session,
+        CardGraphic $card
+    ): Response
+    {
+        $deck = $session->get('deck');
+
+        if (empty($deck->getDeck())) {
+            return $this->render('card/draw.html.twig', [
+                "card" => null,
+                "deck" => null
+            ]);
+        }
+
+        $drawnCard = null;
+
+        do {
+            $card->drawCard();
+            $drawnCardStr = $card->getAsString();
+    
+            $cardExistsInDeck = false;
+            foreach ($deck->getDeck() as $key => $deckCard) {
+                if ($deckCard->getAsString() === $drawnCardStr) {
+                    $cardExistsInDeck = true;
+                    $drawnCard = $deckCard;
+                    $deckArray = $session->get('deck')->getDeck();
+                    unset($deckArray[$key]);
+                    $session->get('deck')->setDeck(array_values($deckArray));
+                    break;
+                }
+            }
+    
+            if ($cardExistsInDeck) {
+                break;
+            }
+    
+        } while (true);
+
+        $data = [
+            "card" => $drawnCard->getAsString(),
+            "deck" => $deck->getString()
+        ];
+
+        return $this->render('card/draw.html.twig', $data);
+
+    }
+
+
+    
     //Card Form
     #[Route("/card/cardform", name: "cardform", methods: ['GET'])]
     public function cardForm(
@@ -83,93 +136,82 @@ class CardGame extends AbstractController
     ): Response
     {
         $deck = $session->get('deck');
-        $deckAmount = $deck->getAmount();
 
         $data = [
-            "deckAmount" => $deckAmount
+            "deck" => $deck->getString()
         ];
 
         return $this->render('card/cardform.html.twig', $data);
-
     }
 
-    //Delete, clears and starts session
-    #[Route("/session/delete", name:"session_delete")]
-    public function sessionDelete(SessionInterface $session): Response
-    {   
-        $session->clear();
 
-        if (!$session->isStarted()) {
-            $session->start();
+
+    //Cardform Post
+    #[Route("/card/cardform", name: "cardform_post", methods: ['POST'])]
+    public function cardFormPost(
+        Request $request,
+        SessionInterface $session
+    ): Response
+    {
+        $number = $request->request->get('cards');
+        $session->set("number", $number);
+
+        return $this->redirectToRoute('deck_drawHand', ['number' => $number]);
+    }
+
+    //Deck Draw a hand
+    #[Route("/card/deck/draw/{number<\d+>}", name: "deck_drawHand", methods: ['GET'])]
+    public function cardDrawHand(
+        SessionInterface $session
+    ): Response
+    {
+        $deck = $session->get('deck');
+        $number = $session->get('number');
+        $hand = new CardHand;
+        $handStr = [];
+
+        if (empty($deck->getDeck())) {
+            return $this->render('card/drawhand.html.twig', [
+                "hand" => null,
+                "deck" => null
+            ]);
         }
 
-        return $this->redirectToRoute('card_home');
-    }
-
-
-
-    // TESTS
-    #[Route("/card/test/card", name: "one_card_test")]
-    public function oneCardTest(): Response
-    {
-        $card = new Card();
-        $card->drawCard();
-
-        $data = [
-            "card" => $card->getAsString()
-        ];
-
-        return $this->render('card/test/card.html.twig', $data);
-    }
-
-    #[Route("/card/test/hand/{number<\d+>}", name: "card_hand_test")]
-    public function cardHandTest(int $number): Response
-    {
-
-        $hand = new CardHand();
         for ($i = 0; $i < $number; $i++) {
-            if ($i % 2 === 1) {
-                $hand->add(new Card());
-            } else {
+            do {
                 $hand->add(new CardGraphic());
-            }
+                $hand->drawCard();
+                $cardStr = $hand->getString()[0];
+    
+                $cardExistsInDeck = false;
+                foreach ($deck->getDeck() as $key => $deckCard) {
+                    if ($deckCard->getAsString() === $cardStr) {
+                        $cardExistsInDeck = true;
+                        break;
+                    }
+                }
+    
+                if ($cardExistsInDeck && !in_array($cardStr, $handStr)) {
+                    $handStr[] = $cardStr;
+                    foreach ($deck->getDeck() as $key => $deckCard) {
+                        if ($deckCard->getAsString() === $cardStr) {
+                            $deckArray = $session->get('deck')->getDeck();
+                            unset($deckArray[$key]);
+                            $session->get('deck')->setDeck(array_values($deckArray));
+                            break;
+                        }
+                    }
+                    break;
+                }
+            } while (true);
         }
-
-        $hand->drawCard();
-
-        $data = [
-            "hand" => $hand->getString()
-        ];
-
-        return $this->render('card/test/cards.html.twig', $data);
-    }
-
-    #[Route("/card/test/deck", name: "deck_test")]
-    public function deckTest(): Response
-    {
-        $deck = new DeckOfCard();
-        $deck->add(new CardGraphic());
-        $deck->createDeck();
+    
 
         $data = [
+            "hand" => $handStr,
             "deck" => $deck->getString()
         ];
 
-        return $this->render('card/test/deck.html.twig', $data);
-    }
-
-    #[Route("/card/test/shuffle", name: "shuffle_test")]
-    public function deckshuffleTest(): Response
-    {
-        $deck = new DeckOfCard();
-        $deck->add(new CardGraphic());
-        $deck->createDeck();
-        $deck->shuffle();
-
-        $data = [
-            "deck" => $deck->getString()
-        ];
-
-        return $this->render('card/test/shuffle.html.twig', $data);
+        return $this->render('card/drawhand.html.twig', $data);
     }
 }

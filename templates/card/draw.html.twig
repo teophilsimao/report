@@ -6,9 +6,7 @@
     <h1>Kortlek</h1>
 
     <div class="grid">
-        {% for card in deck %}
-            <span>{{card}}</span>
-        {% endfor %}
+        <span>{{ card }}</span>
     </div>
 
     {{ include('card/cardform.html.twig') }}
