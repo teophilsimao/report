@@ -7,7 +7,14 @@ use App\Card\CardHand;
 
 class DeckOfCard
 {
+    /**
+     * @var array<Card>
+     */
     protected $deck = [];
+
+    /**
+     * @var array<Card>
+     */
     protected $cards = [];
 
     public function add(Card $card): void
@@ -29,6 +36,9 @@ class DeckOfCard
         }
     }
 
+    /**
+     * @param array<Card> $deck
+     */
     public function setDeck(array $deck): void
     {
         $this->deck = $deck;
@@ -39,6 +49,9 @@ class DeckOfCard
         return count($this->deck);
     }
 
+    /**
+     * @return array<Card>
+     */
     public function getDeck(): array
     {
         return $this->deck;
@@ -49,6 +62,9 @@ class DeckOfCard
         shuffle($this->deck);
     }
 
+    /**
+     * @return array<string>
+     */
     public function getString(): array
     {
         $deckString = [];
@@ -58,7 +74,22 @@ class DeckOfCard
         return $deckString;
     }
 
-    public function drawnCard(CardHand $hand): ?string
+    public function drawnCard(): ?Card
+    {
+        if (empty($this->deck)) {
+            return null;
+        }
+
+        $index = array_rand($this->deck);
+        $drawnCard = $this->deck[$index];
+        
+        unset($this->deck[$index]);
+        $this->deck = array_values($this->deck);
+        
+        return $drawnCard;
+    }
+
+    public function drawnCards(CardHand $hand): ?string
     {
         if (empty($this->deck)) {
             return null;

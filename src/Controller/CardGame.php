@@ -36,7 +36,11 @@ class CardGame extends AbstractController
     #[Route("/card/deck", name: "deck", methods: ['GET'])]
     public function cardDeck(
         SessionInterface $session
-    ): Response {
+    ): Response 
+    {
+         /** 
+          * @var DeckOfCard $deck 
+          */
         $deck = $session->get('deck');
         $deck = $deck->getString();
 
@@ -56,13 +60,14 @@ class CardGame extends AbstractController
         SessionInterface $session
     ): Response 
     {
+        /** 
+         * @var DeckOfCard $deck 
+         */
         $deck = new DeckOfCard();
         $deck->add(new CardGraphic());
         $deck->createDeck();
-        $session->set('deck', $deck);
-
-        $deck = $session->get('deck');
         $deck->shuffle();
+        $session->set('deck', $deck);
 
         $data = [
             "deck" => $deck->getString()
@@ -77,44 +82,25 @@ class CardGame extends AbstractController
     //Deck Draw one card
     #[Route("/card/deck/draw", name: "deck_draw", methods: ['GET'])]
     public function cardDraw(
-        SessionInterface $session,
-        CardGraphic $card
-    ): Response {
+        SessionInterface $session
+    ): Response 
+    {
+        /** 
+         * @var DeckOfCard $deck 
+         */
         $deck = $session->get('deck');
 
-        if (empty($deck->getDeck())) {
-            return $this->render('card/draw.html.twig', [
-                "card" => null,
-                "deck" => null
-            ]);
+        $drawnCard = $deck->drawnCard();
+
+        $cardString = '';
+        if ($drawnCard !== null) {
+            $cardString = $drawnCard->getAsString();
         }
 
-        $drawnCard = null;
-
-        do {
-            $card->drawCard();
-            $drawnCardStr = $card->getAsString();
-
-            $cardInDeck = false;
-            foreach ($deck->getDeck() as $key => $deckCard) {
-                if ($deckCard->getAsString() === $drawnCardStr) {
-                    $cardInDeck = true;
-                    $drawnCard = $deckCard;
-                    $deckArray = $session->get('deck')->getDeck();
-                    unset($deckArray[$key]);
-                    $session->get('deck')->setDeck(array_values($deckArray));
-                    break;
-                }
-            }
-
-            if ($cardInDeck) {
-                break;
-            }
-
-        } while (true);
+        $session->set('deck', $deck);
 
         $data = [
-            "card" => $drawnCard->getAsString(),
+            "card" => $cardString,
             "deck" => $deck->getString()
         ];
 
@@ -131,8 +117,13 @@ class CardGame extends AbstractController
     ): Response {
         $deck = $session->get('deck');
 
+        if ($deck instanceof DeckOfCard) {
+            $deckString = $deck->getString();
+        } 
+        $deckString = '';
+
         $data = [
-            "deck" => $deck->getString()
+            "deck" => $deckString
         ];
 
         return $this->render('card/cardform.html.twig', $data);
@@ -159,17 +150,23 @@ class CardGame extends AbstractController
     ): Response {
         $deck = $session->get('deck');
         $number = $session->get('number');
+
+        if (!$deck instanceof DeckOfCard) {
+            return $this->redirectToRoute('deck');
+        }
+
         $handStr = [];
 
 
         for ($i = 0; $i < $number; $i++) {
-            $drawnCardStr = $deck->drawnCard(new CardHand());
+            $drawnCardStr = $deck->drawnCards(new CardHand());
 
             if ($drawnCardStr !== null) {
                 $handStr[] = $drawnCardStr;
             }
         }
 
+        $session->set('deck', $deck);
 
         $data = [
             "hand" => $handStr,

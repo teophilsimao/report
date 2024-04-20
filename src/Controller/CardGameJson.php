@@ -61,45 +61,25 @@ class CardGameJson extends AbstractController
     }
 
     #[Route("/api/deck/draw", name: "apiDeckDraw", methods: ['POST'])]
-    public function apiDeckDraw(SessionInterface $session, CardGraphic $card): Response
+    public function apiDeckDraw(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
 
-        if (empty($deck->getDeck())) {
-            return $this->render('card/draw.html.twig', [
-                "card" => null,
-                "deck" => null
-            ]);
+        if (!$deck instanceof DeckOfCard) {
+            return new JsonResponse([
+                'error' => 'Deck is not initialized'
+            ], Response::HTTP_BAD_REQUEST);
         }
 
-        $drawnCard = null;
+        $drawnCard = $deck->drawnCard();
+        $drawnStr = $drawnCard ? $drawnCard->getAsString() : null;
 
-        do {
-            $card->drawCard();
-            $drawnCardStr = $card->getAsString();
-
-            $cardInDeck = false;
-            foreach ($deck->getDeck() as $key => $deckCard) {
-                if ($deckCard->getAsString() === $drawnCardStr) {
-                    $cardInDeck = true;
-                    $drawnCard = $deckCard;
-                    $deckArray = $session->get('deck')->getDeck();
-                    unset($deckArray[$key]);
-                    $session->get('deck')->setDeck(array_values($deckArray));
-                    break;
-                }
-            }
-
-            if ($cardInDeck) {
-                break;
-            }
-
-        } while (true);
+        $session->set('deck', $deck);
 
         $deckLength = $deck->getAmount();
 
         $data = [
-            "card" => $drawnCard->getAsString(),
+            "card" => $drawnStr,
             "amount" => $deckLength
         ];
 
@@ -117,9 +97,15 @@ class CardGameJson extends AbstractController
         $number = $request->attributes->get('number');
         $handStr = [];
 
+        if (!$deck instanceof DeckOfCard) {
+            return new JsonResponse([
+                'error' => 'Deck is not initialized'
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
 
         for ($i = 0; $i < $number; $i++) {
-            $drawnCardStr = $deck->drawnCard(new CardHand());
+            $drawnCardStr = $deck->drawnCards(new CardHand());
 
             if ($drawnCardStr !== null) {
                 $handStr[] = $drawnCardStr;
