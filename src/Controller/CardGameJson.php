@@ -115,45 +115,17 @@ class CardGameJson extends AbstractController
     {
         $deck = $session->get('deck');
         $number = $request->attributes->get('number');
-        $hand = new CardHand();
         $handStr = [];
 
-        if (empty($deck->getDeck())) {
-            return $this->render('card/drawhand.html.twig', [
-                "hand" => null,
-                "deck" => null
-            ]);
-        }
 
         for ($i = 0; $i < $number; $i++) {
-            do {
-                $hand->add(new CardGraphic());
-                $hand->drawCard();
-                $cardStr = $hand->getString()[0];
+            $drawnCardStr = $deck->drawnCard(new CardHand());
 
-                $cardInDeck = false;
-                foreach ($deck->getDeck() as $key => $deckCard) {
-                    if ($deckCard->getAsString() === $cardStr) {
-                        $cardInDeck = true;
-                        break;
-                    }
-                }
-
-                if ($cardInDeck && !in_array($cardStr, $handStr)) {
-                    $handStr[] = $cardStr;
-                    foreach ($deck->getDeck() as $key => $deckCard) {
-                        if ($deckCard->getAsString() === $cardStr) {
-                            $deckArray = $session->get('deck')->getDeck();
-                            unset($deckArray[$key]);
-                            $session->get('deck')->setDeck(array_values($deckArray));
-                            break;
-                        }
-                    }
-                    break;
-                }
-            } while (true);
+            if ($drawnCardStr !== null) {
+                $handStr[] = $drawnCardStr;
+            }
         }
-
+        
         $deckLength = $deck->getAmount();
 
         $data = [

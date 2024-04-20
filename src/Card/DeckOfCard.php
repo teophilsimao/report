@@ -57,4 +57,36 @@ class DeckOfCard
         }
         return $deckString;
     }
+
+    public function drawnCard(CardHand $hand): ?string
+    {
+        if (empty($this->deck)) {
+            return null;
+        }
+
+        do {
+            $index = array_rand($this->deck);
+            $drawnCard = $this->deck[$index];
+
+            if ($this->isCardInDeck($drawnCard->getAsString())) {
+                $hand->add($drawnCard);
+                unset($this->deck[$index]);
+                $this->deck = array_values($this->deck);
+                return $drawnCard->getAsString();
+            }
+
+        } while (!empty($this->deck));
+
+        return null;
+    }
+
+    private function isCardInDeck(string $cardStr): bool
+    {
+        foreach ($this->deck as $card) {
+            if ($card->getAsString() === $cardStr) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

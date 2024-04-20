@@ -35,7 +35,6 @@ class CardGame extends AbstractController
     //Deck
     #[Route("/card/deck", name: "deck", methods: ['GET'])]
     public function cardDeck(
-        Request $request,
         SessionInterface $session
     ): Response {
         $deck = $session->get('deck');
@@ -53,9 +52,10 @@ class CardGame extends AbstractController
 
     //Shuffle Deck
     #[Route("/card/deck/shuffle", name: "deck_shuffle", methods: ['GET'])]
-    public function ShuffledDeck(
+    public function shuffledDeck(
         SessionInterface $session
-    ): Response {
+    ): Response 
+    {
         $deck = new DeckOfCard();
         $deck->add(new CardGraphic());
         $deck->createDeck();
@@ -159,43 +159,15 @@ class CardGame extends AbstractController
     ): Response {
         $deck = $session->get('deck');
         $number = $session->get('number');
-        $hand = new CardHand();
         $handStr = [];
 
-        if (empty($deck->getDeck())) {
-            return $this->render('card/drawhand.html.twig', [
-                "hand" => null,
-                "deck" => null
-            ]);
-        }
 
         for ($i = 0; $i < $number; $i++) {
-            do {
-                $hand->add(new CardGraphic());
-                $hand->drawCard();
-                $cardStr = $hand->getString()[0];
+            $drawnCardStr = $deck->drawnCard(new CardHand());
 
-                $cardInDeck = false;
-                foreach ($deck->getDeck() as $key => $deckCard) {
-                    if ($deckCard->getAsString() === $cardStr) {
-                        $cardInDeck = true;
-                        break;
-                    }
-                }
-
-                if ($cardInDeck && !in_array($cardStr, $handStr)) {
-                    $handStr[] = $cardStr;
-                    foreach ($deck->getDeck() as $key => $deckCard) {
-                        if ($deckCard->getAsString() === $cardStr) {
-                            $deckArray = $session->get('deck')->getDeck();
-                            unset($deckArray[$key]);
-                            $session->get('deck')->setDeck(array_values($deckArray));
-                            break;
-                        }
-                    }
-                    break;
-                }
-            } while (true);
+            if ($drawnCardStr !== null) {
+                $handStr[] = $drawnCardStr;
+            }
         }
 
 
