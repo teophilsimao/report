@@ -37,3 +37,11 @@
 .span8{
     grid-column: 1 / span 1;
 }
+
+.span9{
+    grid-column: 1 / span 5;
+}
+
+.span0{
+    grid-column: 6 / span 5;
+}

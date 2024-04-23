@@ -1,2 +1,0 @@
-Kortespel 21.
-
