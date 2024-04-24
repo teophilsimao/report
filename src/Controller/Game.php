@@ -18,7 +18,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class Game extends AbstractController
 {
-
     #[Route("/game", name: "game21_home")]
     public function game21(SessionInterface $session): Response
     {
@@ -43,7 +42,6 @@ class Game extends AbstractController
 
     #[Route("/game/play", name: "game21_play", methods: ['GET'])]
     public function game21Play(SessionInterface $session): Response
-
     {   /** @var Player $player */
         $player = $session->get('player');
         $dealer = $session->get('dealer');
@@ -67,7 +65,7 @@ class Game extends AbstractController
                 'Du förlorade!'
             );
         }
-        
+
         $data = [
             "pCards" => $pCards,
             "pPoints" => $pPoint,
@@ -88,7 +86,7 @@ class Game extends AbstractController
         $pPoint = $session->get('playerPoint');
 
         if ($deck instanceof DeckOfCard && $player instanceof Player) {
-            
+
             $player->hit($deck);
 
             $cards = $player->getCards();
@@ -98,7 +96,7 @@ class Game extends AbstractController
                 if ($latestCard instanceof CardPoint) {
                     $latestCardRank = $latestCard->getRank();
                     $session->set('latestCardRank', $latestCardRank);
-        
+
                     if ($latestCardRank === 'Ace') {
                         return $this->redirectToRoute('game21_play');
                     }
@@ -160,7 +158,7 @@ class Game extends AbstractController
 
                 $dealer->hit($deck);
                 $cards = $dealer->getCards();
-                if ($cards){
+                if ($cards) {
                     $latestCard = end($cards);
                     if ($latestCard instanceof CardPoint) {
                         $latestCardRank = $latestCard->getRank();
@@ -191,7 +189,7 @@ class Game extends AbstractController
 
     #[Route("game/restart", name: "game21_restart", methods: ['POST'])]
     public function car21Restart(SessionInterface $session): Response
-    {   
+    {
         $session->clear();
 
         if (!$session->has('deck')) {

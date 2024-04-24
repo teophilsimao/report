@@ -83,10 +83,10 @@ class DeckOfCard
 
         $index = array_rand($this->deck);
         $drawnCard = $this->deck[$index];
-        
+
         unset($this->deck[$index]);
         $this->deck = array_values($this->deck);
-        
+
         return $drawnCard;
     }
 

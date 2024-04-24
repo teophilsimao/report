@@ -37,11 +37,10 @@ class CardGame extends AbstractController
     #[Route("/card/deck", name: "deck", methods: ['GET'])]
     public function cardDeck(
         SessionInterface $session
-    ): Response 
-    {
-         /** 
-          * @var DeckOfCard $deck 
-          */
+    ): Response {
+        /**
+         * @var DeckOfCard $deck
+         */
         $deck = $session->get('deck');
         $deck = $deck->getString();
 
@@ -59,10 +58,9 @@ class CardGame extends AbstractController
     #[Route("/card/deck/shuffle", name: "deck_shuffle", methods: ['GET'])]
     public function shuffledDeck(
         SessionInterface $session
-    ): Response 
-    {
-        /** 
-         * @var DeckOfCard $deck 
+    ): Response {
+        /**
+         * @var DeckOfCard $deck
          */
         $deck = new DeckOfCard();
         $deck->add(new CardPoint());
@@ -84,10 +82,9 @@ class CardGame extends AbstractController
     #[Route("/card/deck/draw", name: "deck_draw", methods: ['GET'])]
     public function cardDraw(
         SessionInterface $session
-    ): Response 
-    {
-        /** 
-         * @var DeckOfCard $deck 
+    ): Response {
+        /**
+         * @var DeckOfCard $deck
          */
         $deck = $session->get('deck');
 
@@ -120,7 +117,7 @@ class CardGame extends AbstractController
 
         if ($deck instanceof DeckOfCard) {
             $deckString = $deck->getString();
-        } 
+        }
         $deckString = '';
 
         $data = [

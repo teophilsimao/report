@@ -13,7 +13,8 @@ class Game21
     private Player $dealer;
     private DeckOfCard $deck;
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->deck = new DeckOfCard();
         $this->deck->add(new CardPoint());
@@ -24,15 +25,18 @@ class Game21
         $this->dealer = new Dealer();
     }
 
-    public function getDeck(): DeckOfCard {
+    public function getDeck(): DeckOfCard
+    {
         return $this->deck;
     }
 
-    public function getPlayer(): Player {
+    public function getPlayer(): Player
+    {
         return $this->player;
     }
 
-    public function getDealer(): Player {
+    public function getDealer(): Player
+    {
         return $this->dealer;
     }
 }

@@ -17,9 +17,9 @@ class Player
         $this->playerCards = [];
     }
 
-    public function hit(DeckOfCard $deck): void 
+    public function hit(DeckOfCard $deck): void
     {
-        
+
         $this->playerCards[] = $deck->drawnCard();
 
     }
@@ -34,7 +34,7 @@ class Player
         $playerScore = 0;
         $cards = $this->playerCards;
 
-        foreach ($cards as $card){
+        foreach ($cards as $card) {
             if ($card !== null) {
                 $playerScore += $card->getPoints();
             }

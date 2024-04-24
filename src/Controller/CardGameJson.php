@@ -114,7 +114,7 @@ class CardGameJson extends AbstractController
                 $handStr[] = $drawnCardStr;
             }
         }
-        
+
         $deckLength = $deck->getAmount();
 
         $data = [

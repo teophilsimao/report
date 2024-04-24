@@ -2,8 +2,6 @@
 
 namespace App\Card;
 
-
-
 class GameFlash
 {
     /**

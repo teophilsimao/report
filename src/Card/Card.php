@@ -24,7 +24,7 @@ class Card
      */
     protected $rank;
 
-      /**
+    /**
      * @var int|null
      */
     public ?int $aceValue = null;
@@ -52,7 +52,7 @@ class Card
     {
         return $this->rank;
     }
-    
+
     /**
      * @return string[]
      */
