@@ -156,7 +156,7 @@ class Game extends AbstractController
         $dPoint = $session->get('dealerPoint');
         $pPoint = $session->get('playerPoint');
 
-        while ($dPoint < 17) {
+        while ($dPoint < 15) {
             if ($deck instanceof DeckOfCard && $dealer instanceof Player) {
 
                 $dealer->hit($deck);
