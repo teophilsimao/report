@@ -7,6 +7,7 @@ use App\Card\CardHand;
 use App\Card\DeckOfCard;
 use App\Card\Player;
 use App\Card\Game21;
+use App\Card\GameFlash;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -178,31 +179,13 @@ class Game extends AbstractController
         $session->set('dealer', $dealer);
         $session->set('dealerPoint', $dPoint);
 
-        $flashMessageData = $this->setFlashMessage($pPoint, $dPoint);
-        $session->set('showFlashMessage', $flashMessageData['showFlashMessage']);
-        $this->addFlash($flashMessageData['flashMessage']['type'], $flashMessageData['flashMessage']['message']);
+        $flash = new GameFlash();
+
+        $flashMessage = $flash->setFlash($pPoint, $dPoint);
+        $session->set('showFlashMessage', $flashMessage['showFlashMessage']);
+        $this->addFlash($flashMessage['flashMessage']['type'], $flashMessage['flashMessage']['message']);
 
         return $this->redirectToRoute('game21_play');
-    }
-
-    private function setFlashMessage(mixed $pPoint, mixed $dPoint): array
-    {
-        $showFlashMessage = true;
-        $flashMessage = '';
-
-        if ($pPoint > $dPoint && $pPoint < 21 || $dPoint > 21) {
-            $flashMessage = [
-                'type' => 'notice',
-                'message' => 'Grattis, du har vunnit!'
-            ];
-        } else {
-            $flashMessage = [
-                'type' => 'warning',
-                'message' => 'Tyvärr, du har förlorat.'
-            ];
-        }
-
-        return compact('showFlashMessage', 'flashMessage');
     }
 
     #[Route("game/restart", name: "game21_restart", methods: ['POST'])]
