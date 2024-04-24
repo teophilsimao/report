@@ -4,20 +4,21 @@ namespace App\Card;
 
 use App\Card\Card;
 use App\Card\CardHand;
+use App\Card\CardPoint;
 
 class DeckOfCard
 {
     /**
-     * @var array<Card>
+     * @var array<CardPoint>
      */
     protected $deck = [];
 
     /**
-     * @var array<Card>
+     * @var array<CardPoint>
      */
     protected $cards = [];
 
-    public function add(Card $card): void
+    public function add(CardPoint $card): void
     {
         $this->cards[] = $card;
     }
@@ -37,7 +38,7 @@ class DeckOfCard
     }
 
     /**
-     * @param array<Card> $deck
+     * @param array<CardPoint> $deck
      */
     public function setDeck(array $deck): void
     {
@@ -50,7 +51,7 @@ class DeckOfCard
     }
 
     /**
-     * @return array<Card>
+     * @return array<CardPoint>
      */
     public function getDeck(): array
     {
@@ -74,7 +75,7 @@ class DeckOfCard
         return $deckString;
     }
 
-    public function drawnCard(): ?Card
+    public function drawnCard(): ?CardPoint
     {
         if (empty($this->deck)) {
             return null;

@@ -10,17 +10,17 @@ class Player
     /**
      * @var array<CardPoint|null>
      */
-    private array $cards;
+    private array $playerCards;
 
     public function __construct()
     {
-        $this->cards = [];
+        $this->playerCards = [];
     }
 
     public function hit(DeckOfCard $deck): void 
     {
         
-        $this->cards[] = $deck->drawnCard();
+        $this->playerCards[] = $deck->drawnCard();
 
     }
 
@@ -32,7 +32,7 @@ class Player
     public function getScore(): int|null
     {
         $playerScore = 0;
-        $cards = $this->cards;
+        $cards = $this->playerCards;
 
         foreach ($cards as $card){
             if ($card !== null) {
@@ -49,7 +49,7 @@ class Player
      */
     public function getCards(): array
     {
-        return $this->cards;
+        return $this->playerCards;
     }
 
     /**
@@ -58,7 +58,7 @@ class Player
     public function getString(): array
     {
         $pCards = [];
-        foreach ($this->cards as $card) {
+        foreach ($this->playerCards as $card) {
             if ($card !== null) {
                 $pCards[] = $card->getAsString();
             }

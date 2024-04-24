@@ -6,6 +6,7 @@ use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\CardHand;
 use App\Card\DeckOfCard;
+use App\Card\CardPoint;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -21,7 +22,7 @@ class CardGameJson extends AbstractController
     public function apiDeck(): Response
     {
         $deck = new DeckOfCard();
-        $deck->add(new CardGraphic());
+        $deck->add(new CardPoint());
         $deck->createDeck();
         $deckStr = $deck->getString();
 
@@ -40,7 +41,7 @@ class CardGameJson extends AbstractController
     public function apiDeckShuffle(SessionInterface $session): Response
     {
         $deck = new DeckOfCard();
-        $deck->add(new CardGraphic());
+        $deck->add(new CardPoint());
         $deck->createDeck();
         $deck->shuffle();
         $deckStr = $deck->getString();
