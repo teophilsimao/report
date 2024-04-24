@@ -180,7 +180,6 @@ class Game extends AbstractController
         $session->set('dealerPoint', $dPoint);
 
         $flash = new GameFlash();
-
         $flashMessage = $flash->setFlash($pPoint, $dPoint);
         $session->set('showFlashMessage', $flashMessage['showFlashMessage']);
         $this->addFlash($flashMessage['flashMessage']['type'], $flashMessage['flashMessage']['message']);
