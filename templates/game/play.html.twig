@@ -22,15 +22,15 @@
 
         <div class="span0">
             {% if dCards is empty %}
-                <p>Dealers Kort: </p>
+                <p>Bankirens Kort: </p>
             {% else %}
                 <p>
-                    Dealers Kort: &nbsp; {% for card in dCards %}
+                    Bankirens Kort: &nbsp; {% for card in dCards %}
                             <span>{{ card }}</span>
                         {% endfor %}
                 </p>
             {% endif %}
-            <p>Dealers Poäng: &nbsp; {{dPoints}}</p>
+            <p>Bankirens Poäng: &nbsp; {{dPoints}}</p>
         </div>
 
     </div>

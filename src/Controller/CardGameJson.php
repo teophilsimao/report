@@ -7,6 +7,8 @@ use App\Card\CardGraphic;
 use App\Card\CardHand;
 use App\Card\DeckOfCard;
 use App\Card\CardPoint;
+use App\Card\Player;
+use App\Card\Game21;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -120,6 +122,57 @@ class CardGameJson extends AbstractController
             "amount" => $deckLength
         ];
 
+
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+
+    #[Route("/api/game", name: "game21", methods: ['GET'])]
+    public function apiGame(SessionInterface $session): Response
+    {
+        if (!$session->has('player')) {
+            $game21 = new Game21();
+
+            $deck = $game21->getDeck();
+            $session->set('deck', $deck);
+
+            $player = $game21->getPlayer();
+            $session->set('player', $player);
+            $session->set('playerPoint', 0);
+            $session->set('latestCardRank', '');
+
+            $dealer = $game21->getDealer();
+            $session->set('dealer', $dealer);
+            $session->set('dealerPoint', 0);
+        }
+
+        /** @var Player $player */
+        $player = $session->get('player');
+        $dealer = $session->get('dealer');
+        $pPoint = $session->get('playerPoint');
+        $dPoint = $session->get('dealerPoint');
+
+        $pCards = [];
+        if ($player instanceof Player) {
+            $pCards = $player->getString();
+        }
+
+        $dCards = [];
+        if ($dealer instanceof Player) {
+            $dCards = $dealer->getString();
+        }
+
+        $data = [
+            "pCards" => $pCards,
+            "pPoints" => $pPoint,
+            "latestCardRank" => $session->get('latestCardRank'),
+            "dCards" => $dCards,
+            "dPoints" => $dPoint
+        ];
 
 
         $response = new JsonResponse($data);

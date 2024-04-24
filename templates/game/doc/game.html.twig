@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortspel21 documentation{% endblock %}
+
+{% block main %}
+    <h1>Kortspel21 documentation</h1>
+
+    <div class="grid">
+
+        <div class="span9">
+            <h3>Krav:</h3>
+            <div class="txt">
+                <p>Det ska finnas en spelare och en bankir.</p>
+                <p>Spelaren ska kunna dra flera kort för att samla på dig poäng.</p>
+                <p>Om spelaren får med än 21 så förlorar spelaren.</p>
+                <p>Spelaren ska kunna trycka på starta om.</p>
+                <p>Spelaren ska kunna stanna när de har samlat på sig tillräcklig med poäng.</p>
+                <p>När spelaren har stannat så ska bankir dra kort.</p>
+                <p>Spelaren vinner ifall bankiren får med än 21.</p>
+                <p>Spelaren vinner om bankiren har mindre poäng än spelaren.</p>
+                <p>Annars så förlorar spelaren.</p>
+                <p>Spelaren ska kunna trycka på starta om.</p>
+            </div>
+        </div>
+
+        <div class="span9">
+            <h3>Existerande klasser som kan användas:</h3>
+            <div class="txt">
+                <p>Card – skapar ett kort och innehåller suits och rakns.</p>
+                <p>CardGraphic – ärver från Card och ger utseende till kors som skapas.</p>
+                <p>DeckOfCard – Skapar kortlek med hälp av Card/CardGraphic.</p>
+            </div>
+        </div>
+
+        <div class="span9">
+            <h3>Klass som behövs:</h3>
+            <div class="txt">
+                <p>CardPoint – ärver från CardGraphic och ger varje kort poäng.</p>
+                <br>
+                <p>Player – skapare spelaren. Ger hand till spelaren och gör det möjligt för spelaren att hämta kort 
+	                och lägga till det i handen. Hämtar spelarens hand.</p>
+                <br>
+                <p>Game21 – initierar spelet genom att skapa kortleken DeckOfCard, spelaren och  bankiren med hjälp av
+                 Player.</p>
+            </div>
+        </div>
+        
+
+        <div class="bild span9">
+            <h3>Flödesschema</h3>
+            <br>
+            <a href="{{ asset('img/schema.svg') }}">
+                <img src="{{ asset('img/schema.svg') }}" alt="schema">
+            </a>
+        </div>
+    </div>
+{% endblock %}

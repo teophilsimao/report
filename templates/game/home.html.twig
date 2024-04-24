@@ -13,9 +13,21 @@
             <h3>Kortspel21 info</h3>
             <div class="txt">
                 <p>
-                    
+                    Kortspel21 går ut på att du som spelaren ska komma så nära 21 poäng som möjligt utan att överskrida
+                    det. spelaren spelar mot en bankir som också försöker komma så nära 21 som möjligt, spelaren börjar
+                    med att dra kort tills de känner sig nöjda med poängsumman de har. kort 2-kung ger 2-13 poäng och Ess
+                    ger antignen 1 eller 14 beroende på spelarens val. När spelaren har splaren har spelaren har spelat
+                    klar så är det bankes tur. Den som är närmast 21 vinner. Tryck på Spela knappen för att starta spelet.
                 </p>
             </div>
+        </div>
+
+        <div class="bild span5 radius">
+            <img src="{{ asset('img/kort.jpg') }}" alt="PHP">
+        </div>
+
+        <div class="span4">
+            <a class="button" href={{ path('game21_doc') }}>Dukumentation</a>
         </div>
     </div>
 {% endblock %}

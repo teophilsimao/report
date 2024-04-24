@@ -64,7 +64,7 @@ class Game extends AbstractController
             $session->set('showFlashMessage', true);
             $this->addFlash(
                 'warning',
-                'Tyvärr, du har förlorat.'
+                'Du förlorade!'
             );
         }
         
@@ -87,7 +87,6 @@ class Game extends AbstractController
         $player = $session->get('player');
         $pPoint = $session->get('playerPoint');
 
-        // $player->hit($deck);
         if ($deck instanceof DeckOfCard && $player instanceof Player) {
             
             $player->hit($deck);
@@ -156,7 +155,7 @@ class Game extends AbstractController
         $dPoint = $session->get('dealerPoint');
         $pPoint = $session->get('playerPoint');
 
-        while ($dPoint < 15) {
+        while ($dPoint < 17) {
             if ($deck instanceof DeckOfCard && $dealer instanceof Player) {
 
                 $dealer->hit($deck);
@@ -216,4 +215,9 @@ class Game extends AbstractController
         return $this->redirectToRoute('game21_play');
     }
 
+    #[Route("/game/doc", name: "game21_doc")]
+    public function game21Doc(): Response
+    {
+        return $this->render('game/doc/game.html.twig');
+    }
 }
