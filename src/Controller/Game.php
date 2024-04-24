@@ -21,7 +21,7 @@ class Game extends AbstractController
     #[Route("/game", name: "game21_home")]
     public function game21(SessionInterface $session): Response
     {
-        if (!$session->has('deck')) {
+        if (!$session->has('player')) {
             $game21 = new Game21();
 
             $deck = $game21->getDeck();
@@ -95,11 +95,13 @@ class Game extends AbstractController
 
             if ($cards) {
                 $latestCard = end($cards);
-                $latestCardRank = $latestCard->getRank();
-                $session->set('latestCardRank', $latestCardRank);
-    
-                if ($latestCardRank === 'Ace') {
-                    return $this->redirectToRoute('game21_play');
+                if ($latestCard instanceof CardPoint) {
+                    $latestCardRank = $latestCard->getRank();
+                    $session->set('latestCardRank', $latestCardRank);
+        
+                    if ($latestCardRank === 'Ace') {
+                        return $this->redirectToRoute('game21_play');
+                    }
                 }
             }
         }
@@ -125,11 +127,13 @@ class Game extends AbstractController
 
             if ($cards) {
                 $latestCard = end($cards);
-                $latestCardRank = $latestCard->getRank();
-                $session->set('latestCardRank', $latestCardRank);
+                if ($latestCard instanceof CardPoint) {
+                    $latestCardRank = $latestCard->getRank();
+                    $session->set('latestCardRank', $latestCardRank);
 
-                if ($latestCardRank === 'Ace') {
-                    $latestCard->setAceValue((int)$aceValue);
+                    if ($latestCardRank === 'Ace') {
+                        $latestCard->setAceValue((int)$aceValue);
+                    }
                 }
             }
         }
@@ -158,14 +162,15 @@ class Game extends AbstractController
                 $cards = $dealer->getCards();
                 if ($cards){
                     $latestCard = end($cards);
-                    $latestCardRank = $latestCard->getRank();
+                    if ($latestCard instanceof CardPoint) {
+                        $latestCardRank = $latestCard->getRank();
+                        if ($latestCardRank === 'Ace') {
+                            $aceValue = ($dPoint < 7) ? 14 : 1;
+                            $latestCard->setAceValue($aceValue);
+                        }
 
-                    if ($latestCardRank === 'Ace') {
-                        $aceValue = ($dPoint < 7) ? 14 : 1;
-                        $latestCard->setAceValue($aceValue);
+                        $dPoint = $dealer->getScore();
                     }
-                    
-                    $dPoint = $dealer->getScore();
                 }
             }
         }

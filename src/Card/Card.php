@@ -15,12 +15,12 @@ class Card
     protected $ranks;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $suit;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $rank;
 
@@ -33,8 +33,8 @@ class Card
     {
         $this->suits = ['Spade', 'Heart', 'Diamond', 'Club'];
         $this->ranks = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
-        // $this->suit = null;
-        // $this->rank = null;
+        $this->suit = null;
+        $this->rank = null;
     }
 
     public function drawCard(): void
@@ -46,9 +46,9 @@ class Card
     /**
      * Get the rank of the card.
      *
-     * @return string
+     * @return string|null
      */
-    public function getRank(): string
+    public function getRank(): string|null
     {
         return $this->rank;
     }
@@ -96,7 +96,7 @@ class Card
     }
 
     /**
-     * @return array{string, string}
+     * @return array{string|null, string|null}
      */
     public function getCard(): array
     {

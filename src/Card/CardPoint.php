@@ -46,9 +46,9 @@ class CardPoint extends CardGraphic
     /**
      * Get the points for the card.
      *
-     * @return int
+     * @return int|null
      */
-    public function getPoints(): int
+    public function getPoints(): int|null
     {
         if ($this->rank === 'Ace') {
             return isset($this->aceValue) ? $this->aceValue : 1;
