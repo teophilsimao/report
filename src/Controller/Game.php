@@ -182,7 +182,10 @@ class Game extends AbstractController
         $flash = new GameFlash();
         $flashMessage = $flash->setFlash($pPoint, $dPoint);
         $session->set('showFlashMessage', $flashMessage['showFlashMessage']);
-        $this->addFlash($flashMessage['flashMessage']['type'], $flashMessage['flashMessage']['message']);
+        $flassArray = $flashMessage['flashMessage'];
+        if (is_array($flassArray)) {
+            $this->addFlash($flassArray['type'], $flassArray['message']);
+        }
 
         return $this->redirectToRoute('game21_play');
     }
