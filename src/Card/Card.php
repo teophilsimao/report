@@ -37,6 +37,16 @@ class Card
         $this->suit = $this->suits[array_rand($this->suits)];
         $this->rank = $this->ranks[array_rand($this->ranks)];
     }
+
+    /**
+     * Get the rank of the card.
+     *
+     * @return string
+     */
+    public function getRank(): string
+    {
+        return $this->rank;
+    }
     
     /**
      * @return string[]

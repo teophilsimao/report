@@ -9,7 +9,8 @@ class Player
     private array $cards = [];
     private bool $lost = false;
 
-    public function hit(DeckOfCard $deck) {
+    public function hit(DeckOfCard $deck): void 
+    {
         
         $this->cards[] = $deck->drawnCard();
 
@@ -18,11 +19,18 @@ class Player
         }
     }
 
-    public function getLost() {
+    public function getLost(): bool 
+    {
         return $this->lost;
     }
 
-    public function getScore(){
+    /**
+     * Get the total score of the player.
+     *
+     * @return int The total score of the player.
+     */
+    public function getScore(): int 
+    {
         $playerScore = 0;
         $cards = $this->cards;
 
@@ -32,11 +40,19 @@ class Player
         return $playerScore;
     }
 
+    /**
+     * Get the cards held by the player.
+     *
+     * @return array<Card> The cards held by the player.
+     */
     public function getCards(): array
     {
         return $this->cards;
     }
 
+    /**
+     * @return array<int<0, max>, string>
+     */
     public function getString(): array
     {
         $pCards = [];

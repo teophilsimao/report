@@ -27,16 +27,14 @@ class Game extends AbstractController
             $deck = $game21->getDeck();
             $session->set('deck', $deck);
 
-            $session->set('playerPoint', 0);
-            $session->set('dealerPoint', 0);
-            $session->set('latestCardRank', '');
-
-
             $player = $game21->getPlayer();
             $session->set('player', $player);
+            $session->set('playerPoint', 0);
+            $session->set('latestCardRank', '');
 
             $dealer = $game21->getDealer();
             $session->set('dealer', $dealer);
+            $session->set('dealerPoint', 0);
         }
 
         return $this->render('game/home.html.twig');
@@ -44,11 +42,22 @@ class Game extends AbstractController
 
     #[Route("/game/play", name: "game21_play", methods: ['GET'])]
     public function game21Play(SessionInterface $session): Response
-    {
+
+    {   /** @var Player $player */
         $player = $session->get('player');
         $dealer = $session->get('dealer');
         $pPoint = $session->get('playerPoint');
         $dPoint = $session->get('dealerPoint');
+
+        $pCards = [];
+        if ($player instanceof Player) {
+            $pCards = $player->getString();
+        }
+
+        $dCards = [];
+        if ($dealer instanceof Player) {
+            $dCards = $dealer->getString();
+        }
 
         if ($pPoint > 21) {
             $session->set('showFlashMessage', true);
@@ -59,10 +68,10 @@ class Game extends AbstractController
         }
         
         $data = [
-            "pCards" => $player->getString(),
+            "pCards" => $pCards,
             "pPoints" => $pPoint,
             "latestCardRank" => $session->get('latestCardRank'),
-            "dCards" => $dealer->getString(),
+            "dCards" => $dCards,
             "dPoints" => $dPoint,
             "showFlashMessage" => $session->get('showFlashMessage')
         ];
@@ -77,19 +86,35 @@ class Game extends AbstractController
         $player = $session->get('player');
         $pPoint = $session->get('playerPoint');
 
-        $player->hit($deck);
+        // $player->hit($deck);
+        if ($deck instanceof DeckOfCard && $player instanceof Player) {
+            
+            $player->hit($deck);
 
-        $cards = $player->getCards();
-        $latestCard = end($cards);
+            $cards = $player->getCards();
 
-        if ($cards) {
-            $latestCardRank = $latestCard->getRank();
-            $session->set('latestCardRank', $latestCardRank);
-
-            if ($latestCardRank === 'Ace') {
-                return $this->redirectToRoute('game21_play');
+            if ($cards) {
+                $latestCard = end($cards);
+                $latestCardRank = $latestCard->getRank();
+                $session->set('latestCardRank', $latestCardRank);
+    
+                if ($latestCardRank === 'Ace') {
+                    return $this->redirectToRoute('game21_play');
+                }
             }
         }
+
+        // $cards = $player->getCards();
+        // $latestCard = end($cards);
+
+        // if ($cards) {
+        //     $latestCardRank = $latestCard->getRank();
+        //     $session->set('latestCardRank', $latestCardRank);
+
+        //     if ($latestCardRank === 'Ace') {
+        //         return $this->redirectToRoute('game21_play');
+        //     }
+        // }
 
         $session->set('player', $player);
         $pPoint = $player->getScore();

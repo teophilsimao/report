@@ -32,7 +32,7 @@ class Game21
         return $this->player;
     }
 
-    public function getDealer(): Dealer {
+    public function getDealer(): Player {
         return $this->dealer;
     }
 }

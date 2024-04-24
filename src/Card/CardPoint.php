@@ -34,16 +34,6 @@ class CardPoint extends CardGraphic
     }
 
     /**
-     * Get the rank of the card.
-     *
-     * @return string
-     */
-    public function getRank(): string
-    {
-        return $this->rank;
-    }
-
-    /**
      * Set the value for Ace (1 or 14).
      *
      * @param int $value
@@ -62,10 +52,13 @@ class CardPoint extends CardGraphic
     {
         if ($this->rank === 'Ace') {
             return isset($this->aceValue) ? $this->aceValue : 1;
-        } elseif (is_array($this->points[$this->rank])) {
+        } 
+        
+        if (is_array($this->points[$this->rank])) {
             return $this->points[$this->rank][$this->aceValue === 1 ? 0 : 1];
-        } else {
-            return $this->points[$this->rank];
-        }
+        } 
+
+        return $this->points[$this->rank];
+        
     }
 }
