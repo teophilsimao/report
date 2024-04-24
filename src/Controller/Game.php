@@ -104,20 +104,10 @@ class Game extends AbstractController
             }
         }
 
-        // $cards = $player->getCards();
-        // $latestCard = end($cards);
-
-        // if ($cards) {
-        //     $latestCardRank = $latestCard->getRank();
-        //     $session->set('latestCardRank', $latestCardRank);
-
-        //     if ($latestCardRank === 'Ace') {
-        //         return $this->redirectToRoute('game21_play');
-        //     }
-        // }
-
         $session->set('player', $player);
-        $pPoint = $player->getScore();
+        if ($player instanceof Player) {
+            $pPoint = $player->getScore();
+        }
         $session->set('playerPoint', $pPoint);
 
         return $this->redirectToRoute('game21_play');
@@ -130,18 +120,24 @@ class Game extends AbstractController
         $player = $session->get('player');
         $pPoint = $session->get('playerPoint');
 
-        $cards = $player->getCards();
-        $latestCard = end($cards);
+        if ($player instanceof Player) {
+            $cards = $player->getCards();
 
-        $latestCardRank = $latestCard->getRank();
-        $session->set('latestCardRank', $latestCardRank);
+            if ($cards) {
+                $latestCard = end($cards);
+                $latestCardRank = $latestCard->getRank();
+                $session->set('latestCardRank', $latestCardRank);
 
-        if ($latestCardRank === 'Ace') {
-            $latestCard->setAceValue((int)$aceValue);
+                if ($latestCardRank === 'Ace') {
+                    $latestCard->setAceValue((int)$aceValue);
+                }
+            }
         }
 
         $session->set('player', $player);
-        $pPoint = $player->getScore();
+        if ($player instanceof Player) {
+            $pPoint = $player->getScore();
+        }
         $session->set('playerPoint', $pPoint);
 
         return $this->redirectToRoute('game21_play');
@@ -156,37 +152,52 @@ class Game extends AbstractController
         $pPoint = $session->get('playerPoint');
 
         while ($dPoint < $pPoint) {
-            $dealer->hit($deck);
-            $cards = $dealer->getCards();
-            $latestCard = end($cards);
-            $latestCardRank = $latestCard->getRank();
+            if ($deck instanceof DeckOfCard && $dealer instanceof Player) {
 
-            if ($latestCardRank === 'Ace') {
-                $aceValue = ($dPoint < 7) ? 14 : 1;
-                $latestCard->setAceValue($aceValue);
+                $dealer->hit($deck);
+                $cards = $dealer->getCards();
+                if ($cards){
+                    $latestCard = end($cards);
+                    $latestCardRank = $latestCard->getRank();
+
+                    if ($latestCardRank === 'Ace') {
+                        $aceValue = ($dPoint < 7) ? 14 : 1;
+                        $latestCard->setAceValue($aceValue);
+                    }
+                    
+                    $dPoint = $dealer->getScore();
+                }
             }
-            
-            $dPoint = $dealer->getScore();
         }
 
         $session->set('dealer', $dealer);
         $session->set('dealerPoint', $dPoint);
 
-        if ($pPoint > $dPoint && $pPoint < 21 || $dPoint > 21) {
-            $session->set('showFlashMessage', true);
-            $this->addFlash(
-                'notice',
-                'Grattis, du har vunnit!'
-            );
-        } else {
-            $session->set('showFlashMessage', true);
-            $this->addFlash(
-                'warning',
-                'Tyvärr, du har förlorat.'
-            );
-        }
+        $flashMessageData = $this->setFlashMessage($pPoint, $dPoint);
+        $session->set('showFlashMessage', $flashMessageData['showFlashMessage']);
+        $this->addFlash($flashMessageData['flashMessage']['type'], $flashMessageData['flashMessage']['message']);
 
         return $this->redirectToRoute('game21_play');
+    }
+
+    private function setFlashMessage(mixed $pPoint, mixed $dPoint): array
+    {
+        $showFlashMessage = true;
+        $flashMessage = '';
+
+        if ($pPoint > $dPoint && $pPoint < 21 || $dPoint > 21) {
+            $flashMessage = [
+                'type' => 'notice',
+                'message' => 'Grattis, du har vunnit!'
+            ];
+        } else {
+            $flashMessage = [
+                'type' => 'warning',
+                'message' => 'Tyvärr, du har förlorat.'
+            ];
+        }
+
+        return compact('showFlashMessage', 'flashMessage');
     }
 
     #[Route("game/restart", name: "game21_restart", methods: ['POST'])]

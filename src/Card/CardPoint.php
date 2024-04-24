@@ -4,10 +4,10 @@ namespace App\Card;
 
 class CardPoint extends CardGraphic
 {
-    /**
-     * @var int|null
-     */
-    private ?int $aceValue = null; // Define aceValue property
+    // /**
+    //  * @var int|null
+    //  */
+    // private ?int $aceValue = null; // Define aceValue property
 
     /**
      * @var array<int|string, array<int, int>|int>

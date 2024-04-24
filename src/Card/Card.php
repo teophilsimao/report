@@ -24,6 +24,11 @@ class Card
      */
     protected $rank;
 
+      /**
+     * @var int|null
+     */
+    public ?int $aceValue = null;
+
     public function __construct()
     {
         $this->suits = ['Spade', 'Heart', 'Diamond', 'Club'];
@@ -78,6 +83,16 @@ class Card
     public function setRank($rank): void
     {
         $this->rank = $rank;
+    }
+
+    /**
+     * Set the value for Ace (1 or 14).
+     *
+     * @param int $value
+     */
+    public function setAceValue(int $value): void
+    {
+        $this->aceValue = $value;
     }
 
     /**
