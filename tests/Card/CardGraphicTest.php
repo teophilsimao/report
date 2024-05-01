@@ -6,13 +6,13 @@ use PHPUnit\Framework\TestCase;
 
 class CardGraphicTest extends TestCase
 {
-    public function testCreateObject()
+    public function testCreateObject():void
     {
         $card = new CardGraphic();
         $this->assertInstanceOf(CardGraphic::class, $card);
     }
 
-    public function testGetAsString()
+    public function testGetAsString():void
     {
         $card = new CardGraphic();
 

@@ -5,14 +5,14 @@ namespace App\Card;
 use PHPUnit\Framework\TestCase;
 
 class PlayerTest extends TestCase
-{
-    public function testCreateObject()
+{   
+    public function testCreateObject():void
     {
         $player = new Player();
         $this->assertInstanceOf(Player::class, $player);
     }
 
-    public function testHit()
+    public function testHit():void
     {
         $deck = new DeckOfCard();
         $player = new Player();
@@ -20,7 +20,7 @@ class PlayerTest extends TestCase
         $this->assertCount(1, $player->getCards());
     }
 
-    public function testGetScore()
+    public function testGetScore():void
     {
         $deck = new DeckOfCard();
         $player = new Player();
@@ -34,7 +34,7 @@ class PlayerTest extends TestCase
         $this->assertIsInt($score);
     }
 
-    public function testGetString()
+    public function testGetString():void
     {
         $deck = new DeckOfCard();
         $player = new Player();

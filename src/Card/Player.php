@@ -5,6 +5,9 @@ namespace App\Card;
 use App\Card\DeckOfCard;
 use App\Card\CardPoint;
 
+/**
+ * Class Player that repersents both the player and the bank
+ */
 class Player
 {
     /**
@@ -12,11 +15,22 @@ class Player
      */
     private array $playerCards;
 
+
+    /**
+     * Player constructor.
+     * Initializes the player's card array.
+     */
     public function __construct()
     {
         $this->playerCards = [];
     }
 
+    /**
+     * Adds a card drawn from the deck to the player's hand.
+     *
+     * @param DeckOfCard $deck The deck from which the card is drawn.
+     * @return void
+     */
     public function hit(DeckOfCard $deck): void
     {
 
@@ -53,7 +67,7 @@ class Player
     }
 
     /**
-     * @return array<string|null>, string>
+     * @return array<string|null>, string> The string representation of the cards held by the player.
      */
     public function getString(): array
     {

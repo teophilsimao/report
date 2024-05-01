@@ -5,21 +5,21 @@ namespace App\Card;
 use PHPUnit\Framework\TestCase;
 
 class CardPointTest extends TestCase
-{
-    public function testCreateObject()
+{   
+    public function testCreateObject():void
     {
         $card = new CardPoint();
         $this->assertInstanceOf(CardPoint::class, $card);
     }
 
-    public function testSetAndGetAceValue()
+    public function testSetAndGetAceValue():void
     {
         $card = new CardPoint();
         $card->setAceValue(14);
         $this->assertSame(14, $card->getAceValue());
     }
 
-    public function testGetPoints()
+    public function testGetPoints():void
     {
         $card = new CardPoint();
 

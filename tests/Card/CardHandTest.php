@@ -6,13 +6,13 @@ use PHPUnit\Framework\TestCase;
 
 class CardHandTest extends TestCase
 {
-    public function testCreateObject()
+    public function testCreateObject():void
     {
         $hand = new CardHand();
         $this->assertInstanceOf(CardHand::class, $hand);
     }
 
-    public function testAddCard()
+    public function testAddCard():void
     {
         $hand = new CardHand();
         $card1 = new Card();
@@ -22,7 +22,7 @@ class CardHandTest extends TestCase
         $this->assertCount(2, $hand->getCard());
     }
 
-    public function testDrawCard()
+    public function testDrawCard():void
     {
         $hand = new CardHand();
         $card1 = new Card();
@@ -36,7 +36,7 @@ class CardHandTest extends TestCase
         }
     }
 
-    public function testGetNumberOfCards()
+    public function testGetNumberOfCards():void
     {
         $hand = new CardHand();
         $card1 = new Card();
@@ -46,7 +46,7 @@ class CardHandTest extends TestCase
         $this->assertSame(2, $hand->getNumberOfCards());
     }
 
-    public function testGetString()
+    public function testGetString():void
     {
         $hand = new CardHand();
         $card1 = new Card();

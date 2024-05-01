@@ -6,14 +6,14 @@ use PHPUnit\Framework\TestCase;
 
 
 class CardTest extends TestCase
-{
-    public function testCreateObject()
+{   
+    public function testCreateObject():void
     {
         $card = new Card();
         $this->assertInstanceOf("\App\Card\Card", $card);
     }
 
-    public function testDrawCard()
+    public function testDrawCard():void
     {
         $card = new Card();
         $card->drawCard();
@@ -21,7 +21,7 @@ class CardTest extends TestCase
         $this->assertContains($card->getSuit(), $card->getSuits());
     }
 
-    public function testGetCard()
+    public function testGetCard():void
     {
         $card = new Card();
         $card->drawCard();
@@ -31,7 +31,7 @@ class CardTest extends TestCase
         $this->assertContains($card->getCard()[1], $card->getSuits());
     }
 
-    public function testGetAsString()
+    public function testGetAsString():void
     {
         $card = new Card();
         $card->setRank('Ace');
@@ -39,7 +39,7 @@ class CardTest extends TestCase
         $this->assertSame('[Ace Spade]', $card->getAsString());
     }
 
-    public function testSetAceValue()
+    public function testSetAceValue():void
     {
         $card = new Card();
         $card->setAceValue(1);

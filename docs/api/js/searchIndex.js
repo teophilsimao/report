@@ -21,6 +21,11 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020rank\u0020of\u0020the\u0020card.",
             "url": "classes/App-Card-Card.html#method_getRank"
         },                {
+            "fqsen": "\\App\\Card\\Card\u003A\u003AgetSuit\u0028\u0029",
+            "name": "getSuit",
+            "summary": "Get\u0020the\u0020suit\u0020of\u0020the\u0020card.",
+            "url": "classes/App-Card-Card.html#method_getSuit"
+        },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003AgetSuits\u0028\u0029",
             "name": "getSuits",
             "summary": "",
@@ -151,6 +156,11 @@ Search.appendIndex(
             "summary": "Set\u0020the\u0020value\u0020for\u0020Ace\u0020\u00281\u0020or\u002014\u0029.",
             "url": "classes/App-Card-CardPoint.html#method_setAceValue"
         },                {
+            "fqsen": "\\App\\Card\\CardPoint\u003A\u003AgetAceValue\u0028\u0029",
+            "name": "getAceValue",
+            "summary": "get\u0020the\u0020value\u0020for\u0020Ace\u0020\u00281\u0020or\u002014\u0029.",
+            "url": "classes/App-Card-CardPoint.html#method_getAceValue"
+        },                {
             "fqsen": "\\App\\Card\\CardPoint\u003A\u003AgetPoints\u0028\u0029",
             "name": "getPoints",
             "summary": "Get\u0020the\u0020points\u0020for\u0020the\u0020card.",
@@ -160,16 +170,6 @@ Search.appendIndex(
             "name": "points",
             "summary": "",
             "url": "classes/App-Card-CardPoint.html#property_points"
-        },                {
-            "fqsen": "\\App\\Card\\Dealer",
-            "name": "Dealer",
-            "summary": "",
-            "url": "classes/App-Card-Dealer.html"
-        },                {
-            "fqsen": "\\App\\Card\\Dealer\u003A\u003Ahit\u0028\u0029",
-            "name": "hit",
-            "summary": "",
-            "url": "classes/App-Card-Dealer.html#method_hit"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCard",
             "name": "DeckOfCard",
@@ -288,17 +288,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Card\\Player",
             "name": "Player",
-            "summary": "",
+            "summary": "Class\u0020Player\u0020that\u0020repersents\u0020both\u0020the\u0020player\u0020and\u0020the\u0020bank",
             "url": "classes/App-Card-Player.html"
         },                {
             "fqsen": "\\App\\Card\\Player\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Player\u0020constructor.",
             "url": "classes/App-Card-Player.html#method___construct"
         },                {
             "fqsen": "\\App\\Card\\Player\u003A\u003Ahit\u0028\u0029",
             "name": "hit",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020card\u0020drawn\u0020from\u0020the\u0020deck\u0020to\u0020the\u0020player\u0027s\u0020hand.",
             "url": "classes/App-Card-Player.html#method_hit"
         },                {
             "fqsen": "\\App\\Card\\Player\u003A\u003AgetScore\u0028\u0029",

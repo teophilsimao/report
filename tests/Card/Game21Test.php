@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class Game21Test extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor():void
     {
         $game = new Game21();
 
@@ -17,7 +17,7 @@ class Game21Test extends TestCase
         $this->assertInstanceOf(Player::class, $game->getDealer());
     }
 
-    public function testGetDeck()
+    public function testGetDeck():void
     {
         $game = new Game21();
         $deck = $game->getDeck();
@@ -25,7 +25,7 @@ class Game21Test extends TestCase
         $this->assertInstanceOf(DeckOfCard::class, $deck);
     }
 
-    public function testGetPlayer()
+    public function testGetPlayer():void
     {
         $game = new Game21();
         $player = $game->getPlayer();
@@ -33,7 +33,7 @@ class Game21Test extends TestCase
         $this->assertInstanceOf(Player::class, $player);
     }
 
-    public function testGetDealer()
+    public function testGetDealer():void
     {
         $game = new Game21();
         $dealer = $game->getDealer();

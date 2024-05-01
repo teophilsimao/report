@@ -5,8 +5,8 @@ namespace App\Card;
 use PHPUnit\Framework\TestCase;
 
 class DeckOfCardTest extends TestCase
-{
-    public function testCreateDeck()
+{   
+    public function testCreateDeck():void
     {
         $deck = new DeckOfCard();
         $card = new CardPoint();
@@ -16,7 +16,7 @@ class DeckOfCardTest extends TestCase
         $this->assertEquals(52, $deck->getAmount());
     }
 
-    public function testShuffle()
+    public function testShuffle():void
     {
         $deck = new DeckOfCard();
         $card = new CardPoint();
@@ -28,7 +28,7 @@ class DeckOfCardTest extends TestCase
         $this->assertNotEquals($originalDeck, $shuffledDeck);
     }
 
-    public function testSetDeck()
+    public function testSetDeck():void
     {
         $deck = new DeckOfCard();
         $knownDeck = [
@@ -39,7 +39,7 @@ class DeckOfCardTest extends TestCase
         $this->assertEquals($knownDeck, $deck->getDeck());
     }
 
-    public function testDrawnCard()
+    public function testDrawnCard():void
     {
         $deck = new DeckOfCard();
         $card = new CardPoint();
@@ -49,7 +49,7 @@ class DeckOfCardTest extends TestCase
         $this->assertInstanceOf(CardPoint::class, $drawnCard);
     }
 
-    public function testDrawnCards()
+    public function testDrawnCards():void
     {
         $deck = new DeckOfCard();
         $card = new CardPoint();
@@ -60,7 +60,7 @@ class DeckOfCardTest extends TestCase
         $this->assertIsString($drawnCard);
     }
 
-    public function testDrawnWhenEmpty()
+    public function testDrawnWhenEmpty():void
     {
         $deck = new DeckOfCard();
         $hand = new CardHand();
@@ -68,7 +68,7 @@ class DeckOfCardTest extends TestCase
         $this->assertNull($drawnCard);
     }
 
-    public function testGetString()
+    public function testGetString():void
     {
         $deck = new DeckOfCard();
 
@@ -81,7 +81,7 @@ class DeckOfCardTest extends TestCase
         $this->assertIsArray($result);
     }
 
-    public function testIsCardNotPresent()
+    public function testIsCardNotPresent():void
     {
         $deck = new DeckOfCard();
 

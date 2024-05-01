@@ -218,6 +218,13 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Card-CardPoint.html#method_getAceValue">getAceValue()</a>
+    <span>
+                                &nbsp;: int|null    </span>
+</dt>
+<dd>get the value for Ace (1 or 14).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Card-Card.html#method_getAsString">getAsString()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -232,7 +239,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Card-CardPoint.html#method_getPoints">getPoints()</a>
     <span>
-                                &nbsp;: int|null    </span>
+                                &nbsp;: array&lt;int, int&gt;|int    </span>
 </dt>
 <dd>Get the points for the card.</dd>
 
@@ -248,6 +255,13 @@
     <span>
                                 &nbsp;: array&lt;string|int, string&gt;    </span>
 </dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Card-Card.html#method_getSuit">getSuit()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Get the suit of the card.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Card-Card.html#method_getSuits">getSuits()</a>
@@ -595,6 +609,42 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getAceValue">
+        getAceValue()
+        <a href="classes/App-Card-CardPoint.html#method_getAceValue" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/CardPoint.php"><a href="files/src-card-cardpoint.html"><abbr title="src/Card/CardPoint.php">CardPoint.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">get the value for Ace (1 or 14).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getAceValue</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getAsString">
         getAsString()
         <a href="classes/App-Card-Card.html#method_getAsString" class="headerlink"><i class="fas fa-link"></i></a>
@@ -603,7 +653,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Card.php"><a href="files/src-card-card.html"><abbr title="src/Card/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">106</span>
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
@@ -638,7 +688,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Card.php"><a href="files/src-card-card.html"><abbr title="src/Card/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">101</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
@@ -673,7 +723,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/CardPoint.php"><a href="files/src-card-cardpoint.html"><abbr title="src/Card/CardPoint.php">CardPoint.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -681,7 +731,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getPoints</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
+                    <span class="phpdocumentor-signature__name">getPoints</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, int&gt;|int</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -691,7 +741,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int|null</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;int, int&gt;|int</span>
             </section>
 
 </article>
@@ -745,7 +795,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Card.php"><a href="files/src-card-card.html"><abbr title="src/Card/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
@@ -772,6 +822,42 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getSuit">
+        getSuit()
+        <a href="classes/App-Card-Card.html#method_getSuit" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Card.php"><a href="files/src-card-card.html"><abbr title="src/Card/Card.php">Card.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">61</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Get the suit of the card.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSuit</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getSuits">
         getSuits()
         <a href="classes/App-Card-Card.html#method_getSuits" class="headerlink"><i class="fas fa-link"></i></a>
@@ -780,7 +866,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Card.php"><a href="files/src-card-card.html"><abbr title="src/Card/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -857,7 +943,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Card.php"><a href="files/src-card-card.html"><abbr title="src/Card/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">93</span>
 
     </aside>
 
@@ -898,7 +984,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Card/Card.php"><a href="files/src-card-card.html"><abbr title="src/Card/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -1053,11 +1139,13 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/App-Card-CardPoint.html#method___construct">__construct()</a></li>
                                             <li><a href="classes/App-Card-Card.html#method_drawCard">drawCard()</a></li>
+                                            <li><a href="classes/App-Card-CardPoint.html#method_getAceValue">getAceValue()</a></li>
                                             <li><a href="classes/App-Card-Card.html#method_getAsString">getAsString()</a></li>
                                             <li><a href="classes/App-Card-Card.html#method_getCard">getCard()</a></li>
                                             <li><a href="classes/App-Card-CardPoint.html#method_getPoints">getPoints()</a></li>
                                             <li><a href="classes/App-Card-Card.html#method_getRank">getRank()</a></li>
                                             <li><a href="classes/App-Card-Card.html#method_getRanks">getRanks()</a></li>
+                                            <li><a href="classes/App-Card-Card.html#method_getSuit">getSuit()</a></li>
                                             <li><a href="classes/App-Card-Card.html#method_getSuits">getSuits()</a></li>
                                             <li><a href="classes/App-Card-CardPoint.html#method_setAceValue">setAceValue()</a></li>
                                             <li><a href="classes/App-Card-Card.html#method_setRank">setRank()</a></li>
