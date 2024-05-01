@@ -37,8 +37,6 @@ class PlayerTest extends TestCase
         $player->hit($deck);
         $player->hit($deck);
         $strings = $player->getString();
-        foreach ($strings as $string) {
-            $this->assertIsString($string);
-        }
+        $this->assertContainsOnly('string', $strings);
     }
 }
