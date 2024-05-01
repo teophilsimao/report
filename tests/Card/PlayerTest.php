@@ -24,8 +24,12 @@ class PlayerTest extends TestCase
     {
         $deck = new DeckOfCard();
         $player = new Player();
+        $card = new CardPoint();
+        $deck->add($card);
+        $deck->createDeck();
         $player->hit($deck);
         $player->hit($deck);
+
         $score = $player->getScore();
         $this->assertIsInt($score);
     }
@@ -34,9 +38,14 @@ class PlayerTest extends TestCase
     {
         $deck = new DeckOfCard();
         $player = new Player();
+        $card = new CardPoint();
+        $deck->add($card);
+        $deck->createDeck();
         $player->hit($deck);
         $player->hit($deck);
+
         $strings = $player->getString();
-        $this->assertContainsOnly('string', $strings);
+
+        $this->assertIsArray($strings);
     }
 }

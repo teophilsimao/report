@@ -106,7 +106,6 @@ class DeckOfCard
                 $this->deck = array_values($this->deck);
                 return $drawnCard->getAsString();
             }
-
         } while (!empty($this->deck));
 
         return null;

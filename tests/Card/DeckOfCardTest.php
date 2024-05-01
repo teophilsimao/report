@@ -60,7 +60,7 @@ class DeckOfCardTest extends TestCase
         $this->assertIsString($drawnCard);
     }
 
-    public function testDrawnCardsWhenEmpty()
+    public function testDrawnWhenEmpty()
     {
         $deck = new DeckOfCard();
         $hand = new CardHand();
@@ -81,7 +81,7 @@ class DeckOfCardTest extends TestCase
         $this->assertIsArray($result);
     }
 
-    public function testIsCardInDeckWhenCardIsNotPresent()
+    public function testIsCardNotPresent()
     {
         $deck = new DeckOfCard();
 
@@ -93,4 +93,5 @@ class DeckOfCardTest extends TestCase
     
         $this->assertFalse($result);
     }
+
 }
