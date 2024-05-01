@@ -31,5 +31,8 @@ class CardPointTest extends TestCase
 
         $card->setAceValue(14);
         $this->assertSame(14, $card->getPoints());
+
+        $card->setRank('Jack');
+        $this->assertSame(11, $card->getPoints());
     }
 }

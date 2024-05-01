@@ -64,9 +64,9 @@ class CardPoint extends CardGraphic
             return isset($this->aceValue) ? $this->aceValue : 1;
         }
 
-        if (is_array($this->points[$this->rank])) {
-            return $this->points[$this->rank][$this->aceValue === 1 ? 0 : 1];
-        }
+        // if (is_array($this->points[$this->rank])) {
+        //     return $this->points[$this->rank][$this->aceValue === 1 ? 0 : 1];
+        // }
 
         return $this->points[$this->rank];
 
