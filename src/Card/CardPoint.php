@@ -44,6 +44,16 @@ class CardPoint extends CardGraphic
     }
 
     /**
+     * get the value for Ace (1 or 14).
+     *
+     * @return int|null
+     */
+    public function getAceValue(): int|null
+    {
+        return $this->aceValue;
+    }
+
+    /**
      * Get the points for the card.
      *
      * @return int|null

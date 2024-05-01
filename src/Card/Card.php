@@ -54,6 +54,16 @@ class Card
     }
 
     /**
+     * Get the suit of the card.
+     *
+     * @return string|null
+     */
+    public function getSuit(): string|null
+    {
+        return $this->suit;
+    }
+
+    /**
      * @return string[]
      */
     public function getSuits(): array
