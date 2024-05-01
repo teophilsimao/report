@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1714596401">
-  <project timestamp="1714596401">
+<coverage generated="1714597316">
+  <project timestamp="1714597316">
     <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="11" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="26" coveredelements="26"/>
@@ -84,7 +84,7 @@
     </file>
     <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Card/DeckOfCard.php">
       <class name="App\Card\DeckOfCard" namespace="global">
-        <metrics complexity="19" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="36" elements="46" coveredelements="46"/>
+        <metrics complexity="19" methods="10" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="36" elements="47" coveredelements="45"/>
       </class>
       <line num="21" type="method" name="add" visibility="public" complexity="1" crap="1" count="12"/>
       <line num="23" type="stmt" count="12"/>
@@ -117,7 +117,7 @@
       <line num="87" type="stmt" count="3"/>
       <line num="88" type="stmt" count="3"/>
       <line num="90" type="stmt" count="3"/>
-      <line num="93" type="method" name="drawnCards" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="93" type="method" name="drawnCards" visibility="public" complexity="3" crap="3.01" count="2"/>
       <line num="95" type="stmt" count="2"/>
       <line num="96" type="stmt" count="1"/>
       <line num="99" type="stmt" count="1"/>
@@ -127,12 +127,13 @@
       <line num="104" type="stmt" count="1"/>
       <line num="105" type="stmt" count="1"/>
       <line num="106" type="stmt" count="1"/>
-      <line num="110" type="method" name="isCardInDeck" visibility="public" complexity="3" crap="3" count="2"/>
-      <line num="112" type="stmt" count="2"/>
-      <line num="113" type="stmt" count="2"/>
-      <line num="114" type="stmt" count="1"/>
-      <line num="117" type="stmt" count="1"/>
-      <metrics loc="120" ncloc="105" classes="1" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="36" elements="46" coveredelements="46"/>
+      <line num="109" type="stmt" count="0"/>
+      <line num="112" type="method" name="isCardInDeck" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="114" type="stmt" count="2"/>
+      <line num="115" type="stmt" count="2"/>
+      <line num="116" type="stmt" count="1"/>
+      <line num="119" type="stmt" count="1"/>
+      <metrics loc="122" ncloc="107" classes="1" methods="10" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="36" elements="47" coveredelements="45"/>
     </file>
     <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Card/Game21.php">
       <class name="App\Card\Game21" namespace="global">
@@ -661,6 +662,6 @@
       </class>
       <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="14" loc="1401" ncloc="1265" classes="13" methods="69" coveredmethods="42" conditionals="0" coveredconditionals="0" statements="507" coveredstatements="108" elements="576" coveredelements="150"/>
+    <metrics files="14" loc="1403" ncloc="1267" classes="13" methods="69" coveredmethods="41" conditionals="0" coveredconditionals="0" statements="508" coveredstatements="108" elements="577" coveredelements="149"/>
   </project>
 </coverage>

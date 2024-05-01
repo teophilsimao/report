@@ -105,6 +105,8 @@ class DeckOfCard
             $this->deck = array_values($this->deck);
             return $drawnCard->getAsString();
         }
+
+        return null;
     }
 
     public function isCardInDeck(string $cardStr): bool

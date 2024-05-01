@@ -42,13 +42,9 @@ class CardTest extends TestCase
     public function testSetAceValue()
     {
         $card = new Card();
-
         $card->setAceValue(1);
-
         $this->assertEquals(1, $card->aceValue);
-
         $card->setAceValue(14);
-
         $this->assertEquals(14, $card->aceValue);
     }
 }
