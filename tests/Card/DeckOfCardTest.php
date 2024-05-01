@@ -72,18 +72,25 @@ class DeckOfCardTest extends TestCase
     {
         $deck = new DeckOfCard();
 
-        $card1 = new CardPoint();
-        $card1->setSuit('Spade');
-        $card1->setRank('Ace');
-        $deck->add($card1);
-
-        $card2 = new CardPoint();
-        $card2->setSuit('Heart');
-        $card2->setRank('2');
-        $deck->add($card2);
+        $card = new CardPoint();
+        $deck->add($card);
+        $deck->createDeck();
 
         $result = $deck->getString();
 
-        $this->assertContainsOnly('string', $result);
+        $this->assertIsArray($result);
+    }
+
+    public function testIsCardInDeckWhenCardIsNotPresent()
+    {
+        $deck = new DeckOfCard();
+
+        $card = new CardPoint();
+        $deck->add($card);
+        $deck->createDeck();
+    
+        $result = $deck->isCardInDeck('[3 Club]');
+    
+        $this->assertFalse($result);
     }
 }

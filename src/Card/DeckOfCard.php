@@ -112,7 +112,7 @@ class DeckOfCard
         return null;
     }
 
-    private function isCardInDeck(string $cardStr): bool
+    public function isCardInDeck(string $cardStr): bool
     {
         foreach ($this->deck as $card) {
             if ($card->getAsString() === $cardStr) {
