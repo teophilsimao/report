@@ -38,4 +38,17 @@ class CardTest extends TestCase
         $card->setSuit('Spade');
         $this->assertSame('[Ace Spade]', $card->getAsString());
     }
+
+    public function testSetAceValue()
+    {
+        $card = new Card();
+
+        $card->setAceValue(1);
+
+        $this->assertEquals(1, $card->aceValue);
+
+        $card->setAceValue(14);
+
+        $this->assertEquals(14, $card->aceValue);
+    }
 }

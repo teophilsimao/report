@@ -96,19 +96,15 @@ class DeckOfCard
             return null;
         }
 
-        do {
-            $index = array_rand($this->deck);
-            $drawnCard = $this->deck[$index];
+        $index = array_rand($this->deck);
+        $drawnCard = $this->deck[$index];
 
-            if ($this->isCardInDeck($drawnCard->getAsString())) {
-                $hand->add($drawnCard);
-                unset($this->deck[$index]);
-                $this->deck = array_values($this->deck);
-                return $drawnCard->getAsString();
-            }
-        } while (!empty($this->deck));
-
-        return null;
+        if ($this->isCardInDeck($drawnCard->getAsString())) {
+            $hand->add($drawnCard);
+            unset($this->deck[$index]);
+            $this->deck = array_values($this->deck);
+            return $drawnCard->getAsString();
+        }
     }
 
     public function isCardInDeck(string $cardStr): bool
