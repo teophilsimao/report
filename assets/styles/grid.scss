@@ -46,6 +46,22 @@
     grid-column: 6 / span 5;
 }
 
-.margon0 {
-    margin-top: 20px;
+.span10{
+    grid-column: 1 / span 3;
+}
+
+.span11{
+    grid-column: 5 / span 2;
+}
+
+.span12 {
+    grid-column: 3 / span 2;
+}
+
+.margin0 {
+    margin-top: 50px;
+}
+
+.margin1 {
+    margin-bottom: 30px;
 }

@@ -46,14 +46,17 @@ class LibraryController extends AbstractController
 
         if ($imageFile) {
             $img_directory = $this->getParameter('img_directory');
-            $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
-            $imageFile->move(
+
+            if($imageFile->guessExtension()) {
+                $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
+                $imageFile->move(
                 $img_directory,
                 $filename
             );
-        } else {
-            $filename = $request->request->get('img');
-        }
+            } else {
+                $filename = $request->request->get('img');
+            }
+        } 
         
         $book = new Library();
         $book->setTitle($title);
@@ -125,5 +128,44 @@ class LibraryController extends AbstractController
     
         return $this->redirectToRoute('library_view_all');
     }
+
+    #[Route('/library/delete', name: 'library_delete', methods: ['POST'])]
+    public function deleteBookById(
+        LibraryRepository $LibraryRepository,
+        ManagerRegistry $doctrine,
+        Request $request
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        $id = $request->request->get('bookid');
+        $book = $LibraryRepository->find($id);
     
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+    
+        $entityManager->remove($book);
+        $entityManager->flush();
+    
+        return $this->redirectToRoute('library_view_all');
+    }
+
+    #[Route('/library/deleteall', name: 'library_delete_all')]
+    public function deleteAllBooks(
+        LibraryRepository $libraryRepository,
+        ManagerRegistry $doctrine,
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        
+        $books = $libraryRepository->findAll();
+        
+        foreach ($books as $book) {
+            $entityManager->remove($book);
+        }
+        
+        $entityManager->flush();
+    
+        return $this->redirectToRoute('library_view_all');
+    }   
 }

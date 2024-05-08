@@ -5,23 +5,28 @@
 {% block main %}
     <h1>Bibliotek</h1>
     <div class="grid">
-            <form class="span9" method="POST" action="{{ path('library_create_post')}}" enctype="multipart/form-data">
-                <label class="label" for="title">Title:</label>
-                <input type="text" id="title" name="booktitle" ></input>
-                <label class="label" for="author">Author:</label>
-                <input type="text" id="author" name="bookauthor" ></input>
-                <label class="label" for="isbn">ISBN:</label>
-                <input type="number" id="isbn" name="bookisbn" pattern="\d{10,13}" maxlength="13" ></input>
-                <label class="label" for="img">Bild:</label>
-                <input class="block" type="file" id="img" name="img" accept="image/*" required>
+        <div class="span6 margin1">
+            <a class="button" href={{ path('library_view_all') }}>Tillbaka</a>
+        </div>
+
+        <form class="span9" method="POST" action="{{ path('library_create_post')}}" enctype="multipart/form-data">
+            <label class="label" for="title">Title:</label>
+            <input type="text" id="title" name="booktitle" required></input>
+            <label class="label" for="author">Author:</label>
+            <input type="text" id="author" name="bookauthor" required></input>
+            <label class="label" for="isbn">ISBN:</label>
+            <input type="number" id="isbn" name="bookisbn" pattern="\d{10,13}" maxlength="13" required></input>
+            <label class="label" for="img">Bild:</label>
+            <input class="block" type="file" id="img" name="img" accept="image/*" required>
 
 
-                <input 
-                    class="button" 
-                    type="submit" 
-                    value="Lägg till boken" 
-                >
+            <input 
+                class="button" 
+                type="submit" 
+                value="Lägg till boken"
+                style="display: block;" 
+            >
 
-            </form>
+        </form>
     </div>
 {% endblock %}

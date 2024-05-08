@@ -5,8 +5,11 @@
 {% block main %}
     <h1>Bibliotek</h1>
     <div class="grid">
-        <div class="span8">
+        <div class="span3">
             <a class="button" href={{ path('library_create') }}>Lägg Till En Bok</a>
+        </div>
+        <div class="span12">
+            <a class="button" href={{ path('library_delete_all') }}>Rensa</a>
         </div>
         <div class="span6">
             <table class="table table-striped">
@@ -31,9 +34,6 @@
                     {% endfor %}
                 </tbody>
             </table>
-            {# {% for book in books %}
-                <li>{{ book.getTitle|e }} ({{ book.getId|e }}) {{ book.getAuthor|e }} {{ book.getIsbn|e }} {{ book.getImg|e }}</li>
-            {% endfor %} #}
         </div>
     </div>
 {% endblock %}
