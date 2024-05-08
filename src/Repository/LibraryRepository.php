@@ -40,4 +40,19 @@ class LibraryRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * Find a book by its ISBN.
+     *
+     * @param int $isbn
+     * @return Library|null
+     */
+    public function getByIsbn(int $isbn): ?Library
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.isbn = :isbn')
+            ->setParameter('isbn', $isbn)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

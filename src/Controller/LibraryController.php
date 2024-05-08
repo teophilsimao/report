@@ -167,5 +167,33 @@ class LibraryController extends AbstractController
         $entityManager->flush();
     
         return $this->redirectToRoute('library_view_all');
-    }   
+    }
+    
+    #[Route('/api/library/books', name: 'api_show_all')]
+    public function showAllProduct(
+        LibraryRepository $libraryRepository,
+    ): Response {
+        $books = $libraryRepository
+            ->findAll();
+    
+        $response = $this->json($books);
+        $response->setEncodingOptions(
+        $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+
+    #[Route('/api/library/books/{isbn}', name: 'library_by_id_api')]
+    public function apiViewSingleBook(
+        LibraryRepository $LibraryRepository,
+        int $isbn
+    ): Response {
+        $book = $LibraryRepository->getByIsbn($isbn);
+    
+        $response = $this->json($book);
+        $response->setEncodingOptions(
+        $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
 }
