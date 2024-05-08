@@ -31,21 +31,25 @@
     outline: 1px transparent;
 }
 
-form input[type=number], select {
-    width: 20%;
+form input[type=number], input[type=text], input[type=submit], input[type=file], select {
+    // width: 20%;
     padding: 6px 16px;
     margin-top: 10px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-  }
+}
 
-form input[type=submit] {
-    padding: 6px 16px;
-    margin-top: 10px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+.label {
+    display: block;
+    margin-top: 20px;
+}
+
+.block{
+    display: block;
+}
+
+.margin40 {
+    margin-top: 40px;
 }

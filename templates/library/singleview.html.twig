@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LibraryController!{% endblock %}
+
+{% block main %}
+    <h1>Bibliotek</h1>
+    <div class="grid">
+        {# {% for book in books %} #}
+            <form class="span9" method="post" action="">
+                <label class="label" for="id">ID:</label>
+                <input type="number" id="id" value="{{ book.getId|e }}" name="bookid" readonly></input>
+                <label class="label" for="title">Title:</label>
+                <input type="text" id="title" value="{{ book.getTitle|e }}" name="booktitle"></input>
+                <label class="label" for="author">Author:</label>
+                <input type="text" id="author" value="{{ book.getAuthor|e }}" name="bookauthor"></input>
+                <label class="label" for="isbn">ISBN:</label>
+                <input type="number" id="isbn" value="{{ book.getIsbn|e }}" name="bookisbn"></input>
+                {# <label class="label" for="img">Bild:</label>
+                <input class="block" type="file" id="img" name="img" accept="image/*" value="{{ book.getImg|e }}"> #}
+
+
+                <input 
+                    class="button" 
+                    type="submit" 
+                    value="Ändra" 
+                    onClick="this.form.action='{{ path('library_update')}}';"
+                >
+
+                <input class="button" type="submit" value="Radera" onClick="">
+
+            </form>
+        {# {% endfor %} #}
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LibraryController!{% endblock %}
+
+{% block main %}
+    <h1>Bibliotek</h1>
+    <div class="grid">
+        <div class="span8">
+            <a class="button" href={{ path('library_create') }}>Lägg Till En Bok</a>
+        </div>
+        <div class="span6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <td><img class="imgbook" src="{{ asset('img/' ~ book.getImg|e) }}" alt="Book Image"></td>
+                            <td>{{ book.getId|e }}</td>
+                            <td><a href="{{ path('library_by_id', {'id': book.getId}) }}">{{ book.getTitle|e }}</a></td>
+                            <td>{{ book.getAuthor|e }}</td>
+                            <td>{{ book.getIsbn|e }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {# {% for book in books %}
+                <li>{{ book.getTitle|e }} ({{ book.getId|e }}) {{ book.getAuthor|e }} {{ book.getIsbn|e }} {{ book.getImg|e }}</li>
+            {% endfor %} #}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+.table {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    margin-top: 30px;
+    width: 100%;
+    border: 1px solid $darkdark;
+}
+
+.table th {
+    text-align: left;
+    border-top: 1px solid $darkdark;
+}
+
+.table thead {
+    background-color: $bluegray;
+    color: $white;
+}
+
+.table th,
+.table td {
+    border-bottom: 1px solid $darkdark;
+    padding: 8px;
+}
+
+.table .number-cell {
+    text-align: right;
+}
+
+.table-striped tr:nth-of-type(2n) {
+    background-color: $lightgray;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.imgbook {
+    width: 100px;
+}
