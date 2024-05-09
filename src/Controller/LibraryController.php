@@ -96,7 +96,6 @@ class LibraryController extends AbstractController
 
         $data = [
             'book' => $book,
-            'isbn' => $book->getIsbn()
         ];
 
         return $this->render('library/singleview.html.twig', $data);

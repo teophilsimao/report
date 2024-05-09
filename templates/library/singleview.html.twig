@@ -20,7 +20,7 @@
             <label class="label" for="author">Författare:</label>
             <input type="text" id="author" value="{{ book.getAuthor|e }}" name="bookauthor" readonly></input>
             <label class="label" for="isbn">ISBN:</label>
-            <input type="number" id="isbn" value={{ isbn }} name="bookisbn" readonly maxlength="10" 
+            <input type="number" id="isbn" value={{ book.getIsbn|e }} name="bookisbn" readonly maxlength="10" 
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
 
             <button 
