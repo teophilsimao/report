@@ -27,7 +27,7 @@
                         <tr>
                             <td><img class="imgbook" src="{{ asset('storage/' ~ book.getImg|e) }}" alt="Book Image"></td>
                             <td>{{ book.getId|e }}</td>
-                            <td><a href="{{ path('library_by_id', {'id': book.getId}) }}">{{ book.getTitle|e }}</a></td>
+                            <td><a href="{{ path('library_by_id', {'id': book.getId}) }}">{{ book.getName|e }}</a></td>
                             <td>{{ book.getAuthor|e }}</td>
                             <td>{{ book.getIsbn|e }}</td>
                         </tr>

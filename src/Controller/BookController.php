@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Library;
+use App\Entity\Book;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Repository\LibraryRepository;
+use App\Repository\BookRepository;
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class LibraryController extends AbstractController
+class BookController extends AbstractController
 {
     #[Route('/library', name: 'app_library')]
     public function index(): Response
@@ -40,7 +40,7 @@ class LibraryController extends AbstractController
 
         $title = $request->request->getString('booktitle');
         $author = $request->request->getString('bookauthor');
-        $isbn = $request->request->getInt('bookisbn');
+        $isbn = $request->request->getString('bookisbn');
         $imageFile = $request->files->get('img');
         $filename = "";
 
@@ -62,8 +62,8 @@ class LibraryController extends AbstractController
             }
         }
 
-        $book = new Library();
-        $book->setTitle($title);
+        $book = new Book();
+        $book->setName($title);
         $book->setAuthor($author);
         $book->setIsbn($isbn);
         $book->setImg($filename);
@@ -76,9 +76,9 @@ class LibraryController extends AbstractController
 
     #[Route('/library/view', name: 'library_view_all', methods: ['GET'])]
     public function viewAllLibrary(
-        libraryRepository $libraryRepository
+        BookRepository $BookRepository
     ): Response {
-        $books = $libraryRepository->findAll();
+        $books = $BookRepository->findAll();
 
         $data = [
             'books' => $books
@@ -89,10 +89,10 @@ class LibraryController extends AbstractController
 
     #[Route('/library/view/{id}', name: 'library_by_id')]
     public function viewSingleBook(
-        LibraryRepository $libraryRepository,
+        BookRepository $BookRepository,
         int $id
     ): Response {
-        $book = $libraryRepository->find($id);
+        $book = $BookRepository->find($id);
 
         $data = [
             'book' => $book,
@@ -104,13 +104,13 @@ class LibraryController extends AbstractController
 
     #[Route('/library/update', name: 'library_update', methods: ['POST'])]
     public function updateBook(
-        LibraryRepository $libraryRepository,
+        BookRepository $BookRepository,
         ManagerRegistry $doctrine,
         Request $request,
     ): Response {
         $entityManager = $doctrine->getManager();
         $id = $request->request->get('bookid');
-        $book = $libraryRepository->find($id);
+        $book = $BookRepository->find($id);
 
         if (!$book) {
             throw $this->createNotFoundException(
@@ -124,13 +124,13 @@ class LibraryController extends AbstractController
 
         if ($isbn == null) {
             try {
-                $isbn = $request->request->getInt('bookisbn');
+                $isbn = $request->request->getString('bookisbn');
             } catch (\Exception $e) {
                 $isbn = 1234567890;
             }
         }
 
-        $book->setTitle($title);
+        $book->setName($title);
         $book->setAuthor($author);
         $book->setIsbn($isbn);
 
@@ -141,13 +141,13 @@ class LibraryController extends AbstractController
 
     #[Route('/library/delete', name: 'library_delete', methods: ['POST'])]
     public function deleteBookById(
-        LibraryRepository $libraryRepository,
+        BookRepository $BookRepository,
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
         $entityManager = $doctrine->getManager();
         $id = $request->request->get('bookid');
-        $book = $libraryRepository->find($id);
+        $book = $BookRepository->find($id);
 
         if (!$book) {
             throw $this->createNotFoundException(
@@ -163,12 +163,12 @@ class LibraryController extends AbstractController
 
     #[Route('/library/deleteall', name: 'library_delete_all')]
     public function deleteAllBooks(
-        LibraryRepository $libraryRepository,
+        BookRepository $BookRepository,
         ManagerRegistry $doctrine,
     ): Response {
         $entityManager = $doctrine->getManager();
 
-        $books = $libraryRepository->findAll();
+        $books = $BookRepository->findAll();
 
         foreach ($books as $book) {
             $entityManager->remove($book);
@@ -181,9 +181,9 @@ class LibraryController extends AbstractController
 
     #[Route('/api/library/books', name: 'api_show_all')]
     public function showAllProduct(
-        LibraryRepository $libraryRepository,
+        BookRepository $BookRepository,
     ): Response {
-        $books = $libraryRepository
+        $books = $BookRepository
             ->findAll();
 
         $response = $this->json($books);
@@ -195,10 +195,10 @@ class LibraryController extends AbstractController
 
     #[Route('/api/library/books/{isbn}', name: 'library_by_id_api')]
     public function apiViewSingleBook(
-        LibraryRepository $libraryRepository,
+        BookRepository $BookRepository,
         int $isbn
     ): Response {
-        $book = $libraryRepository->getByIsbn($isbn);
+        $book = $BookRepository->getByIsbn($isbn);
 
         $response = $this->json($book);
         $response->setEncodingOptions(
