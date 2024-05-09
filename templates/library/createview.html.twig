@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LibraryController!{% endblock %}
+{% block title %}Bibliotek{% endblock %}
 
 {% block main %}
     <h1>Bibliotek</h1>
@@ -10,9 +10,9 @@
         </div>
 
         <form class="span9" method="POST" action="{{ path('library_create_post')}}" enctype="multipart/form-data">
-            <label class="label" for="title">Title:</label>
+            <label class="label" for="title">Titel:</label>
             <input type="text" id="title" name="booktitle" required></input>
-            <label class="label" for="author">Author:</label>
+            <label class="label" for="author">Författare:</label>
             <input type="text" id="author" name="bookauthor" required></input>
             <label class="label" for="isbn">ISBN:</label>
             <input type="number" id="isbn" name="bookisbn" pattern="\d{10,13}" maxlength="13" required></input>

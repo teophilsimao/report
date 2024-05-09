@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LibraryController!{% endblock %}
+{% block title %}Bibliotek{% endblock %}
 
 {% block main %}
     <h1>Bibliotek</h1>
@@ -15,9 +15,9 @@
         <form class="span11" method="post" action="">
             <label class="label" for="id">ID:</label>
             <input type="number" id="id" value="{{ book.getId|e }}" name="bookid" readonly></input>
-            <label class="label" for="title">Title:</label>
+            <label class="label" for="title">Titel:</label>
             <input type="text" id="title" value="{{ book.getTitle|e }}" name="booktitle" readonly></input>
-            <label class="label" for="author">Author:</label>
+            <label class="label" for="author">Författare:</label>
             <input type="text" id="author" value="{{ book.getAuthor|e }}" name="bookauthor" readonly></input>
             <label class="label" for="isbn">ISBN:</label>
             <input type="number" id="isbn" value="{{ book.getIsbn|e }}" name="bookisbn" readonly></input>
