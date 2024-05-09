@@ -120,12 +120,18 @@ class LibraryController extends AbstractController
 
         $title = $request->request->getString('booktitle');
         $author = $request->request->getString('bookauthor');
-        $isbn = $request->request->getInt('bookisbn');
-        // $img = $request->request->get('img');
+        $isbn = null;
+
+        if ($isbn == null) {
+            try {
+                $isbn = $request->request->getInt('bookisbn');
+            } catch (\Exception $e) {
+                $isbn = 1234567890;
+            }
+        }
 
         $book->setTitle($title);
         $book->setAuthor($author);
-        // $book->setImg($img);
         $book->setIsbn($isbn);
 
         $entityManager->flush();
