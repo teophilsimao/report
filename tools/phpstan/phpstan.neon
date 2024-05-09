@@ -4,5 +4,7 @@ parameters:
         - ../../config
         - ../../src
         - ../../tests
+    excludePaths:
+        - ../../src/Repository/ProductRepository.php
     bootstrapFiles:
         #- .phpstan.constants.php

@@ -32,29 +32,33 @@ class LibraryController extends AbstractController
 
     #[Route('/library/create/book', name: 'library_create_post', methods: ['POST'])]
     public function createBookPost(
-        LibraryRepository $LibraryRepository,
+        // LibraryRepository $libraryRepository,
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
         $entityManager = $doctrine->getManager();
 
-        $title = $request->request->get('booktitle');
-        $author = $request->request->get('bookauthor');
-        $isbn = $request->request->get('bookisbn');
+        $title = $request->request->getString('booktitle');
+        $author = $request->request->getString('bookauthor');
+        $isbn = $request->request->getInt('bookisbn');
         $imageFile = $request->files->get('img');
         $filename = "";
 
-        if ($imageFile) {
-            $img_directory = $this->getParameter('img_directory');
+        if ($imageFile instanceof UploadedFile) {
+            $imgDirectory = $this->getParameter('img_directory');
 
-            if($imageFile->guessExtension()) {
-                $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
-                $imageFile->move(
-                    $img_directory,
-                    $filename
-                );
-            } else {
-                $filename = $request->request->get('img');
+            if (is_string($imgDirectory)) {
+                try {
+                    if ($imageFile->guessExtension()) {
+                        $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
+                        $imageFile->move(
+                            $imgDirectory,
+                            $filename
+                        );
+                    }
+                } catch (\Exception $e) {
+                    $filename = "Book Image";
+                }
             }
         }
 
@@ -85,10 +89,10 @@ class LibraryController extends AbstractController
 
     #[Route('/library/view/{id}', name: 'library_by_id')]
     public function viewSingleBook(
-        LibraryRepository $LibraryRepository,
+        LibraryRepository $libraryRepository,
         int $id
     ): Response {
-        $book = $LibraryRepository->find($id);
+        $book = $libraryRepository->find($id);
 
         $data = [
             'book' => $book
@@ -100,12 +104,12 @@ class LibraryController extends AbstractController
 
     #[Route('/library/update', name: 'library_update', methods: ['POST'])]
     public function updateBook(
-        LibraryRepository $LibraryRepository,
+        LibraryRepository $libraryRepository,
         ManagerRegistry $doctrine,
         Request $request,
     ): Response {
         $id = $request->request->get('bookid');
-        $book = $LibraryRepository->find($id);
+        $book = $libraryRepository->find($id);
 
         if (!$book) {
             throw $this->createNotFoundException(
@@ -113,9 +117,9 @@ class LibraryController extends AbstractController
             );
         }
 
-        $title = $request->request->get('booktitle');
-        $author = $request->request->get('bookauthor');
-        $isbn = $request->request->get('bookisbn');
+        $title = $request->request->getString('booktitle');
+        $author = $request->request->getString('bookauthor');
+        $isbn = $request->request->getInt('bookisbn');
         // $img = $request->request->get('img');
 
         $book->setTitle($title);
@@ -131,13 +135,13 @@ class LibraryController extends AbstractController
 
     #[Route('/library/delete', name: 'library_delete', methods: ['POST'])]
     public function deleteBookById(
-        LibraryRepository $LibraryRepository,
+        LibraryRepository $libraryRepository,
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
         $entityManager = $doctrine->getManager();
         $id = $request->request->get('bookid');
-        $book = $LibraryRepository->find($id);
+        $book = $libraryRepository->find($id);
 
         if (!$book) {
             throw $this->createNotFoundException(
@@ -185,10 +189,10 @@ class LibraryController extends AbstractController
 
     #[Route('/api/library/books/{isbn}', name: 'library_by_id_api')]
     public function apiViewSingleBook(
-        LibraryRepository $LibraryRepository,
+        LibraryRepository $libraryRepository,
         int $isbn
     ): Response {
-        $book = $LibraryRepository->getByIsbn($isbn);
+        $book = $libraryRepository->getByIsbn($isbn);
 
         $response = $this->json($book);
         $response->setEncodingOptions(
