@@ -188,7 +188,7 @@ class BookController extends AbstractController
     #[Route('/api/library/books/{isbn}', name: 'library_by_id_api')]
     public function apiViewSingleBook(
         BookRepository $bookRepository,
-        int $isbn
+        string $isbn
     ): Response {
         $book = $bookRepository->getByIsbn($isbn);
 
