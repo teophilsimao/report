@@ -26,7 +26,7 @@ class LibraryController extends AbstractController
     #[Route('/library/create', name: 'library_create')]
     public function createBook(
     ): Response {
-    
+
         return $this->render('library/createview.html.twig');
     }
 
@@ -50,14 +50,14 @@ class LibraryController extends AbstractController
             if($imageFile->guessExtension()) {
                 $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
                 $imageFile->move(
-                $img_directory,
-                $filename
-            );
+                    $img_directory,
+                    $filename
+                );
             } else {
                 $filename = $request->request->get('img');
             }
-        } 
-        
+        }
+
         $book = new Library();
         $book->setTitle($title);
         $book->setAuthor($author);
@@ -75,11 +75,11 @@ class LibraryController extends AbstractController
         libraryRepository $libraryRepository
     ): Response {
         $books = $libraryRepository->findAll();
-    
+
         $data = [
             'books' => $books
         ];
-    
+
         return $this->render('library/view.html.twig', $data);
     }
 
@@ -89,11 +89,11 @@ class LibraryController extends AbstractController
         int $id
     ): Response {
         $book = $LibraryRepository->find($id);
-    
+
         $data = [
             'book' => $book
         ];
-    
+
         return $this->render('library/singleview.html.twig', $data);
         // return $this->json($data);
     }
@@ -106,7 +106,7 @@ class LibraryController extends AbstractController
     ): Response {
         $id = $request->request->get('bookid');
         $book = $LibraryRepository->find($id);
-    
+
         if (!$book) {
             throw $this->createNotFoundException(
                 'No book found for id ' . $id
@@ -117,7 +117,7 @@ class LibraryController extends AbstractController
         $author = $request->request->get('bookauthor');
         $isbn = $request->request->get('bookisbn');
         // $img = $request->request->get('img');
-    
+
         $book->setTitle($title);
         $book->setAuthor($author);
         // $book->setImg($img);
@@ -125,7 +125,7 @@ class LibraryController extends AbstractController
 
         $entityManager = $doctrine->getManager();
         $entityManager->flush();
-    
+
         return $this->redirectToRoute('library_view_all');
     }
 
@@ -138,16 +138,16 @@ class LibraryController extends AbstractController
         $entityManager = $doctrine->getManager();
         $id = $request->request->get('bookid');
         $book = $LibraryRepository->find($id);
-    
+
         if (!$book) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id
             );
         }
-    
+
         $entityManager->remove($book);
         $entityManager->flush();
-    
+
         return $this->redirectToRoute('library_view_all');
     }
 
@@ -157,28 +157,28 @@ class LibraryController extends AbstractController
         ManagerRegistry $doctrine,
     ): Response {
         $entityManager = $doctrine->getManager();
-        
+
         $books = $libraryRepository->findAll();
-        
+
         foreach ($books as $book) {
             $entityManager->remove($book);
         }
-        
+
         $entityManager->flush();
-    
+
         return $this->redirectToRoute('library_view_all');
     }
-    
+
     #[Route('/api/library/books', name: 'api_show_all')]
     public function showAllProduct(
         LibraryRepository $libraryRepository,
     ): Response {
         $books = $libraryRepository
             ->findAll();
-    
+
         $response = $this->json($books);
         $response->setEncodingOptions(
-        $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
         return $response;
     }
@@ -189,10 +189,10 @@ class LibraryController extends AbstractController
         int $isbn
     ): Response {
         $book = $LibraryRepository->getByIsbn($isbn);
-    
+
         $response = $this->json($book);
         $response->setEncodingOptions(
-        $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
         return $response;
     }

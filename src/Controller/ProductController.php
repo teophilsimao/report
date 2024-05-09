@@ -25,18 +25,18 @@ class ProductController extends AbstractController
         ManagerRegistry $doctrine
     ): Response {
         $entityManager = $doctrine->getManager();
-    
+
         $product = new Product();
         $product->setName('Keyboard_num_' . rand(1, 9));
         $product->setValue(rand(100, 999));
-    
+
         // tell Doctrine you want to (eventually) save the Product
         // (no queries yet)
         $entityManager->persist($product);
-    
+
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
-    
+
         return new Response('Saved new product with id '.$product->getId());
     }
 
@@ -46,10 +46,10 @@ class ProductController extends AbstractController
     ): Response {
         $products = $productRepository
             ->findAll();
-    
+
         $response = $this->json($products);
         $response->setEncodingOptions(
-        $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
         return $response;
     }
@@ -61,7 +61,7 @@ class ProductController extends AbstractController
     ): Response {
         $product = $productRepository
             ->find($id);
-    
+
         return $this->json($product);
     }
 
@@ -72,16 +72,16 @@ class ProductController extends AbstractController
     ): Response {
         $entityManager = $doctrine->getManager();
         $product = $entityManager->getRepository(Product::class)->find($id);
-    
+
         if (!$product) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id
             );
         }
-    
+
         $entityManager->remove($product);
         $entityManager->flush();
-    
+
         return $this->redirectToRoute('product_show_all');
     }
 
@@ -93,16 +93,16 @@ class ProductController extends AbstractController
     ): Response {
         $entityManager = $doctrine->getManager();
         $product = $entityManager->getRepository(Product::class)->find($id);
-    
+
         if (!$product) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id
             );
         }
-    
+
         $product->setValue($value);
         $entityManager->flush();
-    
+
         return $this->redirectToRoute('product_show_all');
     }
 
@@ -111,11 +111,11 @@ class ProductController extends AbstractController
         ProductRepository $productRepository
     ): Response {
         $products = $productRepository->findAll();
-    
+
         $data = [
             'products' => $products
         ];
-    
+
         return $this->render('product/view.html.twig', $data);
     }
 
@@ -125,11 +125,11 @@ class ProductController extends AbstractController
         int $value
     ): Response {
         $products = $productRepository->findByMinimumValue($value);
-    
+
         $data = [
             'products' => $products
         ];
-    
+
         return $this->render('product/view.html.twig', $data);
     }
 
@@ -139,7 +139,7 @@ class ProductController extends AbstractController
         int $value
     ): Response {
         $products = $productRepository->findByMinimumValue2($value);
-    
+
         return $this->json($products);
     }
 }
