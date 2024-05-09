@@ -95,7 +95,8 @@ class LibraryController extends AbstractController
         $book = $libraryRepository->find($id);
 
         $data = [
-            'book' => $book
+            'book' => $book,
+            'isbn' => $book->getIsbn()
         ];
 
         return $this->render('library/singleview.html.twig', $data);
@@ -108,6 +109,7 @@ class LibraryController extends AbstractController
         ManagerRegistry $doctrine,
         Request $request,
     ): Response {
+        $entityManager = $doctrine->getManager();
         $id = $request->request->get('bookid');
         $book = $libraryRepository->find($id);
 
@@ -127,7 +129,6 @@ class LibraryController extends AbstractController
         // $book->setImg($img);
         $book->setIsbn($isbn);
 
-        $entityManager = $doctrine->getManager();
         $entityManager->flush();
 
         return $this->redirectToRoute('library_view_all');

@@ -20,7 +20,7 @@
             <label class="label" for="author">Författare:</label>
             <input type="text" id="author" value="{{ book.getAuthor|e }}" name="bookauthor" readonly></input>
             <label class="label" for="isbn">ISBN:</label>
-            <input type="number" id="isbn" value="{{ book.getIsbn|e }}" name="bookisbn" readonly></input>
+            <input type="number" id="isbn" value={{ isbn }} name="bookisbn" readonly></input>
 
             <button 
                 class="button" 
