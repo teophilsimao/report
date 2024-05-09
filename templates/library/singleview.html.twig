@@ -9,7 +9,7 @@
             <a class="button" href={{ path('library_view_all') }}>Tillbaka</a>
         </div>
         <div class="span10 bild">
-            <img src="{{ asset('img/' ~ book.getImg|e) }}" alt="Book Image">
+            <img src="{{ asset('storage/' ~ book.getImg|e) }}" alt="Book Image">
         </div>
 
         <form class="span11" method="post" action="">
