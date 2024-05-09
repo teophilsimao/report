@@ -76,9 +76,9 @@ class BookController extends AbstractController
 
     #[Route('/library/view', name: 'library_view_all', methods: ['GET'])]
     public function viewAllLibrary(
-        BookRepository $BookRepository
+        BookRepository $bookRepository
     ): Response {
-        $books = $BookRepository->findAll();
+        $books = $bookRepository->findAll();
 
         $data = [
             'books' => $books
@@ -89,10 +89,10 @@ class BookController extends AbstractController
 
     #[Route('/library/view/{id}', name: 'library_by_id')]
     public function viewSingleBook(
-        BookRepository $BookRepository,
+        BookRepository $bookRepository,
         int $id
     ): Response {
-        $book = $BookRepository->find($id);
+        $book = $bookRepository->find($id);
 
         $data = [
             'book' => $book,
@@ -104,13 +104,13 @@ class BookController extends AbstractController
 
     #[Route('/library/update', name: 'library_update', methods: ['POST'])]
     public function updateBook(
-        BookRepository $BookRepository,
+        BookRepository $bookRepository,
         ManagerRegistry $doctrine,
         Request $request,
     ): Response {
         $entityManager = $doctrine->getManager();
         $id = $request->request->get('bookid');
-        $book = $BookRepository->find($id);
+        $book = $bookRepository->find($id);
 
         if (!$book) {
             throw $this->createNotFoundException(
@@ -120,15 +120,7 @@ class BookController extends AbstractController
 
         $title = $request->request->getString('booktitle');
         $author = $request->request->getString('bookauthor');
-        $isbn = null;
-
-        if ($isbn == null) {
-            try {
-                $isbn = $request->request->getString('bookisbn');
-            } catch (\Exception $e) {
-                $isbn = 1234567890;
-            }
-        }
+        $isbn = $request->request->getString('bookisbn');
 
         $book->setName($title);
         $book->setAuthor($author);
@@ -141,13 +133,13 @@ class BookController extends AbstractController
 
     #[Route('/library/delete', name: 'library_delete', methods: ['POST'])]
     public function deleteBookById(
-        BookRepository $BookRepository,
+        BookRepository $bookRepository,
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
         $entityManager = $doctrine->getManager();
         $id = $request->request->get('bookid');
-        $book = $BookRepository->find($id);
+        $book = $bookRepository->find($id);
 
         if (!$book) {
             throw $this->createNotFoundException(
@@ -163,12 +155,12 @@ class BookController extends AbstractController
 
     #[Route('/library/deleteall', name: 'library_delete_all')]
     public function deleteAllBooks(
-        BookRepository $BookRepository,
+        BookRepository $bookRepository,
         ManagerRegistry $doctrine,
     ): Response {
         $entityManager = $doctrine->getManager();
 
-        $books = $BookRepository->findAll();
+        $books = $bookRepository->findAll();
 
         foreach ($books as $book) {
             $entityManager->remove($book);
@@ -181,9 +173,9 @@ class BookController extends AbstractController
 
     #[Route('/api/library/books', name: 'api_show_all')]
     public function showAllProduct(
-        BookRepository $BookRepository,
+        BookRepository $bookRepository,
     ): Response {
-        $books = $BookRepository
+        $books = $bookRepository
             ->findAll();
 
         $response = $this->json($books);
@@ -195,10 +187,10 @@ class BookController extends AbstractController
 
     #[Route('/api/library/books/{isbn}', name: 'library_by_id_api')]
     public function apiViewSingleBook(
-        BookRepository $BookRepository,
+        BookRepository $bookRepository,
         int $isbn
     ): Response {
-        $book = $BookRepository->getByIsbn($isbn);
+        $book = $bookRepository->getByIsbn($isbn);
 
         $response = $this->json($book);
         $response->setEncodingOptions(
