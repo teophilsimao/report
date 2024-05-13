@@ -120,7 +120,7 @@ class Game extends AbstractController
         if ($player instanceof Player) {
             $cards = $player->getCards();
 
-            if ($cards) {
+            if (!empty($cards)) {
                 $latestCard = end($cards);
                 if ($latestCard instanceof CardPoint) {
                     $latestCardRank = $latestCard->getRank();
@@ -155,7 +155,7 @@ class Game extends AbstractController
 
                 $dealer->hit($deck);
                 $cards = $dealer->getCards();
-                if ($cards) {
+                if (!empty($cards)) {
                     $latestCard = end($cards);
                     if ($latestCard instanceof CardPoint) {
                         $latestCardRank = $latestCard->getRank();
