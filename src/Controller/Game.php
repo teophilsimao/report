@@ -48,10 +48,7 @@ class Game extends AbstractController
         $pPoint = $session->get('playerPoint');
         $dPoint = $session->get('dealerPoint');
 
-        $pCards = [];
-        if ($player instanceof Player) {
-            $pCards = $player->getString();
-        }
+        $pCards = $player->getString();
 
         $dCards = [];
         if ($dealer instanceof Player) {
@@ -180,9 +177,9 @@ class Game extends AbstractController
         $flashMessage = $flash->setFlash($pPoint, $dPoint);
         $session->set('showFlashMessage', $flashMessage['showFlashMessage']);
         $flassArray = $flashMessage['flashMessage'];
-        if (is_array($flassArray)) {
-            $this->addFlash($flassArray['type'], $flassArray['message']);
-        }
+        // @phpstan-ignore-next-line
+        $this->addFlash($flassArray['type'], $flassArray['message']);
+
 
         return $this->redirectToRoute('game21_play');
     }

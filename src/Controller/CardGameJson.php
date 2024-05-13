@@ -156,7 +156,6 @@ class CardGameJson extends AbstractController
         $pPoint = $session->get('playerPoint');
         $dPoint = $session->get('dealerPoint');
 
-        $pCards = [];
         $pCards = $player->getString();
 
         $dCards = [];
