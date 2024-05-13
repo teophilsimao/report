@@ -41,7 +41,7 @@ class CardHand
     }
 
     /**
-     * @return array<int<0, max>, string>
+     * @return array<int, string>
      */
     public function getString(): array
     {
