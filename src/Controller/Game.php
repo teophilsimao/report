@@ -88,7 +88,7 @@ class Game extends AbstractController
 
             $cards = $player->getCards();
 
-            if ($cards) {
+            if (!empty($cards)) {
                 $latestCard = end($cards);
                 if ($latestCard instanceof CardPoint) {
                     $latestCardRank = $latestCard->getRank();
