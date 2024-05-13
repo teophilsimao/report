@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1715603320">
-  <project timestamp="1715603320">
+<coverage generated="1715605441">
+  <project timestamp="1715605441">
     <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="11" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="26" coveredelements="26"/>
@@ -78,7 +78,7 @@
       <line num="53" type="stmt" count="1"/>
       <line num="61" type="method" name="getPoints" visibility="public" complexity="3" crap="3" count="2"/>
       <line num="63" type="stmt" count="2"/>
-      <line num="64" type="stmt" count="2"/>
+      <line num="64" type="stmt" count="1"/>
       <line num="71" type="stmt" count="2"/>
       <metrics loc="75" ncloc="50" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
     </file>
