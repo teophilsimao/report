@@ -15,7 +15,7 @@ class GameFlash
             'message' => 'Du förlorade!'
         ];
 
-        if ($pPoint > $dPoint && $pPoint < 21 || $dPoint > 21) {
+        if ($pPoint > $dPoint && ($pPoint < 21 || $dPoint > 21)) {
             $flashMessage = [
                 'type' => 'notice',
                 'message' => 'Du vann!'

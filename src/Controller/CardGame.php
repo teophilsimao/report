@@ -114,11 +114,11 @@ class CardGame extends AbstractController
         SessionInterface $session
     ): Response {
         $deck = $session->get('deck');
+        $deckString = '';
 
         if ($deck instanceof DeckOfCard) {
             $deckString = $deck->getString();
         }
-        $deckString = '';
 
         $data = [
             "deck" => $deckString
