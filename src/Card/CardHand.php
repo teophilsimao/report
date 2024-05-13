@@ -29,7 +29,7 @@ class CardHand
     }
 
     /**
-     * @return array<array{string|null, string|null}>
+     * @return array<int<0, max>, array<string|null>>
      */
     public function getCard(): array
     {

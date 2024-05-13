@@ -106,7 +106,7 @@ class Card
     }
 
     /**
-     * @return array{string|null, string|null}
+     * @return (string|null)[]
      */
     public function getCard(): array
     {
