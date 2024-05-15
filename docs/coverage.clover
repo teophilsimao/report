@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1715783869">
-  <project timestamp="1715783869">
+<coverage generated="1715785496">
+  <project timestamp="1715785496">
     <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="11" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="26" coveredelements="26"/>
@@ -78,7 +78,7 @@
       <line num="53" type="stmt" count="1"/>
       <line num="61" type="method" name="getPoints" visibility="public" complexity="3" crap="3" count="2"/>
       <line num="63" type="stmt" count="2"/>
-      <line num="64" type="stmt" count="2"/>
+      <line num="64" type="stmt" count="1"/>
       <line num="71" type="stmt" count="2"/>
       <metrics loc="75" ncloc="50" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
     </file>
@@ -786,52 +786,6 @@
       <line num="78" type="stmt" count="0"/>
       <metrics loc="81" ncloc="81" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="22" coveredelements="0"/>
     </file>
-    <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Entity/Library.php">
-      <class name="App\Entity\Library" namespace="global">
-        <metrics complexity="9" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="22" coveredelements="0"/>
-      </class>
-      <line num="28" type="method" name="getId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="33" type="method" name="getTitle" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="38" type="method" name="setTitle" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="45" type="method" name="getIsbn" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="47" type="stmt" count="0"/>
-      <line num="50" type="method" name="setIsbn" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="52" type="stmt" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="57" type="method" name="getAuthor" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="59" type="stmt" count="0"/>
-      <line num="62" type="method" name="setAuthor" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="64" type="stmt" count="0"/>
-      <line num="66" type="stmt" count="0"/>
-      <line num="69" type="method" name="getImg" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="71" type="stmt" count="0"/>
-      <line num="74" type="method" name="setImg" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="76" type="stmt" count="0"/>
-      <line num="78" type="stmt" count="0"/>
-      <metrics loc="81" ncloc="81" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="22" coveredelements="0"/>
-    </file>
-    <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Entity/Product.php">
-      <class name="App\Entity\Product" namespace="global">
-        <metrics complexity="5" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
-      </class>
-      <line num="22" type="method" name="getId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="24" type="stmt" count="0"/>
-      <line num="27" type="method" name="getName" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="29" type="stmt" count="0"/>
-      <line num="32" type="method" name="setName" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="39" type="method" name="getValue" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="44" type="method" name="setValue" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <metrics loc="51" ncloc="51" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
-    </file>
     <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Kernel.php">
       <class name="App\Kernel" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
@@ -852,28 +806,6 @@
       <line num="55" type="stmt" count="0"/>
       <metrics loc="58" ncloc="26" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
     </file>
-    <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Repository/LibraryRepository.php">
-      <class name="App\Repository\LibraryRepository" namespace="global">
-        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
-      </class>
-      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="16" type="stmt" count="0"/>
-      <line num="50" type="method" name="getByIsbn" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="52" type="stmt" count="0"/>
-      <line num="53" type="stmt" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="55" type="stmt" count="0"/>
-      <line num="56" type="stmt" count="0"/>
-      <metrics loc="59" ncloc="27" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
-    </file>
-    <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Repository/ProductRepository.php">
-      <class name="App\Repository\ProductRepository" namespace="global">
-        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
-      </class>
-      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="16" type="stmt" count="0"/>
-      <metrics loc="80" ncloc="23" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
-    </file>
-    <metrics files="22" loc="2041" ncloc="1768" classes="21" methods="108" coveredmethods="41" conditionals="0" coveredconditionals="0" statements="633" coveredstatements="108" elements="741" coveredelements="149"/>
+    <metrics files="18" loc="1770" ncloc="1586" classes="17" methods="91" coveredmethods="41" conditionals="0" coveredconditionals="0" statements="606" coveredstatements="108" elements="697" coveredelements="149"/>
   </project>
 </coverage>
