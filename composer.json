@@ -98,7 +98,14 @@
         ],
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "phpdoc": "tools/phpdoc/phpdoc --config=tools/phpdoc/phpdoc.xml",
-        "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=tools/phpmetrics/phpmetrics.json"
+        "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=tools/phpmetrics/phpmetrics.json",
+        "all": [
+            "@csfix",
+            "@lint",
+            "@phpunit",
+            "@phpdoc",
+            "@phpmetrics"
+        ]
     },
     "conflict": {
         "symfony/symfony": "*"
