@@ -5,7 +5,7 @@
 {% block main %}
     <h1>Metrics analys</h1>
     <div class="grid">
-        <div class="span9">
+        <div class="span13">
             <h2>Introduktion</h2>
             <div class="txt">
                 <p>
@@ -53,11 +53,127 @@
             </div>
         </div>
 
-        <div class="span9">
+        <div class="span13">
             <h2>Phpmetrics</h2>
             <div class="txt">
                 <h3>Bilder:</h3>
                 <p>
+                    bild 1:
+                </p>
+                <div class="bild">
+                    <img src="{{ asset('img/overal.png') }}" alt="overal">
+                </div>
+                <br>
+                <p>
+                    bild 2:
+                </p>
+                <div class="bild">
+                    <img src="{{ asset('img/complexity.png') }}" alt="complexity">
+                </div>
+                <br>
+                <p>
+                    bild 3:
+                </p>
+                <div class="bild">
+                    <img src="{{ asset('img/avarage.png') }}" alt="avarage">
+                </div>
+                <br>
+                <p>
+                    bild 4:
+                </p>
+                <div class="bild">
+                    <img src="{{ asset('img/allcomp.png') }}" alt="allcomplexity">
+                </div>
+                <br>
+                <p>
+                    bild 5:
+                </p>
+                <div class="bild">
+                    <img src="{{ asset('img/test.png') }}" alt="test">
+                </div>
+            </div>
+            
+            <h3>Analys av Metrics</h3>
+            <div class="txt">
+                <p>
+                    generellt så tycker jag att resultaten från Metrics ser helt ok ut. Som man kan se på bild 1
+                    så finns det inga alvarliga "Violations", snitt cyclomatic complexity per class 
+                    ligger på 4.5 vilket jag är nöjd med och snitt buggar per class är under 1.  
+                </p>
+                <br>
+                <p>
+                    Kikar man lite närmare på testerna så kan man snabbt konstantera att trots att snitt cyclomatic
+                    complexity och buggar ligger på en bra nivå så finns det classer som ändå visar röd på 
+                    "Maintainability/complexity" och som har cyclomatic complexity över 10 per class.
+                </p>
+                <br>
+                <p>
+                    Vi kan också se att det är bara 8 av 18 klasser som har testats. Det är värt att notera att
+                    en av den otestade klass är den som har högs cyclomatic complexity och högst buggar. Baserat på
+                    testerna så skulle jag säga att dem två område som är värt att fokusera på att förbättra är 
+                    Coverage och Complexity. Detta kommer i sin tur att ta ner CRAP och föränkla koden.
+                </p>
+            </div>
+        </div>
+
+        <div class="span13">
+            <h2>Scrutinizer</h2>
+            <div class="txt">
+                <h3>Bilder:</h3>
+                <p>
+                    bild 1:
+                </p>
+                <div class="bild">
+                    <img src="{{ asset('img/results.png') }}" alt="test">
+                </div>
+                <br>
+                <p>
+                    bild 2:
+                </p>
+                <div class="bild">
+                    <img src="{{ asset('img/scrutt.png') }}" alt="test">
+                </div>
+                <br>
+                <p>
+                    bild 3:
+                </p>
+                <div class="bild">
+                    <img src="{{ asset('img/scruts.png') }}" alt="test">
+                </div>
+                <h3>Badges</h3>
+                <p>
+                    <a href=
+                    "https://scrutinizer-ci.com/g/teophilsimao/report/inspections/69192905-8b7e-4e2d-8acf-c791ce97416a/log">
+                    <img src="https://scrutinizer-ci.com/g/teophilsimao/report/badges/build.png?b=main" alt="Build Status">
+                    </a>
+
+                    <a href=
+                    "https://scrutinizer-ci.com/g/teophilsimao/report/">
+                    <img src="https://scrutinizer-ci.com/g/teophilsimao/report/badges/coverage.png?b=main" alt="Coverage Status">
+                    </a>
+
+                    <a href=
+                    "https://scrutinizer-ci.com/g/teophilsimao/report/">
+                    <img src="https://scrutinizer-ci.com/g/teophilsimao/report/badges/quality-score.png?b=main" alt="Scrutinizer Status">
+                    </a>
+
+                    <a href=
+                    "https://scrutinizer-ci.com/g/teophilsimao/report/">
+                    <img src="https://scrutinizer-ci.com/g/teophilsimao/report/badges/code-intelligence.svg?b=main" alt="code intelligence Status">
+                    </a>
+                </p>
+            </div>
+            <h3>Analys av Scrutinizer</h3>
+            <div class="txt">
+                <p>
+                    Lite som på metrics så kan vi se att det störta problem med koden är att det är ganska mycket avs koden som
+                    är otestad och på majoriteten av dem otestade koderna så kan vi kosntantera att både komplexiteten och CRAP 
+                    är väldigt högt på dem.
+                </p>
+                <br>
+                <p>
+                    Precis som på Metrics så tycker jag att förbättringar kan göras både när det gäller cyclomatic complexity 
+                    och coverage. Vilket i sin tur can leda till lägre CRAP score.
                 </p>
             </div>
         </div>
