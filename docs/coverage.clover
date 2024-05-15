@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1715767127">
-  <project timestamp="1715767127">
+<coverage generated="1715783869">
+  <project timestamp="1715783869">
     <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="11" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="26" coveredelements="26"/>
@@ -78,7 +78,7 @@
       <line num="53" type="stmt" count="1"/>
       <line num="61" type="method" name="getPoints" visibility="public" complexity="3" crap="3" count="2"/>
       <line num="63" type="stmt" count="2"/>
-      <line num="64" type="stmt" count="1"/>
+      <line num="64" type="stmt" count="2"/>
       <line num="71" type="stmt" count="2"/>
       <metrics loc="75" ncloc="50" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
     </file>
@@ -601,6 +601,14 @@
       <line num="128" type="stmt" count="0"/>
       <metrics loc="131" ncloc="131" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="102" coveredstatements="0" elements="104" coveredelements="0"/>
     </file>
+    <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Controller/ControllerMetrics.php">
+      <class name="App\Controller\ControllerMetrics" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </class>
+      <line num="11" type="method" name="metrics" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="14" type="stmt" count="0"/>
+      <metrics loc="17" ncloc="17" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+    </file>
     <file name="/home/teophil/dbwebb-kurser/mvc/me/report/src/Controller/ControllerTwig.php">
       <class name="App\Controller\ControllerTwig" namespace="global">
         <metrics complexity="4" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="22" coveredelements="0"/>
@@ -866,6 +874,6 @@
       <line num="16" type="stmt" count="0"/>
       <metrics loc="80" ncloc="23" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
     </file>
-    <metrics files="21" loc="2024" ncloc="1751" classes="20" methods="107" coveredmethods="41" conditionals="0" coveredconditionals="0" statements="632" coveredstatements="108" elements="739" coveredelements="149"/>
+    <metrics files="22" loc="2041" ncloc="1768" classes="21" methods="108" coveredmethods="41" conditionals="0" coveredconditionals="0" statements="633" coveredstatements="108" elements="741" coveredelements="149"/>
   </project>
 </coverage>

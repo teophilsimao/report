@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block main %}
+    <h1>Metrics analys</h1>
+    <div class="grid">
+        <div class="span9">
+            <h2>Introduktion</h2>
+            <div class="txt">
+                <p>
+                    Syftet med denna uppgift är att jag som programmerare ska analysera min kodkvalitet med hjälp av 
+                    phpmetrics och scrutinizer. Under analysen så ska jag identifiera förbättringsmöjligeheter i min kod
+                    och efteråt så ska jag se till att tillämpa dem förbättringar i koden. Jag kommer att förhålla mig till
+                    6 C:na som är Codestyle, Coverage, Complexity, Cohesion, Coupling och CRAP under tiden jag analyser och 
+                    förbättrar koden.
+                </p>
+                <h3>Codestyle</h3>
+                <p>
+                    Codestyle handlar om formatering av koden och om hur koden är skriven så att andra som läser det
+                    kan lätt förstå det. En bra kodstil innehåller saker som relevantra kommentar, indenteringar,
+                    mellanrum och tydliga namn för variabler/klasser/metoder. Detta göt det enklare för andra som läser
+                    koden att förstå vad som sker och även underhålla koden.  
+                </p>
+                <h3>Coverage</h3>
+                <p>
+                    Coverage handlar om hur mycket av koden som har testats. Högt coverage betyder generellt att
+                    fler delar av koden har testats. Detta innebär mindre risk för sånt som tex buggar.
+                </p>
+                <h3>Complexity</h3>
+                <p>
+                    Complexity handlar om komplexiteten i koden, i mitt fall så mäts det med cyclomatic complexity och 
+                    generellt så innebär lägre cyclomatic complexity att koden är lättförståeligt och enkelt att underhålla.
+                </p>
+                <h3>Cohesion</h3>
+                <p>
+                    Cohesion handlar om hur relaterade klasser eller metoder är till varandra. generellt så vill man ha
+                    hög Cohesion i och med att det visar att varje klass/metod har ett syfte, detta gör det att förstå och
+                    felsöka koden.
+                </p>
+                <h3>Coupling</h3>
+                <p>
+                    Coupling handlar om hur beroende moduler och/eller klasser är av varandra, en Låg Coupling betyder att 
+                    moduler eller klasser är oberoende av varandra. Vilket betyder att koden är flexibel och delar av det
+                    kan ändras utan att andra påverkas.
+                </p>
+                <h3>CRAP</h3>
+                <p>
+                    CRAP kombinerar Coverage och Complexity för att identifiera område i koden som kan introducera buggar
+                    ifall en ändring hade sket. generellt så vill man ha så lite CRAP poäng som möjligt ioc att hög crap
+                    innebär att koden kanske borde omkonstrueras.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

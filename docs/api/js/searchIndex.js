@@ -471,6 +471,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-ControllerJson.html#method_jsonQuote"
         },                {
+            "fqsen": "\\App\\Controller\\ControllerMetrics",
+            "name": "ControllerMetrics",
+            "summary": "",
+            "url": "classes/App-Controller-ControllerMetrics.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ControllerMetrics\u003A\u003Ametrics\u0028\u0029",
+            "name": "metrics",
+            "summary": "",
+            "url": "classes/App-Controller-ControllerMetrics.html#method_metrics"
+        },                {
             "fqsen": "\\App\\Controller\\ControllerTwig",
             "name": "ControllerTwig",
             "summary": "",
