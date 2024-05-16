@@ -44,6 +44,7 @@ class Game extends AbstractController
     public function game21Play(SessionInterface $session): Response
     {   /** @var Player $player */
         $player = $session->get('player');
+        /** @var Player $dealer */
         $dealer = $session->get('dealer');
         $pPoint = $session->get('playerPoint');
         $dPoint = $session->get('dealerPoint');
@@ -51,9 +52,8 @@ class Game extends AbstractController
         $pCards = $player->getString();
 
         $dCards = [];
-        if ($dealer instanceof Player) {
-            $dCards = $dealer->getString();
-        }
+        $dCards = $dealer->getString();
+
 
         if ($pPoint > 21) {
             $session->set('showFlashMessage', true);
@@ -78,7 +78,9 @@ class Game extends AbstractController
     #[Route("/game/hit", name: "game21_hit", methods: ['POST'])]
     public function game21Hit(SessionInterface $session): Response
     {
+        /** @var DeckDraw $deck */
         $deck = $session->get('deck');
+        /** @var Player $player */
         $player = $session->get('player');
 
         $player->hit($deck);
@@ -101,6 +103,7 @@ class Game extends AbstractController
     public function game21AceForm(SessionInterface $session, Request $request): Response
     {
         $aceValue = $request->request->get('aceValue');
+        /** @var Player $player */
         $player = $session->get('player');
 
         $cards = $player->getCards();
@@ -125,11 +128,13 @@ class Game extends AbstractController
     public function game21Stand(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
+        /** @var Player $dealer */
         $dealer = $session->get('dealer');
         $dPoint = $session->get('dealerPoint');
         $pPoint = $session->get('playerPoint');
 
         while ($dPoint < 17) {
+            /** @var DeckDraw $deck */
             $dealer->hit($deck);
             $cards = $dealer->getCards();
             $latestCard = end($cards);
