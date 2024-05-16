@@ -102,7 +102,6 @@ class Game extends AbstractController
     {
         $aceValue = $request->request->get('aceValue');
         $player = $session->get('player');
-        $pPoint = $session->get('playerPoint');
 
         $cards = $player->getCards();
 
