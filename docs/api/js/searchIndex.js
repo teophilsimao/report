@@ -366,15 +366,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-BookController.html#method_deleteAllBooks"
         },                {
-            "fqsen": "\\App\\Controller\\BookController\u003A\u003AshowAllProduct\u0028\u0029",
+            "fqsen": "\\App\\Controller\\BookControllerJson",
+            "name": "BookControllerJson",
+            "summary": "",
+            "url": "classes/App-Controller-BookControllerJson.html"
+        },                {
+            "fqsen": "\\App\\Controller\\BookControllerJson\u003A\u003AshowAllProduct\u0028\u0029",
             "name": "showAllProduct",
             "summary": "",
-            "url": "classes/App-Controller-BookController.html#method_showAllProduct"
+            "url": "classes/App-Controller-BookControllerJson.html#method_showAllProduct"
         },                {
-            "fqsen": "\\App\\Controller\\BookController\u003A\u003AapiViewSingleBook\u0028\u0029",
+            "fqsen": "\\App\\Controller\\BookControllerJson\u003A\u003AapiViewSingleBook\u0028\u0029",
             "name": "apiViewSingleBook",
             "summary": "",
-            "url": "classes/App-Controller-BookController.html#method_apiViewSingleBook"
+            "url": "classes/App-Controller-BookControllerJson.html#method_apiViewSingleBook"
         },                {
             "fqsen": "\\App\\Controller\\CardGame",
             "name": "CardGame",

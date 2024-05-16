@@ -168,32 +168,4 @@ class BookController extends AbstractController
 
         return $this->redirectToRoute('library_view_all');
     }
-
-    #[Route('/api/library/books', name: 'api_show_all')]
-    public function showAllProduct(
-        BookRepository $bookRepository,
-    ): Response {
-        $books = $bookRepository
-            ->findAll();
-
-        $response = $this->json($books);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
-    }
-
-    #[Route('/api/library/books/{isbn}', name: 'library_by_id_api')]
-    public function apiViewSingleBook(
-        BookRepository $bookRepository,
-        string $isbn
-    ): Response {
-        $book = $bookRepository->getByIsbn($isbn);
-
-        $response = $this->json($book);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
-    }
 }

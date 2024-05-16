@@ -104,26 +104,19 @@ class Game extends AbstractController
         $player = $session->get('player');
         $pPoint = $session->get('playerPoint');
 
-        if ($player instanceof Player) {
-            $cards = $player->getCards();
+        $cards = $player->getCards();
 
-            if (!empty($cards)) {
-                $latestCard = end($cards);
-                if ($latestCard instanceof CardPoint) {
-                    $latestCardRank = $latestCard->getRank();
-                    $session->set('latestCardRank', $latestCardRank);
-
-                    if ($latestCardRank === 'Ace') {
-                        $latestCard->setAceValue((int)$aceValue);
-                    }
-                }
-            }
+        $latestCard = end($cards);
+        $latestCardRank = $latestCard->getRank();
+        $session->set('latestCardRank', $latestCardRank);
+        if ($latestCardRank === 'Ace') {
+            $latestCard->setAceValue((int)$aceValue);
         }
+
+
 
         $session->set('player', $player);
-        if ($player instanceof Player) {
-            $pPoint = $player->getScore();
-        }
+        $pPoint = $player->getScore();
         $session->set('playerPoint', $pPoint);
 
         return $this->redirectToRoute('game21_play');
