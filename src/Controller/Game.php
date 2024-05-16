@@ -83,22 +83,7 @@ class Game extends AbstractController
         $pPoint = $session->get('playerPoint');
 
         if ($deck instanceof DeckOfCard && $player instanceof Player) {
-
             $player->hit($deck);
-
-            $cards = $player->getCards();
-
-            if (!empty($cards)) {
-                $latestCard = end($cards);
-                if ($latestCard instanceof CardPoint) {
-                    $latestCardRank = $latestCard->getRank();
-                    $session->set('latestCardRank', $latestCardRank);
-
-                    if ($latestCardRank === 'Ace') {
-                        return $this->redirectToRoute('game21_play');
-                    }
-                }
-            }
         }
 
         $session->set('player', $player);
@@ -152,21 +137,8 @@ class Game extends AbstractController
 
         while ($dPoint < 17) {
             if ($deck instanceof DeckOfCard && $dealer instanceof Player) {
-
                 $dealer->hit($deck);
-                $cards = $dealer->getCards();
-                if (!empty($cards)) {
-                    $latestCard = end($cards);
-                    if ($latestCard instanceof CardPoint) {
-                        $latestCardRank = $latestCard->getRank();
-                        if ($latestCardRank === 'Ace') {
-                            $aceValue = ($dPoint < 7) ? 14 : 1;
-                            $latestCard->setAceValue($aceValue);
-                        }
-
-                        $dPoint = $dealer->getScore();
-                    }
-                }
+                $dPoint = $dealer->getScore();
             }
         }
 
