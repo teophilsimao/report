@@ -50,10 +50,7 @@ class Game extends AbstractController
         $dPoint = $session->get('dealerPoint');
 
         $pCards = $player->getString();
-
-        $dCards = [];
         $dCards = $dealer->getString();
-
 
         if ($pPoint > 21) {
             $session->set('showFlashMessage', true);
