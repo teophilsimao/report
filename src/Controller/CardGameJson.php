@@ -9,6 +9,7 @@ use App\Card\DeckOfCard;
 use App\Card\CardPoint;
 use App\Card\Player;
 use App\Card\Game21;
+use App\Card\DeckDraw;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -23,7 +24,7 @@ class CardGameJson extends AbstractController
     #[Route("/api/deck", name: "apiDeck", methods: ['GET'])]
     public function apiDeck(): Response
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $deck->add(new CardPoint());
         $deck->createDeck();
         $deckStr = $deck->getString();
@@ -42,7 +43,7 @@ class CardGameJson extends AbstractController
     #[Route("/api/deck/shuffle", name: "apiDeckShuffle", methods: ['POST'])]
     public function apiDeckShuffle(SessionInterface $session): Response
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $deck->add(new CardPoint());
         $deck->createDeck();
         $deck->shuffle();
@@ -68,13 +69,13 @@ class CardGameJson extends AbstractController
     {
         $deck = $session->get('deck');
 
-        if (!$deck instanceof DeckOfCard) {
+        if (!$deck instanceof DeckDraw) {
             return new JsonResponse([
                 'error' => 'Deck is not initialized'
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $drawnCard = $deck->drawnCard();
+        $drawnCard = $deck->drawCard();
         $drawnStr = $drawnCard ? $drawnCard->getAsString() : null;
 
         $session->set('deck', $deck);
@@ -100,7 +101,7 @@ class CardGameJson extends AbstractController
         $number = $request->attributes->get('number');
         $handStr = [];
 
-        if (!$deck instanceof DeckOfCard) {
+        if (!$deck instanceof DeckDraw) {
             return new JsonResponse([
                 'error' => 'Deck is not initialized'
             ], Response::HTTP_BAD_REQUEST);
@@ -108,7 +109,7 @@ class CardGameJson extends AbstractController
 
 
         for ($i = 0; $i < $number; $i++) {
-            $drawnCardStr = $deck->drawnCards(new CardHand());
+            $drawnCardStr = $deck->drawCards(new CardHand());
 
             if ($drawnCardStr !== null) {
                 $handStr[] = $drawnCardStr;

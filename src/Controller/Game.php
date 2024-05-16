@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Card\CardPoint;
 use App\Card\CardHand;
-use App\Card\DeckOfCard;
+use App\Card\DeckDraw;
 use App\Card\Player;
 use App\Card\Game21;
 use App\Card\GameFlash;

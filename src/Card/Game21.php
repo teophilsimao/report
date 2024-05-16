@@ -3,7 +3,7 @@
 namespace App\Card;
 
 use App\Card\CardPoint;
-use App\Card\DeckOfCard;
+use App\Card\DeckDraw;
 use App\Card\Player;
 
 // use App\Card\Dealer;
@@ -12,12 +12,12 @@ class Game21
 {
     private Player $player;
     private Player $dealer;
-    private DeckOfCard $deck;
+    private DeckDraw $deck;
 
     public function __construct()
     {
 
-        $this->deck = new DeckOfCard();
+        $this->deck = new DeckDraw();
         $this->deck->add(new CardPoint());
         $this->deck->createDeck();
         $this->deck->shuffle();
@@ -26,7 +26,7 @@ class Game21
         $this->dealer = new Player();
     }
 
-    public function getDeck(): DeckOfCard
+    public function getDeck(): DeckDraw
     {
         return $this->deck;
     }

@@ -7,6 +7,7 @@ use App\Card\CardGraphic;
 use App\Card\CardHand;
 use App\Card\DeckOfCard;
 use App\Card\CardPoint;
+use App\Card\DeckDraw;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -22,7 +23,7 @@ class CardGame extends AbstractController
     public function home(SessionInterface $session): Response
     {
         if (!$session->has('deck')) {
-            $deck = new DeckOfCard();
+            $deck = new DeckDraw();
             $deck->add(new CardPoint());
             $deck->createDeck();
             $session->set('deck', $deck);
@@ -39,7 +40,7 @@ class CardGame extends AbstractController
         SessionInterface $session
     ): Response {
         /**
-         * @var DeckOfCard $deck
+         * @var DeckDraw $deck
          */
         $deck = $session->get('deck');
         $deck = $deck->getString();
@@ -60,9 +61,9 @@ class CardGame extends AbstractController
         SessionInterface $session
     ): Response {
         /**
-         * @var DeckOfCard $deck
+         * @var DeckDraw $deck
          */
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $deck->add(new CardPoint());
         $deck->createDeck();
         $deck->shuffle();
@@ -84,11 +85,11 @@ class CardGame extends AbstractController
         SessionInterface $session
     ): Response {
         /**
-         * @var DeckOfCard $deck
+         * @var DeckDraw $deck
          */
         $deck = $session->get('deck');
 
-        $drawnCard = $deck->drawnCard();
+        $drawnCard = $deck->drawCard();
 
         $cardString = '';
         if ($drawnCard !== null) {
@@ -116,7 +117,7 @@ class CardGame extends AbstractController
         $deck = $session->get('deck');
         $deckString = '';
 
-        if ($deck instanceof DeckOfCard) {
+        if ($deck instanceof DeckDraw) {
             $deckString = $deck->getString();
         }
 
@@ -149,7 +150,7 @@ class CardGame extends AbstractController
         $deck = $session->get('deck');
         $number = $session->get('number');
 
-        if (!$deck instanceof DeckOfCard) {
+        if (!$deck instanceof DeckDraw) {
             return $this->redirectToRoute('deck');
         }
 
@@ -157,7 +158,7 @@ class CardGame extends AbstractController
 
 
         for ($i = 0; $i < $number; $i++) {
-            $drawnCardStr = $deck->drawnCards(new CardHand());
+            $drawnCardStr = $deck->drawCards(new CardHand());
 
             if ($drawnCardStr !== null) {
                 $handStr[] = $drawnCardStr;

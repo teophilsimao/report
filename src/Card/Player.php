@@ -2,7 +2,7 @@
 
 namespace App\Card;
 
-use App\Card\DeckOfCard;
+use App\Card\DeckDraw;
 use App\Card\CardPoint;
 
 /**
@@ -28,13 +28,13 @@ class Player
     /**
      * Adds a card drawn from the deck to the player's hand.
      *
-     * @param DeckOfCard $deck The deck from which the card is drawn.
+     * @param DeckDraw $deck The deck from which the card is drawn.
      * @return void
      */
-    public function hit(DeckOfCard $deck): void
+    public function hit(DeckDraw $deck): void
     {
 
-        $this->playerCards[] = $deck->drawnCard();
+        $this->playerCards[] = $deck->drawCard();
 
     }
 

@@ -171,10 +171,40 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Card-CardPoint.html#property_points"
         },                {
+            "fqsen": "\\App\\Card\\DeckDraw",
+            "name": "DeckDraw",
+            "summary": "",
+            "url": "classes/App-Card-DeckDraw.html"
+        },                {
+            "fqsen": "\\App\\Card\\DeckDraw\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Card-DeckDraw.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Card\\DeckDraw\u003A\u003AdrawCard\u0028\u0029",
+            "name": "drawCard",
+            "summary": "",
+            "url": "classes/App-Card-DeckDraw.html#method_drawCard"
+        },                {
+            "fqsen": "\\App\\Card\\DeckDraw\u003A\u003AdrawCards\u0028\u0029",
+            "name": "drawCards",
+            "summary": "",
+            "url": "classes/App-Card-DeckDraw.html#method_drawCards"
+        },                {
+            "fqsen": "\\App\\Card\\DeckDraw\u003A\u003AisCardInDeck\u0028\u0029",
+            "name": "isCardInDeck",
+            "summary": "",
+            "url": "classes/App-Card-DeckDraw.html#method_isCardInDeck"
+        },                {
             "fqsen": "\\App\\Card\\DeckOfCard",
             "name": "DeckOfCard",
             "summary": "",
             "url": "classes/App-Card-DeckOfCard.html"
+        },                {
+            "fqsen": "\\App\\Card\\DeckOfCard\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Card-DeckOfCard.html#method___construct"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCard\u003A\u003Aadd\u0028\u0029",
             "name": "add",
@@ -210,21 +240,6 @@ Search.appendIndex(
             "name": "getString",
             "summary": "",
             "url": "classes/App-Card-DeckOfCard.html#method_getString"
-        },                {
-            "fqsen": "\\App\\Card\\DeckOfCard\u003A\u003AdrawnCard\u0028\u0029",
-            "name": "drawnCard",
-            "summary": "",
-            "url": "classes/App-Card-DeckOfCard.html#method_drawnCard"
-        },                {
-            "fqsen": "\\App\\Card\\DeckOfCard\u003A\u003AdrawnCards\u0028\u0029",
-            "name": "drawnCards",
-            "summary": "",
-            "url": "classes/App-Card-DeckOfCard.html#method_drawnCards"
-        },                {
-            "fqsen": "\\App\\Card\\DeckOfCard\u003A\u003AisCardInDeck\u0028\u0029",
-            "name": "isCardInDeck",
-            "summary": "",
-            "url": "classes/App-Card-DeckOfCard.html#method_isCardInDeck"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCard\u003A\u003A\u0024deck",
             "name": "deck",

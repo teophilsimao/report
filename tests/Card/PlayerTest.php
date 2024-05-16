@@ -2,6 +2,8 @@
 
 namespace App\Card;
 
+use App\Card\DeckDraw;
+
 use PHPUnit\Framework\TestCase;
 
 class PlayerTest extends TestCase
@@ -14,7 +16,7 @@ class PlayerTest extends TestCase
 
     public function testHit():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $player = new Player();
         $player->hit($deck);
         $this->assertCount(1, $player->getCards());
@@ -22,7 +24,7 @@ class PlayerTest extends TestCase
 
     public function testGetScore():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $player = new Player();
         $card = new CardPoint();
         $deck->add($card);
@@ -36,7 +38,7 @@ class PlayerTest extends TestCase
 
     public function testGetString():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $player = new Player();
         $card = new CardPoint();
         $deck->add($card);

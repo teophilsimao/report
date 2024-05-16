@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Card;
+use App\Card\DeckDraw;
 
 use PHPUnit\Framework\TestCase;
 
@@ -8,7 +9,7 @@ class DeckOfCardTest extends TestCase
 {   
     public function testCreateDeck():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $card = new CardPoint();
         $deck->add($card);
         $deck->createDeck();
@@ -18,7 +19,7 @@ class DeckOfCardTest extends TestCase
 
     public function testShuffle():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $card = new CardPoint();
         $deck->add($card);
         $deck->createDeck();
@@ -30,7 +31,7 @@ class DeckOfCardTest extends TestCase
 
     public function testSetDeck():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $knownDeck = [
             new CardPoint(), 
             new CardPoint(),
@@ -41,36 +42,36 @@ class DeckOfCardTest extends TestCase
 
     public function testDrawnCard():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $card = new CardPoint();
         $deck->add($card);
         $deck->createDeck();
-        $drawnCard = $deck->drawnCard();
+        $drawnCard = $deck->drawCard();
         $this->assertInstanceOf(CardPoint::class, $drawnCard);
     }
 
     public function testDrawnCards():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $card = new CardPoint();
         $deck->add($card);
         $deck->createDeck();
         $hand = new CardHand();
-        $drawnCard = $deck->drawnCards($hand);
+        $drawnCard = $deck->drawCards($hand);
         $this->assertIsString($drawnCard);
     }
 
     public function testDrawnWhenEmpty():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
         $hand = new CardHand();
-        $drawnCard = $deck->drawnCards($hand);
+        $drawnCard = $deck->drawCards($hand);
         $this->assertNull($drawnCard);
     }
 
     public function testGetString():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
 
         $card = new CardPoint();
         $deck->add($card);
@@ -83,7 +84,7 @@ class DeckOfCardTest extends TestCase
 
     public function testIsCardNotPresent():void
     {
-        $deck = new DeckOfCard();
+        $deck = new DeckDraw();
 
         $card = new CardPoint();
         $deck->add($card);
