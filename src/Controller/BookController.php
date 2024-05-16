@@ -35,23 +35,22 @@ class BookController extends AbstractController
         $title = $request->request->getString('booktitle');
         $author = $request->request->getString('bookauthor');
         $isbn = $request->request->getString('bookisbn');
+        /** @var UploadedFile $imageFile */
         $imageFile = $request->files->get('img');
         $filename = "";
+        $imgDirectory = $this->getParameter('img_directory');
 
-        if ($imageFile instanceof UploadedFile) {
-            $imgDirectory = $this->getParameter('img_directory');
-            if (is_string($imgDirectory)) {
-                try {
-                    if ($imageFile->guessExtension()) {
-                        $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
-                        $imageFile->move(
-                            $imgDirectory,
-                            $filename
-                        );
-                    }
-                } catch (\Exception $e) {
-                    $filename = "Book Image";
+        if (is_string($imgDirectory)) {
+            try {
+                if ($imageFile->guessExtension()) {
+                    $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
+                    $imageFile->move(
+                        $imgDirectory,
+                        $filename
+                    );
                 }
+            } catch (\Exception $e) {
+                $filename = "Book Image";
             }
         }
 
