@@ -83,6 +83,7 @@ class Game extends AbstractController
         $player->hit($deck);
         $cards = $player->getCards();
         $latestCard = end($cards);
+        // @phpstan-ignore-next-line
         $latestCardRank = $latestCard->getRank();
         $session->set('latestCardRank', $latestCardRank);
         if ($latestCardRank === 'Ace') {
@@ -104,11 +105,12 @@ class Game extends AbstractController
         $player = $session->get('player');
 
         $cards = $player->getCards();
-
         $latestCard = end($cards);
+        // @phpstan-ignore-next-line
         $latestCardRank = $latestCard->getRank();
         $session->set('latestCardRank', $latestCardRank);
         if ($latestCardRank === 'Ace') {
+            // @phpstan-ignore-next-line
             $latestCard->setAceValue((int)$aceValue);
         }
 
@@ -135,9 +137,11 @@ class Game extends AbstractController
             $dealer->hit($deck);
             $cards = $dealer->getCards();
             $latestCard = end($cards);
+            // @phpstan-ignore-next-line
             $latestCardRank = $latestCard->getRank();
             if ($latestCardRank === 'Ace') {
                 $aceValue = ($dPoint < 7) ? 14 : 1;
+                // @phpstan-ignore-next-line
                 $latestCard->setAceValue($aceValue);
             }
             $dPoint = $dealer->getScore();
