@@ -107,7 +107,6 @@ class CardGameJson extends AbstractController
             ], Response::HTTP_BAD_REQUEST);
         }
 
-
         for ($i = 0; $i < $number; $i++) {
             $drawnCardStr = $deck->drawCards(new CardHand());
 
@@ -122,8 +121,6 @@ class CardGameJson extends AbstractController
             "hand" => $handStr,
             "amount" => $deckLength
         ];
-
-
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(

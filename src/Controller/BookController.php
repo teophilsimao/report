@@ -29,13 +29,9 @@ class BookController extends AbstractController
     }
 
     #[Route('/library/create/book', name: 'library_create_post', methods: ['POST'])]
-    public function createBookPost(
-        // LibraryRepository $libraryRepository,
-        ManagerRegistry $doctrine,
-        Request $request
-    ): Response {
+    public function createBookPost(ManagerRegistry $doctrine, Request $request): Response
+    {
         $entityManager = $doctrine->getManager();
-
         $title = $request->request->getString('booktitle');
         $author = $request->request->getString('bookauthor');
         $isbn = $request->request->getString('bookisbn');
@@ -44,7 +40,6 @@ class BookController extends AbstractController
 
         if ($imageFile instanceof UploadedFile) {
             $imgDirectory = $this->getParameter('img_directory');
-
             if (is_string($imgDirectory)) {
                 try {
                     if ($imageFile->guessExtension()) {
@@ -65,7 +60,6 @@ class BookController extends AbstractController
         $book->setAuthor($author);
         $book->setIsbn($isbn);
         $book->setImg($filename);
-
         $entityManager->persist($book);
         $entityManager->flush();
 
