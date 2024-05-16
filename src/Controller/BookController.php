@@ -18,9 +18,7 @@ class BookController extends AbstractController
     #[Route('/library', name: 'app_library')]
     public function index(): Response
     {
-        return $this->render('library/index.html.twig', [
-            'controller_name' => 'LibraryController',
-        ]);
+        return $this->render('library/index.html.twig');
     }
 
     #[Route('/library/create', name: 'library_create')]
