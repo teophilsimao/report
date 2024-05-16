@@ -80,7 +80,6 @@ class Game extends AbstractController
     {
         $deck = $session->get('deck');
         $player = $session->get('player');
-        $pPoint = $session->get('playerPoint');
 
         $player->hit($deck);
         $cards = $player->getCards();
@@ -139,10 +138,15 @@ class Game extends AbstractController
         $pPoint = $session->get('playerPoint');
 
         while ($dPoint < 17) {
-            if ($deck instanceof DeckOfCard && $dealer instanceof Player) {
-                $dealer->hit($deck);
-                $dPoint = $dealer->getScore();
+            $dealer->hit($deck);
+            $cards = $dealer->getCards();
+            $latestCard = end($cards);
+            $latestCardRank = $latestCard->getRank();
+            if ($latestCardRank === 'Ace') {
+                $aceValue = ($dPoint < 7) ? 14 : 1;
+                $latestCard->setAceValue($aceValue);
             }
+            $dPoint = $dealer->getScore();
         }
 
         $session->set('dealer', $dealer);
