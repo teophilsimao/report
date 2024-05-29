@@ -53,3 +53,16 @@ form input[type=number], input[type=text], input[type=submit], input[type=file],
 .margin40 {
     margin-top: 40px;
 }
+
+.greenbg {
+    background-color: $maincolor;
+    margin: 2em auto;
+}
+
+.greenbg a{
+    color: $textcolor !important;
+}
+
+.greenbg:hover {
+    background-color: $accolor;
+}

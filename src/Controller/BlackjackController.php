@@ -14,7 +14,13 @@ class BlackjackController extends AbstractController
     #[Route("/proj", name: "proj_home")]
     public function projHome(): Response
     {
+        return $this->render('blackjack/home.html.twig');
+    }
 
+    #[Route("/proj/about", name: "proj_about")]
+    public function projAbout(): Response
+    {
+        return $this->render('blackjack/about.html.twig');
     }
 
     #[Route("/proj/blackjack", name: "blackjack_home")]
@@ -33,13 +39,13 @@ class BlackjackController extends AbstractController
             $game->init();
             $session->set('game', $game);
 
-            return $this->redirectToRoute('blackjack_game');
+            return $this->redirectToRoute('blackjack_play');
         }
 
-        return $this->render('blackjack/input_players.html.twig');
+        return $this->render('blackjack/init.html.twig');
     }
 
-    #[Route("/proj/blackjack/game", name: "blackjack_game")]
+    #[Route("/proj/blackjack/game", name: "blackjack_play")]
     public function game(Request $request, SessionInterface $session): Response
     {
         $game = $session->get('game');
@@ -68,8 +74,13 @@ class BlackjackController extends AbstractController
             $session->set('game', $game);
         }
 
+        $dealer = $game->getDealer();
+        $dealerHand = $dealer->getHand();
+        $dealerCards = explode(', ', $dealerHand);
+        $first = $dealerCards[0];
+
         return $this->render('blackjack/game.html.twig', [
-            'gameStatus' => (string)$game,
+            'dealerstat' => $first,
             'players' => $game->getPlayers(),
         ]);
     }
@@ -84,8 +95,11 @@ class BlackjackController extends AbstractController
 
         $results = $game->getResults();
 
+        $dealer = $game->getDealer();
+        $dealerstat = "{$dealer->getHand()} (poäng: {$dealer->getHand()->getValue()})";
+
         return $this->render('blackjack/result.html.twig', [
-            'gameStatus' => (string)$game,
+            'dealerstat' => $dealerstat,
             'results' => $results,
             'players' => $game->getPlayers(),
         ]);
@@ -116,7 +130,7 @@ class BlackjackController extends AbstractController
 
         }
 
-        return $this->redirectToRoute('blackjack_game');
+        return $this->redirectToRoute('blackjack_play');
     }
 
     // @phpstan-ignore-next-line

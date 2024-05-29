@@ -11,7 +11,7 @@ parameters:
         - '#Cannot call method removePlayer\(\) on mixed#'
         - '#Cannot call method playerStatus\(\) on mixed#'
         - '#Cannot call method dealerPlay\(\) on mixed#'
-        - '#Cannot cast mixed to string#'
+        - '#Cannot call method getDealer\(\) on mixed#'
         - '#Cannot call method reset\(\) on mixed#'
         - '#Cannot call method init\(\) on mixed#'
         - '#Cannot call method getResults\(\) on mixed#'  

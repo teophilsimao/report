@@ -8,6 +8,6 @@
 
 Hej Hej, 
 
-Detta Git är skapad för mvc kursen, Jag kommer att jobba igenom det genom hela kursen.
+Detta Git är skapad för mvc kursen, Repot täcker alla mina inlämningar som gjordes under kursens gång. Den flesta inlämningar var samanhängande på så sätt att dem alltid utfördes genom att jag byggde vidare på samma hemsida. Alla inlämningar är kopplad till ett tag. tag 1 är för kursmoment 1, 2 för kursmoment 2 osv. 
 
-Kommentera gärna om något ser konstigt ut.
+Here is an `git clone https://github.com/teophilsimao/report.git`.

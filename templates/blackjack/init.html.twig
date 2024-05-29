@@ -1,0 +1,67 @@
+{% extends "projbase.html.twig" %}
+
+{% block main %}
+    <div class="proj-content">
+        <h1>REGLER</h1>
+        <div class="text">
+            Spelet kan spelas från 1-3 spelare, alla spelar mot dealern.
+            <br>
+            Målet är att ligga så nära 21 som möjligt utan att överstiga det.
+            <br>
+            Spelaren drar kort tills hen känner sig nöjd och då kan spelaren stanna.
+            <br>
+            Spelaren vinner om hen har och mer poäng än dealern samtidig som spelarens poäng är <=21.
+            <br>
+            Om spelaren har 20 eller 21 och lika mycket poäng som dealern så blir det lika.
+            <br>
+            Om spelaren har under 20 och lika med dealern så förlorar spelaren.
+            <br>
+            <br>
+            Varje spelare börjar med 1000 credit som de kan satsa med.
+            <br>
+            Varje spelare kan som högst satsa 200 credit.
+            <br>
+            Om en spelare får noll i credit så tas dem bort från spelet.
+        </div>
+        <h4>Starta spelet</h4>
+        <div class="text">
+            <p>Starta spelet genom att välja antal spelare</p>
+            <p>Skriva in namn och hur mycket de vill satsa</p>
+            <p>Och sen trycka på start</p>
+        </div>
+        <form method="post" action="{{ path('blackjack_home') }}">
+            <label for="numPlayers"><strong>Antal spelare:</strong></label>
+            <div>
+                <input type="radio" id="numPlayers1" name="numPlayers" value="1" required>
+                <label for="numPlayers1">1</label>
+                <input type="radio" id="numPlayers2" name="numPlayers" value="2" required>
+                <label for="numPlayers2">2</label>
+                <input type="radio" id="numPlayers3" name="numPlayers" value="3" required>
+                <label for="numPlayers3">3</label>
+            </div>
+            <div id="playernamebet"></div>
+            <button class="button greenbg" id="thesub" type="submit" style="display: none;">Starta</button>
+        </form>
+    </div>
+
+    <script>
+        document.querySelectorAll('input[name="numPlayers"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                const numPlayers = parseInt(this.value);
+                const container = document.getElementById('playernamebet');
+                container.innerHTML = '';
+                for (let i = 0; i < numPlayers; i++) {
+                    container.innerHTML += `<div>
+                        <label for="playerName${i}">Namn ${i + 1}:</label>
+                        <input type="text" id="playerName${i}" name="playerNames[${i}]" required>
+                        <label for="playerBet${i}">Satsning:</label>
+                        <input type="number" id="playerBet${i}" name="playerBets[${i}]" min="1" max="200" required>
+                    </div>`;
+                }
+                const thesub = document.getElementById('thesub');
+                thesub.style.display = 'block';
+            });
+        });
+    </script>
+{% endblock %}
+

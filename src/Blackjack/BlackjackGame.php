@@ -5,10 +5,13 @@ namespace App\Blackjack;
 class BlackjackGame
 {
     private Deck $deck;
+    // @phpstan-ignore-next-line
     private array $players = [];
     private Player $dealer;
+    // @phpstan-ignore-next-line
     private array $playersStanding = [];
 
+    // @phpstan-ignore-next-line
     public function __construct(array $playerNames)
     {
         $this->deck = new Deck();
@@ -28,9 +31,15 @@ class BlackjackGame
         }
     }
 
+    // @phpstan-ignore-next-line
     public function getPlayers(): array
     {
         return $this->players;
+    }
+
+    public function getDealer(): Player
+    {
+        return $this->dealer;
     }
 
     public function hit(Player $player): void
@@ -90,6 +99,7 @@ class BlackjackGame
      *
      * @SuppressWarnings(PHPMD)
      */
+    // @phpstan-ignore-next-line
     public function getResults(): array
     {
         $dealerValue = $this->dealer->getHand()->getValue();
@@ -99,19 +109,19 @@ class BlackjackGame
             $playerValue = $player->getHand()->getValue();
             if ($playerValue > 21) {
                 $player->loseBet();
-                $results[] = "{$player->getName()} busts with {$playerValue}";
+                $results[] = "{$player->getName()} fick {$playerValue} och förlorade";
             } elseif ($dealerValue > 21 || $playerValue > $dealerValue) {
                 $player->winBet();
-                $results[] = "{$player->getName()} wins with {$playerValue}";
+                $results[] = "{$player->getName()} fick {$playerValue} och vann";
             } elseif ($playerValue <= 21 && $playerValue < $dealerValue) {
                 $player->loseBet();
-                $results[] = "{$player->getName()} loses with {$playerValue}";
+                $results[] = "{$player->getName()} fick {$playerValue} och förlorade";
             } elseif (($playerValue === 20 || $playerValue === 21) && $playerValue === $dealerValue) {
                 $player->drawBet();
-                $results[] = "{$player->getName()} draws with {$playerValue}";
+                $results[] = "{$player->getName()} fick {$playerValue} och gick lika";
             } else {
                 $player->loseBet();
-                $results[] = "{$player->getName()} loses with {$playerValue}";
+                $results[] = "{$player->getName()} fick {$playerValue} och förlorade";
             }
         }
 

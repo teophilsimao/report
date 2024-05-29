@@ -1,0 +1,13 @@
+{% extends "projbase.html.twig" %}
+
+{% block main %}
+    <div class="proj-content">
+        <h1>PROJEKT BLACKJACK</h1>
+        <div class="text">
+            Välkommen till projekt blackjack! Tryck på knappen för att gåt till spelet.
+        </div>
+        <div>
+            <button class="button greenbg"><a href="{{ path('blackjack_home') }}">BLACKJACK</a></button>
+        </div>
+    </div>
+{% endblock %}

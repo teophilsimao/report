@@ -1,0 +1,107 @@
+html {
+    background-color: $html;
+}
+
+.proj-body {
+    max-width: 60em;
+    margin: 6em auto;
+    position: relative;
+    box-shadow: 0 0.3em 1em #000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    background-color: $backgroundcolor;
+}
+
+//nav
+.proj-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3em;
+}
+
+.proj-nav button a {
+    font-size: 0.8em;
+    border: none;
+    color: $backgroundcolor;
+}
+
+.proj-nav button a:hover {
+    font-size: 0.8em;
+    border: none;
+    color: $textcolor;
+}
+
+.proj-nav button{
+    margin-right: auto;
+    background-color: $comcolor;
+}
+
+.proj-nav ul {
+    list-style-type: none;
+    margin: 1em 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+.proj-nav li{
+    display: inline;
+    padding: 9px;
+}
+
+.proj-nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: $textcolor;
+    font-size: 1.5em;
+    font-weight: 700;
+    border-bottom: 1px solid $comcolor;
+}
+
+.proj-nav a:hover{
+    color: $comcolor;
+}
+
+//main
+.proj-main {
+    flex-grow: 1;
+    margin: 3em 0;
+    padding: 2em 3em;
+}
+
+
+.proj-content {
+    text-align: center;
+}
+
+.proj-content .text {
+    margin: 2em 0;
+}
+
+.proj-content a {
+    text-decoration: none;
+}
+
+.player-info{
+    margin: 1em 0 2em;
+}
+
+
+
+//footer
+.proj-footer{
+    position: absolute;
+    bottom: 0;
+    background-color: $darkdark;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.fpdiv p {
+    padding: 1em 3em;
+    color: $darkwhite;
+}

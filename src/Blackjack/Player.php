@@ -82,6 +82,6 @@ class Player
 
     public function __toString(): string
     {
-        return "{$this->name}: {$this->hand} (value: {$this->hand->getValue()})";
+        return "{$this->name}: {$this->hand} (poäng: {$this->hand->getValue()})";
     }
 }

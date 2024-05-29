@@ -1,5 +1,15 @@
 .site-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
     height: 100px;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
+}
+
+.site-title {
+    color: white;
+    font-size: 2em;
+    font-weight: bolder;
 }

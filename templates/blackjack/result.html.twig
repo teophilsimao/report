@@ -1,20 +1,41 @@
-{% extends "base.html.twig" %}
+{% extends "projbase.html.twig" %}
 
-{% block proj %}
-    <p>{{ gameStatus }}</p>
-    <ul>
-        {% for result in results %}
-            <li>{{ result }}</li>
-        {% endfor %}
-    </ul>
-    <form method="post" action="{{ path('blackjack_new_round') }}">
-        {% for player in players %}
-            <div>
-                <label for="playerBet{{ loop.index }}">New bet for {{ player.getName() }} (Capital: {{ player.getMoney() }}):</label>
-                <input type="number" id="playerBet{{ loop.index }}" name="playerBets[{{ loop.index0 }}]" min="1" max="200" required>
-            </div>
-        {% endfor %}
-        <button type="submit">Start New Round</button>
-    </form>
-    <a href="{{ path('blackjack_home') }}">Restart Game</a>
+{% block main %}
+    <div class="proj-content">
+        <p><strong>Dealer: </strong> {{ dealerstat }}</p>
+        <br>
+        <ul>
+            {% for player in players %}
+                <li><p><strong>{{ player.getName() }}:</strong> {{ player.getHand() }} (poäng: {{ player.getHand().getValue() }})</p></li>
+                <br>
+            {% endfor %}
+        </ul>
+        <br>
+        <h3>Resultat</h3>
+        <div class="text">
+            <ul>
+                {% if results %}
+                    {% for result in results %}
+                        <li><strong>{{ result }}</strong></li>
+                        <br>
+                    {% endfor %}
+                {% else %}
+                    <li><strong>En spelare gick pank och har tagits bort</strong></li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <form method="post" action="{{ path('blackjack_new_round') }}">
+            {% for player in players %}
+                <div>
+                    <label for="playerBet{{ loop.index }}">Ny sats för {{ player.getName() }} (credit: {{ player.getMoney() }}):</label>
+                    <input type="number" id="playerBet{{ loop.index }}" name="playerBets[{{ loop.index0 }}]" min="1" max="{{ player.getMoney() < 200 ? player.getMoney() : 200 }}" required>
+                </div>
+            {% endfor %}
+            {% if players %}
+                <button class="button" type="submit">Starta ny runda</button>
+            {% endif %}
+        </form>
+        <button class="button greenbg"><a href="{{ path('blackjack_home') }}">Starta om</a></button>
+    </div>
 {% endblock %}
