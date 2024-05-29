@@ -2,17 +2,22 @@
 
 namespace App\Blackjack;
 
-class Card 
+class Card
 {
     private string $rank;
     private string $suit;
 
-    public function __construct($rank, $suit)
+    public function __construct(string $rank, string $suit)
     {
         $this->rank = $rank;
         $this->suit = $suit;
     }
-
+    /**
+     * Warning about not needing else expression,
+     * but i would much rather have it writen like this.
+     *
+     * @SuppressWarnings(PHPMD)
+     */
     public function getValue(): int
     {
         if (in_array($this->rank, ['J', 'Q', 'K'])) {

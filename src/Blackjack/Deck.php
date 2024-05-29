@@ -2,7 +2,7 @@
 
 namespace App\Blackjack;
 
-class Deck 
+class Deck
 {
     private array $cards = [];
     private array $suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];

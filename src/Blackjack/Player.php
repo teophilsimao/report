@@ -2,20 +2,20 @@
 
 namespace App\Blackjack;
 
-class Player 
+class Player
 {
     private string $name;
     private Hand $hand;
-    private int $capital;
+    private int $money;
     private int $currentBet;
     private bool $standing;
 
 
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
         $this->hand = new Hand();
-        $this->capital = 1000;
+        $this->money = 1000;
         $this->currentBet = 0;
         $this->standing = false;
     }
@@ -30,42 +30,51 @@ class Player
         return $this->name;
     }
 
-    public function getCapital(): int {
-        return $this->capital;
+    public function getMoney(): int
+    {
+        return $this->money;
     }
 
-    public function getCurrentBet(): int {
+    public function getCurrentBet(): int
+    {
         return $this->currentBet;
     }
 
-    public function placeBet(int $bet): void {
+    public function placeBet(int $bet): void
+    {
         $this->currentBet = $bet;
-        $this->capital -= $bet;
+        $this->money -= $bet;
     }
 
-    public function winBet(): void {
-        $this->capital += 2 * $this->currentBet;
+    public function winBet(): void
+    {
+        $this->money += 2 * $this->currentBet;
         $this->currentBet = 0;
     }
 
-    public function loseBet(): void {
+    public function loseBet(): void
+    {
         $this->currentBet = 0;
     }
 
-    public function drawBet(): void {
-        $this->capital += $this->currentBet;
+    public function drawBet(): void
+    {
+        $this->money += $this->currentBet;
         $this->currentBet = 0;
     }
 
-    public function stand(): void {
+    public function stand(): void
+    {
         $this->standing = true;
     }
 
-    public function isStanding(): bool {
+    public function isStanding(): bool
+    {
         return $this->standing;
     }
 
-    public function reset(): void {
+    public function reset(): void
+    {
         $this->hand = new Hand();
         $this->standing = false;
         $this->currentBet = 0;

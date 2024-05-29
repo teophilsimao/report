@@ -10,7 +10,7 @@
     <form method="post" action="{{ path('blackjack_new_round') }}">
         {% for player in players %}
             <div>
-                <label for="playerBet{{ loop.index }}">New bet for {{ player.getName() }} (Capital: {{ player.getCapital() }}):</label>
+                <label for="playerBet{{ loop.index }}">New bet for {{ player.getName() }} (Capital: {{ player.getMoney() }}):</label>
                 <input type="number" id="playerBet{{ loop.index }}" name="playerBets[{{ loop.index0 }}]" min="1" max="200" required>
             </div>
         {% endfor %}

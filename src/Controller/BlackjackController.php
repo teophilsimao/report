@@ -11,11 +11,16 @@ use App\Blackjack\BlackjackGame;
 
 class BlackjackController extends AbstractController
 {
-    #[Route("/blackjack", name: "blackjack_home")]
-    public function blackjackHome(SessionInterface $session, Request $request): Response
+    #[Route("/proj", name: "proj_home")]
+    public function projHome(): Response
+    {
+
+    }
+
+    #[Route("/proj/blackjack", name: "blackjack_home")]
+    public function blackjackStart(SessionInterface $session, Request $request): Response
     {
         if ($request->isMethod('POST')) {
-            $numPlayers = intval($request->request->get('numPlayers'));
             $playerNames = $request->request->all('playerNames');
             $playerBets = $request->request->all('playerBets');
             $game = new BlackjackGame($playerNames);
@@ -24,7 +29,7 @@ class BlackjackController extends AbstractController
                 $bet = intval($playerBets[$index]);
                 $player->placeBet($bet);
             }
-    
+
             $game->init();
             $session->set('game', $game);
 
@@ -34,8 +39,8 @@ class BlackjackController extends AbstractController
         return $this->render('blackjack/input_players.html.twig');
     }
 
-    #[Route("/blackjack/game", name: "blackjack_game")]
-    public function game(Request $request, SessionInterface $session): Response 
+    #[Route("/proj/blackjack/game", name: "blackjack_game")]
+    public function game(Request $request, SessionInterface $session): Response
     {
         $game = $session->get('game');
 
@@ -44,21 +49,12 @@ class BlackjackController extends AbstractController
         }
 
         if ($request->isMethod('POST')) {
-            $formData = $request->request->all();
+            $formGet = $request->request->all();
+
+            $this->forAction($game, $formGet);
 
             foreach ($game->getPlayers() as $index => $player) {
-                if (isset($formData['action'][$index]) && $formData['action'][$index] == 'h') {
-                    $game->hit($player);
-                    if ($game->isBust($player)) {
-                        $this->addFlash('notice', "{$player->getName()} busts!");
-                    }
-                } elseif (isset($formData['action'][$index]) && $formData['action'][$index] == 's') {
-                    $game->stand($player);
-                }
-            }
-
-            foreach ($game->getPlayers() as $index => $player) {
-                if ($player->getCapital() <= 0) {
+                if ($player->getMoney() <= 0) {
                     $game->removePlayer($index);
                 }
             }
@@ -76,10 +72,10 @@ class BlackjackController extends AbstractController
             'gameStatus' => (string)$game,
             'players' => $game->getPlayers(),
         ]);
-    }   
+    }
 
-    #[Route("/blackjack/game/result", name: "blackjack_game_result")]
-    public function result(SessionInterface $session): Response 
+    #[Route("/proj/blackjack/game/result", name: "blackjack_game_result")]
+    public function result(SessionInterface $session): Response
     {
         $game = $session->get('game');
         if (!$game) {
@@ -95,11 +91,11 @@ class BlackjackController extends AbstractController
         ]);
     }
 
-    #[Route("/blackjack/new_round", name: "blackjack_new_round")]
+    #[Route("/proj/blackjack/new_round", name: "blackjack_new_round")]
     public function newRound(SessionInterface $session, Request $request): Response
     {
         $game = $session->get('game');
-        
+
         if (!$game) {
             return $this->redirectToRoute('blackjack_home');
         }
@@ -107,7 +103,7 @@ class BlackjackController extends AbstractController
         if ($request->isMethod('POST')) {
 
             $game->reset();
-            
+
             $playerBets = $request->request->all('playerBets');
 
             foreach ($game->getPlayers() as $index => $player) {
@@ -121,5 +117,17 @@ class BlackjackController extends AbstractController
         }
 
         return $this->redirectToRoute('blackjack_game');
+    }
+
+    // @phpstan-ignore-next-line
+    private function forAction($game, array $formGet): void
+    {
+        foreach ($game->getPlayers() as $index => $player) {
+            if (isset($formGet['action'][$index]) && $formGet['action'][$index] == 'h') {
+                $game->hit($player);
+            } elseif (isset($formGet['action'][$index]) && $formGet['action'][$index] == 's') {
+                $game->stand($player);
+            }
+        }
     }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Blackjack;
 
-class Hand 
+class Hand
 {
+    /**
+     * @var array<CardGraphic>
+     */
     private array $cards = [];
 
     public function addCard(CardGraphic $card): void
@@ -11,7 +14,8 @@ class Hand
         $this->cards[] = $card;
     }
 
-    public function clear(): void {
+    public function clear(): void
+    {
         $this->cards = [];
     }
 
@@ -37,7 +41,7 @@ class Hand
 
     public function __toString(): string
     {
-        $cardString = array_map(function($card) {
+        $cardString = array_map(function ($card) {
             return (string)$card;
         }, $this->cards);
         return implode(', ', $cardString);

@@ -4,7 +4,7 @@
     <p>{{ gameStatus }}</p>
     <form method="post" action="{{ path('blackjack_game') }}">
         {% for player in players %}
-            {% if player.getCapital() > 0 %}
+            {% if player.getMoney() > 0 %}
                 <p>{{ player.getName() }}: {{ player.getHand() }} (value: {{ player.getHand().getValue() }})</p>
                 {% if player.getHand().getValue() <= 21 %}
                     {% if not player.isStanding() %}

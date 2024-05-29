@@ -1,10 +1,12 @@
 <?php
 
-
 namespace App\Blackjack;
 
 class CardGraphic extends Card
 {
+    /**
+     * @var array<string, array<int|string, string>>
+     */
     private $representation = [
         'Hearts' => [
             'A' => 'A ♥️',
@@ -68,7 +70,7 @@ class CardGraphic extends Card
         ],
     ];
 
-    public function __construct($rank, $suit)
+    public function __construct(string $rank, string $suit)
     {
         parent::__construct($rank, $suit);
     }

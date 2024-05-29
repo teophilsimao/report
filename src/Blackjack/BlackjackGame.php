@@ -2,13 +2,15 @@
 
 namespace App\Blackjack;
 
-class BlackjackGame {
+class BlackjackGame
+{
     private Deck $deck;
     private array $players = [];
     private Player $dealer;
     private array $playersStanding = [];
 
-    public function __construct(array $playerNames) {
+    public function __construct(array $playerNames)
+    {
         $this->deck = new Deck();
         foreach ($playerNames as $name) {
             $this->players[] = new Player($name);
@@ -16,7 +18,8 @@ class BlackjackGame {
         $this->dealer = new Player("Dealer");
     }
 
-    public function init(): void {
+    public function init(): void
+    {
         for ($i = 0; $i < 2; $i++) {
             foreach ($this->players as $player) {
                 $player->getHand()->addCard($this->deck->draw());
@@ -25,39 +28,46 @@ class BlackjackGame {
         }
     }
 
-    public function getPlayers(): array {
+    public function getPlayers(): array
+    {
         return $this->players;
     }
 
-    public function hit(Player $player): void {
+    public function hit(Player $player): void
+    {
         $player->getHand()->addCard($this->deck->draw());
     }
 
-    public function isBust(Player $player): bool {
+    public function isBust(Player $player): bool
+    {
         return $player->getHand()->getValue() > 21;
     }
 
-    public function dealerPlay(): void {
+    public function dealerPlay(): void
+    {
         while ($this->dealer->getHand()->getValue() < 17) {
             $this->hit($this->dealer);
         }
     }
 
-    public function stand(Player $player): void {
+    public function stand(Player $player): void
+    {
         $player->stand();
         $this->playersStanding[] = $player->getName();
     }
 
-    public function playerStatus(): bool {
+    public function playerStatus(): bool
+    {
         foreach ($this->players as $player) {
             if (!$this->isBust($player) && !in_array($player->getName(), $this->playersStanding)) {
                 return false;
             }
         }
         return true;
-    }      
+    }
 
-    public function reset(): void {
+    public function reset(): void
+    {
         $this->deck = new Deck();
         foreach ($this->players as $player) {
             $player->reset();
@@ -66,7 +76,7 @@ class BlackjackGame {
         $this->playersStanding = [];
     }
 
-    public function removePlayer(int $index)
+    public function removePlayer(int $index): void
     {
         if (isset($this->players[$index])) {
             unset($this->players[$index]);
@@ -74,10 +84,17 @@ class BlackjackGame {
         }
     }
 
-    public function getResults(): array {
+    /**
+     * Warning about not needing else expression,
+     * but i would much rather have it writen like this.
+     *
+     * @SuppressWarnings(PHPMD)
+     */
+    public function getResults(): array
+    {
         $dealerValue = $this->dealer->getHand()->getValue();
         $results = [];
-    
+
         foreach ($this->players as $player) {
             $playerValue = $player->getHand()->getValue();
             if ($playerValue > 21) {
@@ -97,12 +114,13 @@ class BlackjackGame {
                 $results[] = "{$player->getName()} loses with {$playerValue}";
             }
         }
-    
-        return $results;
-    } 
 
-    public function __toString(): string {
-        $status = array_map(function($player) {
+        return $results;
+    }
+
+    public function __toString(): string
+    {
+        $status = array_map(function ($player) {
             return (string)$player;
         }, $this->players);
         $status[] = (string)$this->dealer;
