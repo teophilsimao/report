@@ -3,11 +3,13 @@
 {% block title %}Kortlek{% endblock %}
 
 {% block main %}
-    <h1>Kortlek</h1>
+    <div class="main">
+        <h1>Kortlek</h1>
 
-    <div class="grid">
-        <span>{{ card }}</span>
+        <div class="grid">
+            <span>{{ card }}</span>
+        </div>
+
+        {{ include('card/cardform.html.twig') }}
     </div>
-
-    {{ include('card/cardform.html.twig') }}
 {% endblock %}

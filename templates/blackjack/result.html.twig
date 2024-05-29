@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block proj %}
+    <p>{{ gameStatus }}</p>
+    <ul>
+        {% for result in results %}
+            <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{{ path('blackjack_new_round') }}">
+        {% for player in players %}
+            <div>
+                <label for="playerBet{{ loop.index }}">New bet for {{ player.getName() }} (Capital: {{ player.getCapital() }}):</label>
+                <input type="number" id="playerBet{{ loop.index }}" name="playerBets[{{ loop.index0 }}]" min="1" max="200" required>
+            </div>
+        {% endfor %}
+        <button type="submit">Start New Round</button>
+    </form>
+    <a href="{{ path('blackjack_home') }}">Restart Game</a>
+{% endblock %}

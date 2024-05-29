@@ -1,12 +1,14 @@
 {% block main %}
-    <form method="post" action="{{ path('game21_aceform') }}">
-        <p>
-            Välj poäng för Ess:
-            <input type="radio" id="ace1" name="aceValue" value="1" checked>
-            <label for="ace1">1</label>
-            <input type="radio" id="ace14" name="aceValue" value="14">
-            <label for="ace14">14</label>
-        </p>
-        <input type="submit" name="hit" value="Välj poäng">
-    </form>
+    <div class="main">
+        <form method="post" action="{{ path('game21_aceform') }}">
+            <p>
+                Välj poäng för Ess:
+                <input type="radio" id="ace1" name="aceValue" value="1" checked>
+                <label for="ace1">1</label>
+                <input type="radio" id="ace14" name="aceValue" value="14">
+                <label for="ace14">14</label>
+            </p>
+            <input type="submit" name="hit" value="Välj poäng">
+        </form>
+    </div>
 {% endblock %}

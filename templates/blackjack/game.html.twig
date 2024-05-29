@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block proj %}
+    <p>{{ gameStatus }}</p>
+    <form method="post" action="{{ path('blackjack_game') }}">
+        {% for player in players %}
+            {% if player.getCapital() > 0 %}
+                <p>{{ player.getName() }}: {{ player.getHand() }} (value: {{ player.getHand().getValue() }})</p>
+                {% if player.getHand().getValue() <= 21 %}
+                    {% if not player.isStanding() %}
+                        <button type="submit" name="action[{{ loop.index0 }}]" value="h">Hit</button>
+                        <button type="submit" name="action[{{ loop.index0 }}]" value="s">Stand</button>
+                    {% endif %}
+                {% else %}
+                    <p>{{ player.getName() }} is bust!</p>
+                {% endif %}
+                {% if player.isStanding() %}
+                    <p>{{ player.getName() }} has stood!</p>
+                {% endif %}
+            {% else %}
+                <p>{{ player.getName() }} has lost all their money and is out of the game.</p>
+            {% endif %}
+        {% endfor %}
+    </form>
+    <a href="{{ path('blackjack_home') }}">Restart Game</a>
+{% endblock %}

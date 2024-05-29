@@ -3,24 +3,27 @@
 {% block title %}Bibliotek{% endblock %}
 
 {% block main %}
-    <h1>Bibliotek</h1>
-    <div class="grid">
-        <div class="span8">
-            <a class="button green" href={{ path('library_view_all') }}>Bibliotek</a>
-        </div>
-
-        <div class="span4">
-            <h3>Bibliotek info</h3>
-            <div class="txt">
-                <p>
-                    Välkommen till biblioteket skapad för MVC kursen. Här får ni möjligeten att se på några av
-                    böckerna jag läser/har läst och ni kan även lägga till bok/böcker som rekommendationer.
-                    tyck på den gröna bibliotek kanppen för att gå till böckerna! 
-                </p>
+    <div class="main">
+        <h1>Bibliotek</h1>
+        <div class="grid">
+            <div class="span8">
+                <a class="button green" href={{ path('library_view_all') }}>Bibliotek</a>
             </div>
-        </div>
 
-        <div class="bild span5 radius">
-            <img src="{{ asset('img/bibliotek.jpg') }}" alt="PHP">
+            <div class="span4">
+                <h3>Bibliotek info</h3>
+                <div class="txt">
+                    <p>
+                        Välkommen till biblioteket skapad för MVC kursen. Här får ni möjligeten att se på några av
+                        böckerna jag läser/har läst och ni kan även lägga till bok/böcker som rekommendationer.
+                        tyck på den gröna bibliotek kanppen för att gå till böckerna! 
+                    </p>
+                </div>
+            </div>
+
+            <div class="bild span5 radius">
+                <img src="{{ asset('img/bibliotek.jpg') }}" alt="PHP">
+            </div>.
         </div>
+    </div>
 {% endblock %}

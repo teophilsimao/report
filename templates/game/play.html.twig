@@ -3,68 +3,70 @@
 {% block title %}Kortspel 21{% endblock %}
 
 {% block main %}
-    <h1>Kortspel 21</h1>
+    <div class="main">
+        <h1>Kortspel 21</h1>
 
-    <div class="grid">
+        <div class="grid">
 
-        <div class="span9">
-            {% if pCards is empty %}
-                <p>Spelaren Kort: </p>
-            {% else %}
-                <p>
-                    Spelaren Kort: &nbsp; {% for card in pCards %}
-                            <span>{{ card }}</span>
-                        {% endfor %}
-                </p>
-            {% endif %}
-            <p>Spelaren Poäng: &nbsp; {{pPoints}}</p>
-        </div>
-
-        <div class="span0">
-            {% if dCards is empty %}
-                <p>Bankirens Kort: </p>
-            {% else %}
-                <p>
-                    Bankirens Kort: &nbsp; {% for card in dCards %}
-                            <span>{{ card }}</span>
-                        {% endfor %}
-                </p>
-            {% endif %}
-            <p>Bankirens Poäng: &nbsp; {{dPoints}}</p>
-        </div>
-
-    </div>
-
-    <div class="grid">
-        {% if showFlashMessage %}
             <div class="span9">
-                {{ include('flash.html.twig') }}
-            </div>
-            <form class="span6" method="post" action="">
-                <p>
-                    <input type="submit" name="hit" value="Starta om" onClick="this.form.action='{{ path('game21_restart') }}';">
-                </p>
-            </form>
-        {% else %}
-            {% if latestCardRank == 'Ace' %}
-                <form class="span6" id="aceForm" method="post" action="{{ path('game21_aceform') }}">
+                {% if pCards is empty %}
+                    <p>Spelaren Kort: </p>
+                {% else %}
                     <p>
-                        Välj poäng för Ess:
-                        <input type="radio" id="ace1" name="aceValue" value="1">
-                        <label for="ace1">1</label>
-                        <input type="radio" id="ace14" name="aceValue" value="14">
-                        <label for="ace14">14</label>
+                        Spelaren Kort: &nbsp; {% for card in pCards %}
+                                <span>{{ card }}</span>
+                            {% endfor %}
                     </p>
-                    <input type="submit" name="hit" value="Välj poäng">
+                {% endif %}
+                <p>Spelaren Poäng: &nbsp; {{pPoints}}</p>
+            </div>
+
+            <div class="span0">
+                {% if dCards is empty %}
+                    <p>Bankirens Kort: </p>
+                {% else %}
+                    <p>
+                        Bankirens Kort: &nbsp; {% for card in dCards %}
+                                <span>{{ card }}</span>
+                            {% endfor %}
+                    </p>
+                {% endif %}
+                <p>Bankirens Poäng: &nbsp; {{dPoints}}</p>
+            </div>
+
+        </div>
+
+        <div class="grid">
+            {% if showFlashMessage %}
+                <div class="span9">
+                    {{ include('flash.html.twig') }}
+                </div>
+                <form class="span6" method="post" action="">
+                    <p>
+                        <input type="submit" name="hit" value="Starta om" onClick="this.form.action='{{ path('game21_restart') }}';">
+                    </p>
+                </form>
+            {% else %}
+                {% if latestCardRank == 'Ace' %}
+                    <form class="span6" id="aceForm" method="post" action="{{ path('game21_aceform') }}">
+                        <p>
+                            Välj poäng för Ess:
+                            <input type="radio" id="ace1" name="aceValue" value="1">
+                            <label for="ace1">1</label>
+                            <input type="radio" id="ace14" name="aceValue" value="14">
+                            <label for="ace14">14</label>
+                        </p>
+                        <input type="submit" name="hit" value="Välj poäng">
+                    </form>
+                {% endif %}
+
+                <form class="span6" id="hitForm" method="post" action="">
+                    <p>
+                        <input type="submit" name="hit" value="Dra ett kort" onClick="this.form.action='{{ path('game21_hit') }}';">
+                        <input type="submit" name="hit" value="Stanna" onClick="this.form.action='{{ path('game21_stand') }}';">
+                    </p>
                 </form>
             {% endif %}
-
-            <form class="span6" id="hitForm" method="post" action="">
-                <p>
-                    <input type="submit" name="hit" value="Dra ett kort" onClick="this.form.action='{{ path('game21_hit') }}';">
-                    <input type="submit" name="hit" value="Stanna" onClick="this.form.action='{{ path('game21_stand') }}';">
-                </p>
-            </form>
-        {% endif %}
-    <div>
+        <div>
+    </div>
 {% endblock %}

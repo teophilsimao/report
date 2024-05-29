@@ -3,37 +3,39 @@
 {% block title %}Bibliotek{% endblock %}
 
 {% block main %}
-    <h1>Bibliotek</h1>
-    <div class="grid">
-        <div class="span3">
-            <a class="button" href={{ path('library_create') }}>Lägg Till En Bok</a>
-        </div>
-        <div class="span12">
-            <a class="button" href={{ path('library_delete_all') }}>Rensa</a>
-        </div>
-        <div class="span6">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>ID</th>
-                        <th>Titel</th>
-                        <th>Författare</th>
-                        <th>ISBN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for book in books %}
+    <div class="main">
+        <h1>Bibliotek</h1>
+        <div class="grid">
+            <div class="span3">
+                <a class="button" href={{ path('library_create') }}>Lägg Till En Bok</a>
+            </div>
+            <div class="span12">
+                <a class="button" href={{ path('library_delete_all') }}>Rensa</a>
+            </div>
+            <div class="span6">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td><img class="imgbook" src="{{ asset('storage/' ~ book.getImg|e) }}" alt="Book Image"></td>
-                            <td>{{ book.getId|e }}</td>
-                            <td><a href="{{ path('library_by_id', {'id': book.getId}) }}">{{ book.getName|e }}</a></td>
-                            <td>{{ book.getAuthor|e }}</td>
-                            <td>{{ book.getIsbn|e }}</td>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Titel</th>
+                            <th>Författare</th>
+                            <th>ISBN</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                            <tr>
+                                <td><img class="imgbook" src="{{ asset('storage/' ~ book.getImg|e) }}" alt="Book Image"></td>
+                                <td>{{ book.getId|e }}</td>
+                                <td><a href="{{ path('library_by_id', {'id': book.getId}) }}">{{ book.getName|e }}</a></td>
+                                <td>{{ book.getAuthor|e }}</td>
+                                <td>{{ book.getIsbn|e }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

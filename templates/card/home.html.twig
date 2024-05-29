@@ -3,29 +3,31 @@
 {% block title %}Kortspel{% endblock %}
 
 {% block main %}
-    <h1>Kortspel</h1>
-    <div class="grid">
-        <div class="span8">
-            <a class="button green" href={{ path('deck') }}>Kortlek</a>
-        </div>
-
-        <div class="span4">
-            <h3>Kortlek info</h3>
-            <div class="txt">
-                <p>
-                    Kortspel för MVC kursen! Jag skpade 4 olika klasser som är relaterade till varandra. Card, CardGraphic, CardHand
-                    och DeckOfCards. CardGraphic ärver från Card och ger varje cort en grafisk representation. CardHand kan ha förening 
-                    med både Card eller CardGraphic som tillåter att man instantierar båda klasserna i CardHand så att man kna få fram en 
-                    hand av kort, och DeckOfCards kan också ha förening med CardGraphic eller Card som tillåter att man kan hämta kort 
-                    och skappa kortlek.
-                </p>
+    <div class="main">
+        <h1>Kortspel</h1>
+        <div class="grid">
+            <div class="span8">
+                <a class="button green" href={{ path('deck') }}>Kortlek</a>
             </div>
-        </div>
 
-        <div class="bild span5">
-            <a href="{{ asset('img/UML.svg') }}">
-                <img src="{{ asset('img/UML.svg') }}" alt="UML">
-            </a>
+            <div class="span4">
+                <h3>Kortlek info</h3>
+                <div class="txt">
+                    <p>
+                        Kortspel för MVC kursen! Jag skpade 4 olika klasser som är relaterade till varandra. Card, CardGraphic, CardHand
+                        och DeckOfCards. CardGraphic ärver från Card och ger varje cort en grafisk representation. CardHand kan ha förening 
+                        med både Card eller CardGraphic som tillåter att man instantierar båda klasserna i CardHand så att man kna få fram en 
+                        hand av kort, och DeckOfCards kan också ha förening med CardGraphic eller Card som tillåter att man kan hämta kort 
+                        och skappa kortlek.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bild span5">
+                <a href="{{ asset('img/UML.svg') }}">
+                    <img src="{{ asset('img/UML.svg') }}" alt="UML">
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}

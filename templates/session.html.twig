@@ -3,10 +3,11 @@
 {% block title %}Session Data{% endblock %}
 
 {% block main %}
-    <h1>Session Data</h1>
+    <div class="main">
+        <h1>Session Data</h1>
 
-    <pre>
-        {{ dump(sessionData) }}
-    </pre>
-
+        <pre>
+            {{ dump(sessionData) }}
+        </pre>
+    </div>
 {% endblock %}

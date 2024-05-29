@@ -3,13 +3,15 @@
 {% block title %}Kortlek{% endblock %}
 
 {% block main %}
-    <h1>Kortlek</h1>
+    <div class="main">
+        <h1>Kortlek</h1>
 
-    <div class="grid">
-        {% for card in deck %}
-            <span>{{card}}</span>
-        {% endfor %}
+        <div class="grid">
+            {% for card in deck %}
+                <span>{{card}}</span>
+            {% endfor %}
+        </div>
+
+        {{ include('card/cardform.html.twig') }}
     </div>
-
-    {{ include('card/cardform.html.twig') }}
 {% endblock %}

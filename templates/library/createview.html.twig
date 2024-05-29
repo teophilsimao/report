@@ -3,31 +3,33 @@
 {% block title %}Bibliotek{% endblock %}
 
 {% block main %}
-    <h1>Bibliotek</h1>
-    <div class="grid">
-        <div class="span6 margin1">
-            <a class="button" href={{ path('library_view_all') }}>Tillbaka</a>
+    <div class="main">
+        <h1>Bibliotek</h1>
+        <div class="grid">
+            <div class="span6 margin1">
+                <a class="button" href={{ path('library_view_all') }}>Tillbaka</a>
+            </div>
+
+            <form class="span9" method="POST" action="{{ path('library_create_post')}}" enctype="multipart/form-data">
+                <label class="label" for="title">Titel:</label>
+                <input type="text" id="title" name="booktitle" required></input>
+                <label class="label" for="author">Författare:</label>
+                <input type="text" id="author" name="bookauthor" required></input>
+                <label class="label" for="isbn">ISBN:</label>
+                <input type="number" id="isbn" name="bookisbn" required maxlength="13" 
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
+                <label class="label" for="img">Bild:</label>
+                <input class="block" type="file" id="img" name="img" accept="image/*">
+
+
+                <input 
+                    class="button" 
+                    type="submit" 
+                    value="Lägg till boken"
+                    style="display: block;" 
+                >
+
+            </form>
         </div>
-
-        <form class="span9" method="POST" action="{{ path('library_create_post')}}" enctype="multipart/form-data">
-            <label class="label" for="title">Titel:</label>
-            <input type="text" id="title" name="booktitle" required></input>
-            <label class="label" for="author">Författare:</label>
-            <input type="text" id="author" name="bookauthor" required></input>
-            <label class="label" for="isbn">ISBN:</label>
-            <input type="number" id="isbn" name="bookisbn" required maxlength="13" 
-            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
-            <label class="label" for="img">Bild:</label>
-            <input class="block" type="file" id="img" name="img" accept="image/*">
-
-
-            <input 
-                class="button" 
-                type="submit" 
-                value="Lägg till boken"
-                style="display: block;" 
-            >
-
-        </form>
     </div>
 {% endblock %}

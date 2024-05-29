@@ -3,30 +3,32 @@
 {% block title %}About{% endblock %}
 
 {% block main %}
-    <h1>About</h1>
+    <div class="main">
+        <h1>About</h1>
 
-    <div class="grid">
-        <div class="list span3">
-            <h3>Länkar</h3>
-            <ul>
-                <li><a href="https://github.com/dbwebb-se/mvc">Kursens Git-repo</a></li>
-                <li><a href="https://github.com/teophilsimao/report">Mitt Git-repo</a></li>
-            </ul>
-        </div>
-
-        <div class="span4">
-            <h3>MVC</h3>
-            <div class="txt">
-                <p>
-                    Kursen MVC lär ut objektorienterad programmering i PHP. Vi utforskar grundläggande 
-                    objektorienterade koncept och applicerar 
-                    dem i webbutveckling med ramverk, inklusive databashantering och enhetstestning
-                </p>
+        <div class="grid">
+            <div class="list span3">
+                <h3>Länkar</h3>
+                <ul>
+                    <li><a href="https://github.com/dbwebb-se/mvc">Kursens Git-repo</a></li>
+                    <li><a href="https://github.com/teophilsimao/report">Mitt Git-repo</a></li>
+                </ul>
             </div>
-        </div>
 
-        <div class="bild span5 radius">
-            <img src="{{ asset('img/php.jpg') }}" alt="PHP">
+            <div class="span4">
+                <h3>MVC</h3>
+                <div class="txt">
+                    <p>
+                        Kursen MVC lär ut objektorienterad programmering i PHP. Vi utforskar grundläggande 
+                        objektorienterade koncept och applicerar 
+                        dem i webbutveckling med ramverk, inklusive databashantering och enhetstestning
+                    </p>
+                </div>
+            </div>
+
+            <div class="bild span5 radius">
+                <img src="{{ asset('img/php.jpg') }}" alt="PHP">
+            </div>
         </div>
     </div>
     {# <img src="{{ asset('build/images/background.jpg') }}" alt=""> #}
