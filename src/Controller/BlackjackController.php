@@ -59,10 +59,15 @@ class BlackjackController extends AbstractController
 
             $this->forAction($game, $formGet);
 
+            $playersToRemove = [];
             foreach ($game->getPlayers() as $index => $player) {
-                if ($player->getMoney() <= 0) {
-                    $game->removePlayer($index);
+                if ($player->getMoney() <= 0 && $player->getCurrentBet() <= 0) {
+                    $playersToRemove[] = $index;
                 }
+            }
+
+            foreach ($playersToRemove as $index) {
+                $game->removePlayer($index);
             }
 
             if ($game->playerStatus()) {

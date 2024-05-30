@@ -11,6 +11,7 @@
                         <p><strong>{{ player.getName() }}:</strong> {{ player.getHand() }} (<em><strong>poäng:</strong> {{ player.getHand().getValue() }}</em>)</p>
                         {% if player.getHand().getValue() <= 21 %}
                             {% if not player.isStanding() %}
+                                <p>Sats:{{player.getCurrentBet()}}, kvar:{{player.getMoney()}}</p>
                                 <button class="button greenbg" type="submit" name="action[{{ loop.index0 }}]" value="h">Dra</button>
                                 <button class="button greenbg" type="submit" name="action[{{ loop.index0 }}]" value="s">Stanna</button>
                             {% endif %}
