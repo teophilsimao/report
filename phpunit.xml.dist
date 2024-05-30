@@ -27,6 +27,10 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <directory>src/Controller</directory>
+            <directory>src/Repository</directory>
+        </exclude>
 
         <report>
             <clover outputFile="docs/coverage.clover"/>

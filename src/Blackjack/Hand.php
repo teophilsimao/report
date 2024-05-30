@@ -19,6 +19,14 @@ class Hand
         $this->cards = [];
     }
 
+    /**
+     * @return array<CardGraphic>
+     */
+    public function getCards(): array
+    {
+        return $this->cards;
+    }
+
     public function getValue(): int
     {
         $value = 0;

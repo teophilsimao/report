@@ -21,6 +21,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Blackjack-BlackjackGame.html#method_getPlayers"
         },                {
+            "fqsen": "\\App\\Blackjack\\BlackjackGame\u003A\u003AgetDealer\u0028\u0029",
+            "name": "getDealer",
+            "summary": "",
+            "url": "classes/App-Blackjack-BlackjackGame.html#method_getDealer"
+        },                {
             "fqsen": "\\App\\Blackjack\\BlackjackGame\u003A\u003Ahit\u0028\u0029",
             "name": "hit",
             "summary": "",
@@ -185,6 +190,11 @@ Search.appendIndex(
             "name": "clear",
             "summary": "",
             "url": "classes/App-Blackjack-Hand.html#method_clear"
+        },                {
+            "fqsen": "\\App\\Blackjack\\Hand\u003A\u003AgetCards\u0028\u0029",
+            "name": "getCards",
+            "summary": "",
+            "url": "classes/App-Blackjack-Hand.html#method_getCards"
         },                {
             "fqsen": "\\App\\Blackjack\\Hand\u003A\u003AgetValue\u0028\u0029",
             "name": "getValue",
@@ -640,6 +650,11 @@ Search.appendIndex(
             "name": "projHome",
             "summary": "",
             "url": "classes/App-Controller-BlackjackController.html#method_projHome"
+        },                {
+            "fqsen": "\\App\\Controller\\BlackjackController\u003A\u003AprojAbout\u0028\u0029",
+            "name": "projAbout",
+            "summary": "",
+            "url": "classes/App-Controller-BlackjackController.html#method_projAbout"
         },                {
             "fqsen": "\\App\\Controller\\BlackjackController\u003A\u003AblackjackStart\u0028\u0029",
             "name": "blackjackStart",

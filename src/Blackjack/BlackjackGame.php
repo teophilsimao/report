@@ -113,15 +113,12 @@ class BlackjackGame
             } elseif ($dealerValue > 21 || $playerValue > $dealerValue) {
                 $player->winBet();
                 $results[] = "{$player->getName()} fick {$playerValue} och vann";
-            } elseif ($playerValue <= 21 && $playerValue < $dealerValue) {
+            } elseif (($playerValue <= 21 && $playerValue < $dealerValue) || ($playerValue < 20 && $playerValue === $dealerValue)) {
                 $player->loseBet();
                 $results[] = "{$player->getName()} fick {$playerValue} och förlorade";
             } elseif (($playerValue === 20 || $playerValue === 21) && $playerValue === $dealerValue) {
                 $player->drawBet();
                 $results[] = "{$player->getName()} fick {$playerValue} och gick lika";
-            } else {
-                $player->loseBet();
-                $results[] = "{$player->getName()} fick {$playerValue} och förlorade";
             }
         }
 
