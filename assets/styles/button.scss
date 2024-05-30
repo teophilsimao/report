@@ -66,3 +66,15 @@ form input[type=number], input[type=text], input[type=submit], input[type=file],
 .greenbg:hover {
     background-color: $accolor;
 }
+
+.yellow {
+    background-color: $accolor;
+}
+
+.yellow a {
+    color: $textcolor !important;
+}
+
+.yellow:hover {
+    background-color: $comcolor;
+}

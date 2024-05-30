@@ -12,6 +12,7 @@ html {
     flex-direction: column;
     overflow-y: scroll;
     background-color: $backgroundcolor;
+    font-family: $font-proj;
 }
 
 //nav
@@ -95,7 +96,7 @@ html {
 .proj-footer{
     position: absolute;
     bottom: 0;
-    background-color: $darkdark;
+    background-color: $comcolor;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -103,5 +104,5 @@ html {
 
 .fpdiv p {
     padding: 1em 3em;
-    color: $darkwhite;
+    color: $textcolor;
 }

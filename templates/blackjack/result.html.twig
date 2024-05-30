@@ -6,7 +6,7 @@
         <br>
         <ul>
             {% for player in players %}
-                <li><p><strong>{{ player.getName() }}:</strong> {{ player.getHand() }} (poäng: {{ player.getHand().getValue() }})</p></li>
+                <li><p><strong>{{ player.getName() }}:</strong> {{ player.getHand() }} (<em><strong>poäng:</strong> {{ player.getHand().getValue() }}</em>)</p></li>
                 <br>
             {% endfor %}
         </ul>

@@ -8,7 +8,7 @@
             {% for player in players %}
                 <div class="player-info">
                     {% if player.getMoney() > 0 or player.getCurrentBet() > 0 %}
-                        <p><strong>{{ player.getName() }}:</strong> {{ player.getHand() }} (poäng: {{ player.getHand().getValue() }})</p>
+                        <p><strong>{{ player.getName() }}:</strong> {{ player.getHand() }} (<em><strong>poäng:</strong> {{ player.getHand().getValue() }}</em>)</p>
                         {% if player.getHand().getValue() <= 21 %}
                             {% if not player.isStanding() %}
                                 <button class="button greenbg" type="submit" name="action[{{ loop.index0 }}]" value="h">Dra</button>
@@ -27,6 +27,6 @@
             {% endfor %}
         </form>
         <br>
-        <button class="button"><a href="{{ path('blackjack_home') }}">Starta om</a></button>
+        <button class="button yellow"><a href="{{ path('blackjack_home') }}">Starta om</a></button>
     </div>
 {% endblock %}
