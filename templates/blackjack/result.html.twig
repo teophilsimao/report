@@ -30,7 +30,7 @@
                 <div>
                     <label for="playerBet{{ loop.index }}">Ny sats för {{ player.getName() }} (credit: {{ player.getMoney() }}):</label>
                     <input type="number" id="playerBet{{ loop.index }}" name="playerBets[{{ loop.index0 }}]" min="0" 
-                    max="{{ player.getMoney() < 500 ? player.getMoney() : 500 }}"
+                    max="{{ player.getMoney() < 200 ? player.getMoney() : 200 }}"
                     value="{{player.getMoney() <= 0 ? player.getMoney()}}" required>
                 </div>
             {% endfor %}
